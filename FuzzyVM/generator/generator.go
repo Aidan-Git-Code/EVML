@@ -45,6 +45,9 @@ func init() {
 	strats = append(strats, callStrategies...)
 	strats = append(strats, jumpStrategies...)
 	strategies = makeMap(strats)
+	if err := LoadPlanFromEnv(); err != nil {
+		panic(fmt.Sprintf("FUZZYVM_PLAN load failed: %v", err))
+	}
 }
 
 // GenerateProgram creates a new evm program and returns

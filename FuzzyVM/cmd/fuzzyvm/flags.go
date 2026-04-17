@@ -33,4 +33,14 @@ var (
 		Usage: "Number of generator threads started (default = NUMCPU)",
 		Value: runtime.NumCPU(),
 	}
+
+	planFlag = &cli.StringFlag{
+		Name:  "plan",
+		Usage: "Path to a strategy plan JSON file (see orchestrator/plan_schema.json). Empty = stock behavior.",
+	}
+
+	outDirFlag = &cli.StringFlag{
+		Name:  "out-dir",
+		Usage: "Output directory for generated state tests (default: ./out). Baseline vs LLM-guided runs should use different directories.",
+	}
 )

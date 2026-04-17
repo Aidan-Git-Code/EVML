@@ -1,0 +1,18 @@
+{
+  "plan_id": "smoke_storage_heavy_v1",
+  "objective": "smoke-test plan overrides: heavily bias SSTORE/SLOAD; ban SELFDESTRUCT",
+  "fork": "Cancun",
+  "rounds": { "min": 60, "max": 150 },
+  "batch": { "num_tests": 5 },
+  "strategy_weights": {
+    "sstoreGenerator": 80,
+    "sloadGenerator": 80,
+    "tstoreGenerator": 40,
+    "tloadGenerator": 40,
+    "opcodeGenerator": 2
+  },
+  "constraints": {
+    "banned_opcodes": ["SELFDESTRUCT", "BLOCKHASH"]
+  },
+  "rationale": "smoke test — should see far more storage ops and no SELFDESTRUCT bytes in emitted code"
+}

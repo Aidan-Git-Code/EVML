@@ -19,18 +19,23 @@ package main
 
 import (
 	"bytes"
+	"crypto/rand"
 	"crypto/sha1"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"sort"
 
 	"github.com/urfave/cli/v2"
 
 	"github.com/MariusVanDerWijden/FuzzyVM/benchmark"
+	"github.com/MariusVanDerWijden/FuzzyVM/filler"
 	"github.com/MariusVanDerWijden/FuzzyVM/fuzzer"
+	"github.com/MariusVanDerWijden/FuzzyVM/generator"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/vm"
 )
 
 var benchCommand = &cli.Command{
@@ -48,6 +53,7 @@ var corpusCommand = &cli.Command{
 	Action: corpus,
 	Flags: []cli.Flag{
 		countFlag,
+		planFlag,
 	},
 }
 
@@ -63,6 +69,18 @@ var runCommand = &cli.Command{
 	Action: run,
 	Flags: []cli.Flag{
 		threadsFlag,
+		planFlag,
+		outDirFlag,
+	},
+}
+
+var dumpCommand = &cli.Command{
+	Name:   "dump",
+	Usage:  "Generate N programs in-process and report per-opcode emission frequency. Diagnostic for plan tuning.",
+	Action: dump,
+	Flags: []cli.Flag{
+		countFlag,
+		planFlag,
 	},
 }
 
@@ -75,6 +93,7 @@ func initApp() *cli.App {
 		corpusCommand,
 		minCorpusCommand,
 		runCommand,
+		dumpCommand,
 	}
 	return app
 }
@@ -101,6 +120,11 @@ func bench(c *cli.Context) error {
 func corpus(c *cli.Context) error {
 	const dir = "corpus"
 	ensureDirs(dir)
+	if plan := c.String(planFlag.Name); plan != "" {
+		if err := generator.LoadPlanFile(plan); err != nil {
+			return fmt.Errorf("load plan: %w", err)
+		}
+	}
 	n := c.Int(countFlag.Name)
 
 	for i := 0; i < n; i++ {
@@ -120,20 +144,37 @@ func corpus(c *cli.Context) error {
 }
 
 func run(c *cli.Context) error {
+	outDir := c.String(outDirFlag.Name)
+	if outDir == "" {
+		outDir = outputRootDir
+	}
+	if abs, err := filepath.Abs(outDir); err == nil {
+		outDir = abs
+	}
 	directories := []string{
-		outputRootDir,
+		outDir,
 		crashesDir,
 	}
 	for i := 0; i < 256; i++ {
-		directories = append(directories, fmt.Sprintf("%v/%v", outputRootDir, common.Bytes2Hex([]byte{byte(i)})))
+		directories = append(directories, fmt.Sprintf("%v/%v", outDir, common.Bytes2Hex([]byte{byte(i)})))
 	}
 	ensureDirs(directories...)
 	genThreads := c.Int(threadsFlag.Name)
-	cmd := startGenerator(genThreads)
+	planPath := c.String(planFlag.Name)
+	if planPath != "" {
+		if abs, err := filepath.Abs(planPath); err == nil {
+			planPath = abs
+		}
+		// Validate locally first so a bad plan fails before we spawn go test.
+		if err := generator.LoadPlanFile(planPath); err != nil {
+			return fmt.Errorf("validate plan: %w", err)
+		}
+	}
+	cmd := startGenerator(genThreads, planPath, outDir)
 	return cmd.Wait()
 }
 
-func startGenerator(genThreads int) *exec.Cmd {
+func startGenerator(genThreads int, planPath, outDir string) *exec.Cmd {
 	var (
 		cmdName = "go"
 		target  = "FuzzVMBasic"
@@ -143,17 +184,61 @@ func startGenerator(genThreads int) *exec.Cmd {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	// Set the output directory
-	path, err := os.Getwd()
-	if err != nil {
-		panic(err)
+	env := append(os.Environ(), fmt.Sprintf("%v=%v", fuzzer.EnvKey, outDir))
+	if planPath != "" {
+		env = append(env, fmt.Sprintf("FUZZYVM_PLAN=%v", planPath))
 	}
-	directory := filepath.Join(path, outputRootDir)
-	env := append(os.Environ(), fmt.Sprintf("%v=%v", fuzzer.EnvKey, directory))
 	cmd.Env = env
 	if err := cmd.Start(); err != nil {
 		panic(err)
 	}
 	return cmd
+}
+
+func dump(c *cli.Context) error {
+	if plan := c.String(planFlag.Name); plan != "" {
+		if err := generator.LoadPlanFile(plan); err != nil {
+			return fmt.Errorf("load plan: %w", err)
+		}
+	}
+	n := c.Int(countFlag.Name)
+	if n <= 0 {
+		n = 50
+	}
+	counts := make(map[vm.OpCode]int)
+	totalBytes := 0
+	for i := 0; i < n; i++ {
+		buf := make([]byte, 4096)
+		if _, err := rand.Read(buf); err != nil {
+			return err
+		}
+		f := filler.NewFiller(buf)
+		_, code := generator.GenerateProgram(f)
+		totalBytes += len(code)
+		for j := 0; j < len(code); j++ {
+			op := vm.OpCode(code[j])
+			counts[op]++
+			if op >= vm.PUSH1 && op <= vm.PUSH32 {
+				skip := int(op) - int(vm.PUSH1) + 1
+				j += skip
+			}
+		}
+	}
+	type kv struct {
+		op    vm.OpCode
+		count int
+	}
+	rows := make([]kv, 0, len(counts))
+	for op, c := range counts {
+		rows = append(rows, kv{op, c})
+	}
+	sort.Slice(rows, func(i, j int) bool { return rows[i].count > rows[j].count })
+	fmt.Printf("dump: %d programs, %d total bytes, %d distinct opcodes\n", n, totalBytes, len(rows))
+	fmt.Printf("%-20s %8s\n", "OPCODE", "COUNT")
+	for _, r := range rows {
+		fmt.Printf("%-20s %8d\n", r.op.String(), r.count)
+	}
+	return nil
 }
 
 func minimizeCorpus(c *cli.Context) error {

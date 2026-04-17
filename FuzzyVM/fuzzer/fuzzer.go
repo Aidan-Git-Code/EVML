@@ -67,11 +67,21 @@ func FuzzStateless(data []byte) int {
 }
 
 // Fuzz is the entry point for go-fuzz
-func Fuzz(data []byte) int {
+func Fuzz(data []byte) (ret int) {
 	// Too little data destroys our performance and makes it hard for the generator
 	if len(data) < 32 {
 		return -1
 	}
+	// Swallow per-input panics so a single bad seed or an unfillable generated
+	// test doesn't take down the long-running baseline/LLM-guided processes.
+	// Interesting-bug signal comes from cross-client state-root diffs via
+	// goevmlab, not from in-process geth panics.
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Fprintf(os.Stderr, "[FuzzyVM recover] %v\n", r)
+			ret = 0
+		}
+	}()
 	f := filler.NewFiller(data)
 	testMaker, _ := generator.GenerateProgram(f)
 	// minimize test
@@ -88,7 +98,8 @@ func Fuzz(data []byte) int {
 		defer traceFile.Close()
 	}
 	if err := testMaker.Fill(traceFile); err != nil {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "[FuzzyVM skip] Fill error: %v\n", err)
+		return 0
 	}
 	// Save the test
 	test := testMaker.ToGeneralStateTest(finalName)

@@ -46,9 +46,10 @@ func (*opcodeGenerator) Execute(env Environment) {
 	// Nethermind currently uses a different blockhash provider in the statetests,
 	// so ignore the blockhash operator to reduce false positives.
 	// see: https://gist.github.com/MariusVanDerWijden/97fe9eb1aac074f7ccf6aef169aaadaa
-	if op != vm.BLOCKHASH {
-		env.p.Op(op)
+	if op == vm.BLOCKHASH || IsBanned(op) {
+		return
 	}
+	env.p.Op(op)
 }
 
 func (*opcodeGenerator) Importance() int {
@@ -63,9 +64,9 @@ type validOpcodeGenerator struct{}
 
 func (*validOpcodeGenerator) Execute(env Environment) {
 	op := vm.OpCode(env.f.Byte())
-	if strings.Contains(op.String(), "not defined") {
-		// If the opcode is not defined, use JUMPDEST
-		// since JUMPDEST is a valid opcode
+	if strings.Contains(op.String(), "not defined") || IsBanned(op) {
+		// If the opcode is not defined or banned by the active plan,
+		// substitute JUMPDEST (always a valid no-op).
 		op = vm.JUMPDEST
 	}
 	env.p.Op(op)
