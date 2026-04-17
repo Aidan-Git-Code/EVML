@@ -1,0 +1,6 @@
+[submodule "FuzzyVM"]
+	path = FuzzyVM
+	url = https://github.com/MariusVanDerWijden/FuzzyVM
+[submodule "goevmlab"]
+	path = goevmlab
+	url = https://github.com/holiman/goevmlab
