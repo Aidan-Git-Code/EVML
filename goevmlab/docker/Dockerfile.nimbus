@@ -1,0 +1,13 @@
+FROM debian:testing-slim as builder
+
+RUN apt-get update \
+ && apt-get -y install curl build-essential git-lfs librocksdb-dev \
+ && apt-get clean
+
+RUN git clone -j8 https://github.com/status-im/nimbus-eth1.git --depth 1
+RUN cd nimbus-eth1 && make -j8 init
+RUN cd nimbus-eth1 && make -j8 evmstate && cp ./tools/evmstate/evmstate /nimbvm
+RUN cd nimbus-eth1 && make -j8 txparse  && cp ./tools/txparse/txparse /txparse.nimbus
+
+FROM debian:testing-slim
+COPY --from=builder /nimbvm /txparse.nimbus /
