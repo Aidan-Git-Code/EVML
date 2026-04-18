@@ -180,7 +180,16 @@ func startGenerator(genThreads int, planPath, outDir string) *exec.Cmd {
 		target  = "FuzzVMBasic"
 		dir     = "./fuzzer/..."
 	)
-	cmd := exec.Command(cmdName, "test", "--fuzz", target, "--parallel", fmt.Sprint(genThreads), dir)
+	// -fuzzminimizetime=0 disables Go's post-crash input minimization. Every
+	// generated EVM program is just a byte blob to us — goevmlab reruns the
+	// saved state test across clients, we don't need the smallest reproducer.
+	// Default minimization burns ~60s per crasher and sometimes hangs (seen
+	// as "while minimizing: EOF" in baseline logs), so skipping it cuts
+	// crash-cycle wall-clock significantly.
+	cmd := exec.Command(cmdName, "test", "--fuzz", target,
+		"--parallel", fmt.Sprint(genThreads),
+		"-fuzzminimizetime=0",
+		dir)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	// Set the output directory
