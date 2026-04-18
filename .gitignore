@@ -16,3 +16,11 @@ out/*.log.prev
 
 # Local Claude Code session-resume shortcut (user-specific).
 claude.claude
+
+# Python bytecode.
+__pycache__/
+*.pyc
+
+# Local llama-server session state (started by scripts/start_llama_server.sh).
+out/llama_server.pid
+out/llama_server.log

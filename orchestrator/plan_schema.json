@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifuzzyvm/plan_schema.json",
+  "title": "Strategy Plan DSL",
+  "description": "LLM-emitted plan consumed by FuzzyVM/generator/plan.go:LoadPlanFile. Only strategy_weights, fork, and constraints.banned_opcodes are wired into generation today; other fields are accepted but currently ignored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_id", "objective", "fork"],
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Orchestrator-assigned id. Typically sha256(canonical_json(rest_of_plan))[:16]."
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 4,
+      "maxLength": 400,
+      "description": "One-sentence target: which EIP/opcode interaction the plan is probing."
+    },
+    "fork": {
+      "type": "string",
+      "enum": [
+        "Byzantium", "Constantinople", "ConstantinopleFix", "Istanbul",
+        "Berlin", "London", "ArrowGlacier", "GrayGlacier",
+        "Merge", "Paris", "Shanghai", "Cancun", "Prague", "Osaka"
+      ]
+    },
+    "rounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "max": { "type": "integer", "minimum": 1, "maximum": 10000 }
+      }
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["num_tests"],
+      "properties": {
+        "num_tests": { "type": "integer", "minimum": 1, "maximum": 5000 }
+      }
+    },
+    "strategy_weights": {
+      "type": "object",
+      "description": "Weights on a 1-100 scale; normalized across 256 buckets by makeMapNormalized. Unknown keys are rejected by the Go loader.",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "opcodeGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
+        "validOpcodeGenerator":   { "type": "integer", "minimum": 1, "maximum": 100 },
+        "memStorageGenerator":    { "type": "integer", "minimum": 1, "maximum": 100 },
+        "mstoreGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
+        "sstoreGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
+        "tstoreGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
+        "returnDataGenerator":    { "type": "integer", "minimum": 1, "maximum": 100 },
+        "returnGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
+        "pushGenerator":          { "type": "integer", "minimum": 1, "maximum": 100 },
+        "hashAndStoreGenerator":  { "type": "integer", "minimum": 1, "maximum": 100 },
+        "mloadGenerator":         { "type": "integer", "minimum": 1, "maximum": 100 },
+        "sloadGenerator":         { "type": "integer", "minimum": 1, "maximum": 100 },
+        "tloadGenerator":         { "type": "integer", "minimum": 1, "maximum": 100 },
+        "blobhashGenerator":      { "type": "integer", "minimum": 1, "maximum": 100 },
+        "createCallRNGGenerator": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "createCallGenerator":    { "type": "integer", "minimum": 1, "maximum": 100 },
+        "randomCallGenerator":    { "type": "integer", "minimum": 1, "maximum": 100 },
+        "callPrecompileGenerator":{ "type": "integer", "minimum": 1, "maximum": 100 },
+        "jumpGenerator":          { "type": "integer", "minimum": 1, "maximum": 100 },
+        "jumpdestGenerator":      { "type": "integer", "minimum": 1, "maximum": 100 }
+      }
+    },
+    "parameter_hints": {
+      "type": "object",
+      "description": "Free-form hints; not yet consumed by the generator. Kept permissive so the LLM can record intent.",
+      "additionalProperties": true
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "banned_opcodes":          { "type": "array", "items": { "type": "string" }, "maxItems": 64 },
+        "required_opcodes_any_of": { "type": "array", "items": { "type": "string" }, "maxItems": 64 },
+        "allowed_call_ops": {
+          "type": "array",
+          "items": { "enum": ["CALL", "CALLCODE", "DELEGATECALL", "STATICCALL"] },
+          "maxItems": 4
+        },
+        "allowed_precompiles": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^0x[0-9a-fA-F]{1,2}$" },
+          "maxItems": 32
+        }
+      }
+    },
+    "seed_hint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hex":   { "type": ["string", "null"], "pattern": "^(0x)?[0-9a-fA-F]*$" },
+        "notes": { "type": "string", "maxLength": 400 }
+      }
+    },
+    "rationale": { "type": "string", "maxLength": 1200 },
+    "expected_signal": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "state_root_divergence",
+          "gas_divergence",
+          "returndata_divergence",
+          "storage_divergence",
+          "halt_reason_divergence",
+          "precompile_divergence"
+        ]
+      },
+      "maxItems": 6
+    }
+  }
+}

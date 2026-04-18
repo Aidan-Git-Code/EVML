@@ -48,17 +48,27 @@ Currently `Importance()` is hardcoded. The LLM-guided path will override these (
 
 ## Current status (as of 2026-04-18)
 
-Day 1 work is complete — the baseline stack is running. What's built:
+Day 1 + Day 2 work complete. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). LLM-guided pipeline is end-to-end operational.
 
+**Day 1 (baseline + plumbing):**
 - **Plan loader** in `FuzzyVM/generator/plan.go`: reads JSON plan via `--plan path.json` or `FUZZYVM_PLAN=path.json` env var; overrides strategy weights, fork, banned opcodes. Stock behavior is the default when no plan is present.
 - **`makeMapNormalized`** in the same file: bypasses a byte-overflow bug in upstream `generator/strategy.go:52 makeMap` that manifests only under plan-driven heavy weights. Stock path untouched.
-- **`--out-dir`** flag on `FuzzyVM run` propagates to `FUZZYDIR`. Baseline writes to `out/baseline/`, LLM-guided runs will write to `out/llm_guided/<plan_id>/`.
-- **`dump` subcommand** (`./FuzzyVM dump --count 50 [--plan plan.json]`) runs the generator in-process and prints per-opcode emission frequency. Useful for plan tuning and for verifying the weights actually bias generation.
-- **Supervised baseline runner** at `scripts/start_baseline.sh` — see next section.
-- **Crasher watcher** at `scripts/crasher_watcher.sh`: polls `FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/` at 1s cadence, moves crasher inputs to `out/crashers/` before the supervisor wipes them, writes `out/crashers/manifest.tsv`.
-- **Smoke plan** at `orchestrator/plans/smoke_storage_heavy.json` (storage-heavy, Cancun, BLOCKHASH+SELFDESTRUCT banned). Used to dry-run the plan loader end-to-end.
+- **`--out-dir`** flag on `FuzzyVM run` propagates to `FUZZYDIR`. Baseline writes to `out/baseline/`, LLM-guided runs write to `out/llm_guided/<plan_id>/`.
+- **`dump` subcommand** (`./FuzzyVM dump --count 50 [--plan plan.json]`) runs the generator in-process and prints per-opcode emission frequency. Used by the orchestrator to verify bias.
+- **Supervised baseline runner** at `scripts/start_baseline.sh` + crasher watcher at `scripts/crasher_watcher.sh`.
+- **Smoke plan** at `orchestrator/plans/smoke_storage_heavy.json`.
 
-What's **not yet** built: the LLM+RAG orchestrator, DSL schema file, GBNF grammar, goevmlab differential harness wiring. See `WhiteishPaper.md` for the full plan.
+**Day 2 (LLM + orchestrator pipeline):**
+- **llama.cpp** built with CUDA at `~/tools/llama.cpp/build/bin/llama-server` (CUDA 13.2, RTX 4080, Ada sm_89).
+- **Model** at `~/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf` (~5.1 GB). Loaded with full GPU offload; ~107 tok/s decode.
+- **Server launcher** at `scripts/start_llama_server.sh` — idempotent, waits for `/health`, writes pid+log to `out/`.
+- **`orchestrator/plan_schema.json`** — JSON Schema (Draft 2020-12) for the Strategy Plan DSL (semantic validation).
+- **`orchestrator/plan.gbnf`** — GBNF grammar for llama.cpp grammar-constrained decoding (shape validation). Each rule is single-line / paren-grouped — llama.cpp's GBNF parser breaks rules at bare newlines, so multiline rules must be wrapped in `(...)`.
+- **`orchestrator/rag_stub.py`** — hardcoded-snippet retriever (8 EIP / opcode / incident entries, word-overlap scoring). Placeholder; FAISS + bge-small lands Day 3.
+- **`orchestrator/run_batch.py`** — objective → LLM (`/completion` with `grammar` field — note `/v1/chat/completions` silently drops grammar, so the native endpoint is mandatory) → `json.loads` → `jsonschema` validate → plan file → `./FuzzyVM run --plan`. Supports `--dry-run`, `--verify-bias`, `--duration`.
+- **LLM sampling**: temperature 0.6, top_p 0.9, dry_multiplier 0.8, repeat_penalty 1.1. Prior to dry-sampling, the model looped on repeat keys until max_tokens; dry-sampling + `sw-entry` bounded to 20 in grammar fixed it.
+
+What's **not yet** built: real RAG (FAISS), goevmlab differential harness wiring, plateau rotation, preference tuning. See `WhiteishPaper.md`.
 
 ## Baseline runner
 
@@ -198,19 +208,29 @@ Weight semantics: numbers on a 1–100 scale (same as `Strategy.Importance()`). 
 │   ├── generator/plan.go      plan loader + makeMapNormalized (ours)
 │   └── fuzzer/fuzzer.go       go-fuzz entry point (FuzzVMBasic)
 ├── goevmlab/                  submodule — differential harness (unmodified)
-├── orchestrator/              (mostly to be built)
+├── orchestrator/
+│   ├── plan_schema.json       JSON Schema for the DSL (semantic validation)
+│   ├── plan.gbnf              GBNF grammar for llama.cpp (shape validation)
+│   ├── rag_stub.py            Day-2 RAG stub; real FAISS lands Day 3
+│   ├── run_batch.py           objective → LLM → validate → FuzzyVM
 │   └── plans/
-│       └── smoke_storage_heavy.json   smoke-test plan
+│       └── smoke_storage_heavy.json   manual smoke-test plan
 ├── scripts/
 │   ├── start_baseline.sh      supervised baseline runner
+│   ├── start_llama_server.sh  idempotent llama-server launcher
 │   └── crasher_watcher.sh     preserves testdata crashers to out/crashers/
 └── out/
-    ├── baseline/              stock FuzzyVM random run
-    ├── baseline.pre-16h/      archived earlier baseline output (before 16h run)
+    ├── baseline/              stock FuzzyVM random run (gitignored)
+    ├── llm_guided/<plan_id>/  per-plan LLM-guided batches (gitignored)
     ├── crashers/              preserved go-fuzz crashers (+ manifest.tsv)
     ├── baseline.{pid,start,stop,log}          supervisor session state
-    └── baseline.watcher.{pid,log}             crasher-watcher session state
+    ├── baseline.watcher.{pid,log}             crasher-watcher session state
+    └── llama_server.{pid,log}                 llama-server session state
 ```
+
+External (outside repo, not version-controlled):
+- `~/tools/llama.cpp/`              CUDA-built llama.cpp
+- `~/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf`  local model (~5.1 GB)
 
 **To build in the future:** `orchestrator/plan_schema.json`, `orchestrator/plan.gbnf`, `orchestrator/rag/`, `orchestrator/prompts/`, `out/llm_guided/<plan_id>/`.
 

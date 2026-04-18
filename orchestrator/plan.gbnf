@@ -1,0 +1,58 @@
+# GBNF grammar for the Strategy Plan DSL (llama.cpp grammar-constrained decoding).
+# Enforces JSON shape + key set; semantic validation (enum values, integer ranges)
+# happens in the Python orchestrator against orchestrator/plan_schema.json.
+# Canonical key ordering is enforced: plan_id -> objective -> fork -> [optional
+# blocks in a fixed order].
+#
+# llama.cpp GBNF rule continuations only work inside ()/[] groups — so every
+# rule body is wrapped in parens.
+
+root ::= ( plan )
+
+plan ::= ( "{" ws "\"plan_id\"" ws ":" ws string ws "," ws "\"objective\"" ws ":" ws string ws "," ws "\"fork\"" ws ":" ws fork-string ( ws "," ws "\"rounds\"" ws ":" ws rounds-obj )? ( ws "," ws "\"batch\"" ws ":" ws batch-obj )? ( ws "," ws "\"strategy_weights\"" ws ":" ws sw-obj )? ( ws "," ws "\"parameter_hints\"" ws ":" ws hints-obj )? ( ws "," ws "\"constraints\"" ws ":" ws constraints-obj )? ( ws "," ws "\"seed_hint\"" ws ":" ws seed-obj )? ( ws "," ws "\"rationale\"" ws ":" ws string )? ( ws "," ws "\"expected_signal\"" ws ":" ws sig-arr )? ws "}" )
+
+fork-string ::= ( "\"Byzantium\"" | "\"Constantinople\"" | "\"ConstantinopleFix\"" | "\"Istanbul\"" | "\"Berlin\"" | "\"London\"" | "\"ArrowGlacier\"" | "\"GrayGlacier\"" | "\"Merge\"" | "\"Paris\"" | "\"Shanghai\"" | "\"Cancun\"" | "\"Prague\"" | "\"Osaka\"" )
+
+rounds-obj ::= ( "{" ws "\"min\"" ws ":" ws integer ws "," ws "\"max\"" ws ":" ws integer ws "}" )
+
+batch-obj ::= ( "{" ws "\"num_tests\"" ws ":" ws integer ws "}" )
+
+sw-obj ::= ( "{" ws sw-entry ( ws "," ws sw-entry ){0,19} ws "}" )
+
+sw-entry ::= ( strategy-key ws ":" ws integer )
+
+strategy-key ::= ( "\"opcodeGenerator\"" | "\"validOpcodeGenerator\"" | "\"memStorageGenerator\"" | "\"mstoreGenerator\"" | "\"sstoreGenerator\"" | "\"tstoreGenerator\"" | "\"returnDataGenerator\"" | "\"returnGenerator\"" | "\"pushGenerator\"" | "\"hashAndStoreGenerator\"" | "\"mloadGenerator\"" | "\"sloadGenerator\"" | "\"tloadGenerator\"" | "\"blobhashGenerator\"" | "\"createCallRNGGenerator\"" | "\"createCallGenerator\"" | "\"randomCallGenerator\"" | "\"callPrecompileGenerator\"" | "\"jumpGenerator\"" | "\"jumpdestGenerator\"" )
+
+hints-obj ::= ( "{" ws ( hints-entry ( ws "," ws hints-entry )* )? ws "}" )
+
+hints-entry ::= ( string ws ":" ws ( string | integer | "true" | "false" | "null" ) )
+
+constraints-obj ::= ( "{" ws ( con-entry ( ws "," ws con-entry )* )? ws "}" )
+
+con-entry ::= ( "\"banned_opcodes\"" ws ":" ws op-arr | "\"required_opcodes_any_of\"" ws ":" ws op-arr | "\"allowed_call_ops\"" ws ":" ws call-arr | "\"allowed_precompiles\"" ws ":" ws hex-arr )
+
+op-arr ::= ( "[" ws ( string ( ws "," ws string )* )? ws "]" )
+
+call-arr ::= ( "[" ws ( call-op ( ws "," ws call-op )* )? ws "]" )
+
+call-op ::= ( "\"CALL\"" | "\"CALLCODE\"" | "\"DELEGATECALL\"" | "\"STATICCALL\"" )
+
+hex-arr ::= ( "[" ws ( hex-str ( ws "," ws hex-str )* )? ws "]" )
+
+hex-str ::= ( "\"0x" [0-9a-fA-F] [0-9a-fA-F]? "\"" )
+
+seed-obj ::= ( "{" ws ( seed-entry ( ws "," ws seed-entry )* )? ws "}" )
+
+seed-entry ::= ( "\"hex\"" ws ":" ws ( string | "null" ) | "\"notes\"" ws ":" ws string )
+
+sig-arr ::= ( "[" ws ( sig-val ( ws "," ws sig-val )* )? ws "]" )
+
+sig-val ::= ( "\"state_root_divergence\"" | "\"gas_divergence\"" | "\"returndata_divergence\"" | "\"storage_divergence\"" | "\"halt_reason_divergence\"" | "\"precompile_divergence\"" )
+
+integer ::= ( "0" | [1-9] [0-9]{0,2} | "100" )
+
+string ::= ( "\"" char* "\"" )
+
+char ::= ( [^"\\\x7F\x00-\x1F] | "\\" (["\\/bfnrt] | "u" [0-9a-fA-F]{4}) )
+
+ws ::= ( [ \t\n]* )
