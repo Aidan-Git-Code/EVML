@@ -1,0 +1,629 @@
+[supervisor 2026-04-18T01:28:47-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/baseline/ff
+&map[name:0x19d8ce24000]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 465/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 633/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 769/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 786/2437 completed
+--- FAIL: FuzzVMBasic (14.34s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.805s
+exit status 1
+[supervisor 2026-04-18T01:29:10-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:29:15-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x12d9b68a41a0]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 396/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 581/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 735/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 749/2437 completed
+--- FAIL: FuzzVMBasic (14.39s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.697s
+exit status 1
+[supervisor 2026-04-18T01:29:38-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:29:43-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x281dff182340]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 459/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 636/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 767/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 782/2437 completed
+--- FAIL: FuzzVMBasic (14.37s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.441s
+exit status 1
+[supervisor 2026-04-18T01:30:06-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:30:11-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x2c45c8204000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 460/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 638/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 768/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 780/2437 completed
+--- FAIL: FuzzVMBasic (14.34s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.565s
+exit status 1
+[supervisor 2026-04-18T01:30:31-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:30:39-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x2f04bdfac340]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 460/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 622/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 749/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 760/2437 completed
+--- FAIL: FuzzVMBasic (14.33s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.516s
+exit status 1
+[supervisor 2026-04-18T01:31:00-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:31:05-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x3a69b5c2000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 394/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 460/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 622/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 751/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 780/2437 completed
+--- FAIL: FuzzVMBasic (14.48s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.737s
+exit status 1
+[supervisor 2026-04-18T01:31:29-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:31:34-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x1ebe3628e000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 396/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 455/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 612/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 751/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 762/2437 completed
+--- FAIL: FuzzVMBasic (14.43s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.669s
+exit status 1
+[supervisor 2026-04-18T01:31:57-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:32:02-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x3ff1d0692000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 625/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 768/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 778/2437 completed
+--- FAIL: FuzzVMBasic (14.40s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.559s
+exit status 1
+[supervisor 2026-04-18T01:32:26-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:32:31-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x2611017a41a0]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 395/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 620/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 762/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 771/2437 completed
+--- FAIL: FuzzVMBasic (14.41s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.631s
+exit status 1
+[supervisor 2026-04-18T01:32:51-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:32:59-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x28dfdb3781a0]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 598/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 744/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 751/2437 completed
+--- FAIL: FuzzVMBasic (14.40s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.588s
+exit status 1
+[supervisor 2026-04-18T01:33:19-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:33:24-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0xe0e7de02000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 595/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 739/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 749/2437 completed
+--- FAIL: FuzzVMBasic (14.40s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.587s
+exit status 1
+[supervisor 2026-04-18T01:33:48-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:33:53-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x677b9b9e000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 458/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 627/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 767/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 768/2437 completed
+--- FAIL: FuzzVMBasic (14.34s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.549s
+exit status 1
+[supervisor 2026-04-18T01:34:16-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:34:21-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x27e0eb58a340]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 458/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 604/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 745/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 751/2437 completed
+--- FAIL: FuzzVMBasic (14.37s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.613s
+exit status 1
+[supervisor 2026-04-18T01:34:44-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:34:49-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x350a33e241a0]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 458/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 599/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 744/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 751/2437 completed
+--- FAIL: FuzzVMBasic (14.34s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.541s
+exit status 1
+[supervisor 2026-04-18T01:35:13-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:35:18-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x2ff7233f4680]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 459/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 601/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 744/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 751/2437 completed
+--- FAIL: FuzzVMBasic (14.35s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.601s
+exit status 1
+[supervisor 2026-04-18T01:35:39-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:35:44-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x17d1de974340]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 394/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 458/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 622/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 768/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 775/2437 completed
+--- FAIL: FuzzVMBasic (14.43s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.697s
+exit status 1
+[supervisor 2026-04-18T01:36:06-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:36:11-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x2e711d762000]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 398/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 456/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 599/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 748/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 751/2437 completed
+--- FAIL: FuzzVMBasic (14.38s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.640s
+exit status 1
+[supervisor 2026-04-18T01:36:34-04:00] FuzzyVM exited rc=1; restarting in 5s
+[supervisor 2026-04-18T01:36:39-04:00] launching FuzzyVM run (threads=16 out=/home/odessa/AIingFuzzyVM/out/baseline)
+Duplicate test found
+Duplicate test found
+&map[name:0x13eba2cb01a0]Duplicate test found
+Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/2437 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 395/2437 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 457/2437 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 597/2437 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 744/2437 completed
+fuzz: elapsed: 14s, gathering baseline coverage: 754/2437 completed
+--- FAIL: FuzzVMBasic (14.46s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/0e5ca8fe7932ccfd
+    To re-run:
+    go test -run=FuzzVMBasic/0e5ca8fe7932ccfd
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	19.727s

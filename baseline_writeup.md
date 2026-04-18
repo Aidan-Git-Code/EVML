@@ -102,22 +102,39 @@ Phase C mean cycle: ~85s FAIL elapsed + 5s supervisor sleep = ~90s. Of that, ~6s
 
 ## Where the data lives
 
+### In this repo (pushed to `origin`)
+
+Small, human-interpretable artifacts that document the run. Total ~3 MB.
+
 ```
 out/
-├── baseline/                    phase C productive output (990k JSONs, 4.6 GB)
-├── baseline.4t/                 phase A productive output (270k JSONs, 1.5 GB)
-├── baseline.stuck/              phase B stuck output (1k JSONs, 10 MB)
-├── baseline.pre-16h/            earlier aborted session, still in repo
-├── crashers/                    339 preserved FAIL inputs + manifest.tsv
-├── fuzz_cache.4t_final.tar.gz   poisoned cache backup (120 KB)
-├── baseline.log                 phase C supervisor + go-test-fuzz output (~2 MB)
-├── baseline.4t.log              phase A log
-├── baseline.stuck.log           phase B log
-├── baseline.watcher.log         crasher watcher lifecycle log
-└── baseline.{pid,start,stop}    session state files (pid now stale)
+├── crashers/                    339 preserved FAIL inputs + manifest.tsv (1.4 MB)
+├── fuzz_cache.4t_final.tar.gz   poisoned Go fuzz cache backup for bisection (120 KB)
+├── baseline.log                 phase C supervisor + go-test-fuzz output (1.3 MB)
+├── baseline.4t.log              phase A log (336 KB)
+├── baseline.stuck.log           phase B log (40 KB)
+└── baseline.{,4t.,stuck.}watcher.log   crasher-watcher lifecycle logs (tiny)
 ```
 
-Persistent Go fuzz cache is at `~/.cache/go-build/fuzz/github.com/MariusVanDerWijden/FuzzyVM/fuzzer/FuzzVMBasic/` — 4,349 entries, 19 MB. This is the coverage frontier the LLM-guided run will start from (or can start from, if we choose not to reset it for fairness).
+### Local-only (gitignored)
+
+The raw state-test JSONs and the full-run zip are too big to push and are reproducible from a re-run. Kept locally at `/home/odessa/AIingFuzzyVM/out/` and `/home/odessa/AIingFuzzyVM/out.zip`; covered by `.gitignore`:
+
+```
+out/baseline/                    phase C productive output (990k JSONs, 4.6 GB)
+out/baseline.4t/                 phase A productive output (270k JSONs, 1.5 GB)
+out/baseline.stuck/              phase B stuck output (1k JSONs, 10 MB)
+out/baseline.pre-16h/            earlier aborted session
+out/llm_guided/                  future LLM-guided runs
+out.zip                          full-bundle archive (1.2 GB)
+out/*.{pid,start,stop}           session state files (regenerated each run)
+```
+
+If any of this needs to move off-machine later (archival, sharing with a collaborator, Day 6 writeup), the clean path is GitHub Releases (2 GB/file free) or external object storage — not LFS, since a 1.2 GB blob would blow the free-tier quota.
+
+### Persistent Go fuzz cache
+
+`~/.cache/go-build/fuzz/github.com/MariusVanDerWijden/FuzzyVM/fuzzer/FuzzVMBasic/` — 4,349 entries, 19 MB at end of run. This is the coverage frontier the LLM-guided run will start from. For equal-CPU-hours fairness, **wipe this cache before the LLM run** so its discovery numbers aren't inflated by 4,300+ baseline-phase finds.
 
 ## Takeaways
 

@@ -1,0 +1,18 @@
+# Raw fuzzer output — millions of state-test JSONs. Reproducible from a re-run,
+# not useful without goevmlab replay, and too big for git (4.6 GB / 990k files
+# for a single 13h baseline phase). Keep locally, don't push.
+out/baseline/
+out/baseline.4t/
+out/baseline.stuck/
+out/baseline.pre-16h/
+out/llm_guided/
+out.zip
+
+# Session state files — regenerated on every supervisor launch.
+out/*.pid
+out/*.start
+out/*.stop
+out/*.log.prev
+
+# Local Claude Code session-resume shortcut (user-specific).
+claude.claude
