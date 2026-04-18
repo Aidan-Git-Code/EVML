@@ -1,4 +1,5 @@
 # Modifying the FuzzyVM
+> Aidan Morgan & Odessa Rybski
 
 ### Preface
 
