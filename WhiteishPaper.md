@@ -165,6 +165,23 @@ The LLM emits one JSON object per fuzzing batch. FuzzyVM reads it and applies th
 - **Baseline run:** stock FuzzyVM with random strategy selection, same client set (geth + revm [+ nethermind]), running in the background from the earliest possible moment. Accumulating CPU-hours while the LLM pipeline is still being built costs nothing and protects the comparison if the pipeline slips.
 - **Output isolation:** `out/baseline/` vs `out/llm_guided/` (keyed by `plan_id`), so attribution is unambiguous.
 
+### Baseline infrastructure (as built)
+
+Implementation notes from bringing the stock-random baseline online. Several of these turned out to be load-bearing for the LLM-guided path too, so they're worth documenting.
+
+**Plan loader.** FuzzyVM now accepts a plan at `--plan path.json` or via `FUZZYVM_PLAN=...` env var. Loaded at generator `init()`; overrides the `strategies` map, active fork, and banned-opcode set. Stock weights remain the default when no plan is present — baseline behavior is untouched. Strategy-name validation up-front rejects unknown names with the full known-strategy list in the error string, so LLM misspellings fail loud instead of silently no-op'ing.
+
+**makeMapNormalized (byte-overflow fix).** Stock `FuzzyVM/generator/strategy.go:52 makeMap` stores cumulative weight in a `byte`. Fine with the hand-tuned default `Importance()` values (which sum below 255), broken the moment a plan hands it heavy weights: e.g. SSTORE=80 + SLOAD=80 overflows and stomps earlier buckets chaotically — observed distribution is roughly the opposite of what the plan asked for. Our `makeMapNormalized` divides each weight by the total, multiplies into a 256-bucket table, last strategy absorbs rounding remainder. Only engaged when a plan is loaded; stock path unchanged. Verified with the internal `dump` subcommand: SSTORE 1381 → 5483 and SLOAD 227 → 5351 under a storage-heavy plan, ratios matching the weight ratios.
+
+**Supervisor-wrapped runner.** `scripts/start_baseline.sh` launches FuzzyVM under a restart loop. Two failure modes make this mandatory for unattended multi-hour runs:
+
+- The upstream seed corpus contains at least one input (seed#56 byte pattern) that segfaults geth's EVM through cgo — bypasses Go's `recover`, takes down the whole `go test` process. Mitigation: move `FuzzyVM/corpus/` aside to `corpus_disabled/` so `readCorpus()` sees an empty set and the fuzzer falls back to the 255 built-in byte-pattern seeds.
+- When `go test --fuzz` hits a native fault *during* fuzzing (or a minimization timeout), it persists the offending input to `FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/` and then replays every file in that directory as "baseline coverage" on the next startup. Outcome: a single crash permanently bricks the fuzzer. The supervisor wipes that directory on every (re)launch, so replay can't re-fault the process. Generic pitfall for any long-running Go-fuzzer project with cgo dependencies; worth calling out.
+
+**Wall-clock deadline.** `--duration <N>{s,m,h,d}` schedules a detached timer that SIGTERMs the supervisor at the target time; supervisor's trap forwards to the FuzzyVM child. Primary use: equal-CPU-hours fairness for the baseline-vs-LLM comparison without having to remember to kill things. Scheduled stop time is written to `out/baseline.stop` for inspection.
+
+**Attribution plumbing.** `--out-dir` flag propagates to `FUZZYDIR` for the child `go test --fuzz` process. Baseline writes to `out/baseline/`, LLM-guided runs will write to `out/llm_guided/<plan_id>/`. PID, start timestamp, scheduled-stop timestamp, and log are all under `out/baseline.{pid,start,stop,log}` so a single supervised session is self-contained and archivable as a unit.
+
 ### Repo layout (target)
 
 ```
