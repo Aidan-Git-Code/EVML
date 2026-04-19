@@ -44,6 +44,9 @@ except (FileNotFoundError, ImportError) as _e:
     sys.stderr.write(f"[orchestrator] FAISS retriever unavailable ({_e}); falling back to rag_stub\n")
     from rag_stub import retrieve, format_context  # noqa: E402
 
+from differential import DiffReport, Divergence, run_diff, summarize_report  # noqa: E402
+from rotate import resolve as rotate_resolve  # noqa: E402
+
 
 SYSTEM_PROMPT = """You generate JSON "strategy plans" that bias an Ethereum Virtual Machine fuzzer.
 
@@ -74,9 +77,16 @@ USER_TEMPLATE = """Target objective: {objective}
 
 Retrieved context:
 {context}
-
+{recent_findings_block}
 Produce a JSON plan that biases FuzzyVM toward hitting this objective on fork {fork}.
 Use plan_id="{plan_id_placeholder}" — the orchestrator will overwrite it."""
+
+
+RECENT_FINDINGS_TEMPLATE = """
+Recent findings from the last {n} batch(es):
+{body}
+Use these to adjust your bias — if the last batch produced zero divergences, pick a different opcode mix or constraint set.
+"""
 
 
 def load_schema() -> dict:
@@ -172,15 +182,41 @@ def main() -> int:
     ap.add_argument("--out-root", default=str(DEFAULT_OUT_ROOT))
     ap.add_argument("--dry-run", action="store_true", help="Emit + validate plan, skip FuzzyVM run")
     ap.add_argument("--verify-bias", action="store_true", help="After run, also `./FuzzyVM dump` to verify bias")
+    ap.add_argument("--diff", action="store_true", help="After FuzzyVM, run goevmlab differential (geth+revme)")
+    ap.add_argument("--diff-threads", type=int, default=4, help="Threads for differential runner")
+    ap.add_argument("--feedback-n", type=int, default=3,
+                    help="Number of prior batches under --out-root to summarize as 'recent findings' in the prompt")
+    ap.add_argument("--rotate-if-plateau", type=int, default=0, metavar="K",
+                    help="If the last K batches under --out-root all had 0 divergences, "
+                         "ask the LLM to propose a new objective and use that instead. "
+                         "0 disables rotation.")
     args = ap.parse_args()
 
     schema = load_schema()
     grammar = load_grammar()
+
+    if args.rotate_if_plateau > 0:
+        new_obj, rotated = rotate_resolve(
+            Path(args.out_root), args.objective, args.rotate_if_plateau,
+            args.llm_url, args.fork,
+        )
+        if rotated:
+            print(f"[orchestrator] plateau on last {args.rotate_if_plateau} batch(es); "
+                  f"rotated objective → {new_obj!r}", flush=True)
+            args.objective = new_obj
+
     ctx = format_context(retrieve(args.objective))
+
+    recent = gather_recent_findings(Path(args.out_root), args.feedback_n)
+    recent_block = ""
+    if recent:
+        recent_block = RECENT_FINDINGS_TEMPLATE.format(n=len(recent), body="\n".join(recent))
+        print(f"[orchestrator] including {len(recent)} recent-findings summary line(s) in prompt", flush=True)
 
     user_prompt = USER_TEMPLATE.format(
         objective=args.objective, context=ctx, fork=args.fork,
         plan_id_placeholder="PLACEHOLDER_WILL_BE_REPLACED",
+        recent_findings_block=recent_block,
     )
 
     print(f"[orchestrator] calling LLM at {args.llm_url}", flush=True)
@@ -220,7 +256,40 @@ def main() -> int:
     if args.verify_bias:
         print("\n[orchestrator] bias dump:\n" + dump_bias(plan_file))
 
+    if args.diff:
+        print("[orchestrator] running differential (geth+revme)", flush=True)
+        try:
+            rep = run_diff(batch_dir / "out", threads=args.diff_threads)
+            print("[orchestrator] " + summarize_report(rep), flush=True)
+        except FileNotFoundError as e:
+            sys.stderr.write(f"[orchestrator] differential skipped: {e}\n")
+
     return 0
+
+
+def gather_recent_findings(out_root: Path, n: int) -> list[str]:
+    """Look at the N most recently modified plan_* dirs under out_root and
+    return one-line summaries of their diff_report.json (if present).
+    We walk recent-first so the LLM sees the latest signal."""
+    if n <= 0 or not out_root.exists():
+        return []
+    candidates = [p for p in out_root.iterdir() if p.is_dir() and p.name.startswith("plan_")]
+    candidates.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    lines: list[str] = []
+    for d in candidates[:n]:
+        rpt_path = d / "diff" / "diff_report.json"
+        plan_path = d / "plan.json"
+        if not rpt_path.exists() or not plan_path.exists():
+            continue
+        try:
+            rpt = json.loads(rpt_path.read_text())
+            plan = json.loads(plan_path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        obj = plan.get("objective", "(unknown)")
+        ndiv = len(rpt.get("divergences", []))
+        lines.append(f"- [{d.name}] \"{obj}\" → {ndiv} divergence(s) over {rpt.get('tests_run', 0)} tests")
+    return lines
 
 
 if __name__ == "__main__":

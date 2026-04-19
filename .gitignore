@@ -30,3 +30,7 @@ out/llama_server.log
 # on the embedding model version, so we don't pin it.
 orchestrator/rag/corpus/EIPs/
 orchestrator/rag/index/
+
+# Day-4 differential-harness build artifacts.
+goevmlab/runtest
+.fuzzcounter

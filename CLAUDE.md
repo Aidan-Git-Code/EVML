@@ -48,7 +48,7 @@ Currently `Importance()` is hardcoded. The LLM-guided path will override these (
 
 ## Current status (as of 2026-04-19)
 
-Day 1 + Day 2 + Day 3 complete. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). LLM-guided pipeline is end-to-end operational with real RAG.
+Day 1 + Day 2 + Day 3 + Day 4 complete; Day 5 step 1 (plateau rotation) landed. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). LLM-guided pipeline is end-to-end: objective → (optional plateau rotation) → RAG → LLM plan → FuzzyVM batch → goevmlab differential (geth + revme) → divergence summary → next prompt.
 
 **Day 1 (baseline + plumbing):**
 - **Plan loader** in `FuzzyVM/generator/plan.go`: reads JSON plan via `--plan path.json` or `FUZZYVM_PLAN=path.json` env var; overrides strategy weights, fork, banned opcodes. Stock behavior is the default when no plan is present.
@@ -79,7 +79,20 @@ Day 1 + Day 2 + Day 3 complete. Baseline ran 16h36m (1.26M state-tests, 339 cras
 
 End-to-end on the EIP-2929 / SLOAD objective produced a plan with sloadGenerator=80 + nested-call strategies + BLOCKHASH/SELFDESTRUCT bans; `dump` confirms SLOAD: 2093 over 200 programs (vs ~10 for stock random) and zero BLOCKHASH/SELFDESTRUCT.
 
-What's **not yet** built: goevmlab differential harness wiring, divergence summaries fed back into the next prompt, plateau rotation, preference tuning. See `WhiteishPaper.md`.
+**Day 4 (differential harness + feedback loop):**
+- **geth `evm`** installed via `GOBIN=~/go/bin go install github.com/ethereum/go-ethereum/cmd/evm@v1.15.11`.
+- **revm `revme`** installed via `cargo install revme` — needed a modern Rust toolchain; Debian ships 1.75 but revme 15.0.0 requires 1.91+, so `rustup` stable (1.95) lives at `~/.cargo/bin/`.
+- **goevmlab `runtest`** built in-tree (`goevmlab/runtest`). Invoked with `--geth ~/go/bin/evm --revme ~/.cargo/bin/revme --parallel N --outdir <dir> '<pattern>'`. Note: Go's `filepath.Glob` does NOT support `**`; FuzzyVM's 2-level output layout is matched with `*/FuzzyVM-*.json`. On consensus flaw, runtest logs `Consensus flaw file=… vm=… have=… ref vm=… want=…`, dumps per-VM `.jsonl` traces into `--outdir`, then aborts (single-flaw-per-invocation — fine for small batches, requires re-invocation for exhaustive coverage of a corpus).
+- **Orchestrator diff module** at `orchestrator/differential.py`: wraps runtest, parses its (ANSI-stripped) log, writes `<batch>/diff/diff_report.json` with `{tests_run, slow_tests, divergences[], duration_s, runtest_rc, vms}`. Standalone CLI: `python3 orchestrator/differential.py <batch_out_dir>`.
+- **Feedback loop in `run_batch.py`**: `--diff` runs differential after the FuzzyVM batch; `--feedback-n N` (default 3) reads the most recent N `plan_*/diff/diff_report.json` under `--out-root` and injects a "Recent findings" block (one line per batch: objective + divergence count + tests run) into the next LLM prompt.
+- **Smoke verified**: 3881 baseline state-tests across geth + revme at ~100 tests/s, zero divergences (expected — baseline bytecode is broadly convergent). Slow-test warnings (>100ms per test) counted as benign.
+
+**Day 5 step 1 (plateau rotation):**
+- **`orchestrator/rotate.py`** — `detect_plateau(out_root, k)` scans the last K `plan_*/diff/diff_report.json` by mtime; returns the objectives if every one has zero divergences, else `[]`. `propose_objective(llm_url, plateaued, fork)` is a grammar-free LLM call (temp 0.8) that returns one new short objective distinct from the plateaued list. Standalone CLI prints the resolved objective to stdout and status to stderr — composable for the Day-5-step-2 loop driver.
+- **`run_batch.py --rotate-if-plateau K`** — when set, calls `rotate.resolve()` before the RAG+LLM pipeline. If a plateau is detected the user-supplied `--objective` is swapped for the LLM's proposal; logged as `plateau on last K batch(es); rotated objective → ...`. K=0 disables.
+- **Verified**: with one zero-div batch on disk, `--rotate-if-plateau 1` fires and rotates EIP-1153 TSTORE → EIP-2929 warm/cold accounting (distinct angle); `--rotate-if-plateau 2` correctly declines because only one diff report exists yet.
+
+What's **not yet** built: Day-5-step-2 loop driver (run → diff → feedback → rotate → repeat, overnight), preference tuning. See `WhiteishPaper.md`.
 
 ## Baseline runner
 
@@ -224,7 +237,9 @@ Weight semantics: numbers on a 1–100 scale (same as `Strategy.Importance()`). 
 │   ├── plan.gbnf              GBNF grammar for llama.cpp (shape validation)
 │   ├── rag_stub.py            Day-2 fallback retriever (used if index absent)
 │   ├── rag_faiss.py           Day-3 FAISS retriever (preferred)
-│   ├── run_batch.py           objective → LLM → validate → FuzzyVM
+│   ├── differential.py        Day-4 goevmlab runtest wrapper + diff report
+│   ├── rotate.py              Day-5 plateau detector + LLM objective rotator
+│   ├── run_batch.py           objective → LLM → validate → FuzzyVM → diff
 │   ├── rag/
 │   │   ├── build_index.py     embeds corpus into orchestrator/rag/index/
 │   │   ├── corpus/
@@ -250,6 +265,8 @@ External (outside repo, not version-controlled):
 - `~/tools/llama.cpp/`              CUDA-built llama.cpp
 - `~/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf`  local model (~5.1 GB)
 - `~/models/sentence-transformers/` bge-small-en-v1.5 cache (~25 MiB)
+- `~/go/bin/evm`                    geth's `evm` (Day 4 differential client)
+- `~/.cargo/bin/revme`              revm's `revme` (Day 4 differential client)
 
 To rebuild the RAG index from a fresh checkout:
 ```
