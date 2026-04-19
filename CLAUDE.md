@@ -46,9 +46,9 @@ Currently `Importance()` is hardcoded. The LLM-guided path will override these (
 
 **Phase 2 — light fine-tuning / preference tuning** only if Phase 1 plateaus. Reward: new coverage + cross-client disagreement. Penalize: invalid/unproductive plans.
 
-## Current status (as of 2026-04-18)
+## Current status (as of 2026-04-19)
 
-Day 1 + Day 2 work complete. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). LLM-guided pipeline is end-to-end operational.
+Day 1 + Day 2 + Day 3 complete. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). LLM-guided pipeline is end-to-end operational with real RAG.
 
 **Day 1 (baseline + plumbing):**
 - **Plan loader** in `FuzzyVM/generator/plan.go`: reads JSON plan via `--plan path.json` or `FUZZYVM_PLAN=path.json` env var; overrides strategy weights, fork, banned opcodes. Stock behavior is the default when no plan is present.
@@ -68,7 +68,18 @@ Day 1 + Day 2 work complete. Baseline ran 16h36m (1.26M state-tests, 339 crasher
 - **`orchestrator/run_batch.py`** — objective → LLM (`/completion` with `grammar` field — note `/v1/chat/completions` silently drops grammar, so the native endpoint is mandatory) → `json.loads` → `jsonschema` validate → plan file → `./FuzzyVM run --plan`. Supports `--dry-run`, `--verify-bias`, `--duration`.
 - **LLM sampling**: temperature 0.6, top_p 0.9, dry_multiplier 0.8, repeat_penalty 1.1. Prior to dry-sampling, the model looped on repeat keys until max_tokens; dry-sampling + `sw-entry` bounded to 20 in grammar fixed it.
 
-What's **not yet** built: real RAG (FAISS), goevmlab differential harness wiring, plateau rotation, preference tuning. See `WhiteishPaper.md`.
+**Day 3 (real RAG):**
+- **Embedder**: `BAAI/bge-small-en-v1.5` (384-dim, ~25 MiB, runs on CPU). Cached under `~/models/sentence-transformers/`.
+- **Corpus** at `orchestrator/rag/corpus/`: 912 EIPs (shallow clone of `ethereum/EIPs`, gitignored), `opcodes.md` (47 hand-written opcode entries, committed). Six historical-divergence "incident" entries and a baseline-run summary are inlined in `build_index.py`.
+- **Index**: `orchestrator/rag/index/vectors.faiss` (FAISS flat IP, cosine via normalized embeddings) + `chunks.jsonl` sidecar, 966 chunks, 1.4 MiB. Gitignored — regenerable from `python3 orchestrator/rag/build_index.py` (~3 sec on CPU).
+- **Retriever** at `orchestrator/rag_faiss.py`: lazy-loads the index, queries with bge's instruction-prefix convention. Drop-in for `rag_stub`; `run_batch.py` imports `rag_faiss` first and falls back to `rag_stub` if the index is missing.
+- **Plan loader correctness**: removed `validOpcodeGenerator` from schema/grammar/prompt — the type exists in `basic_strategies.go` but is not registered in `basicStrategies`, so the Go loader rejected it.
+- **Required field**: `strategy_weights` is now required in both schema and grammar (was optional; the LLM exploited that and emitted plans with no bias).
+- **Few-shot example** added to system prompt — keeps the model emitting 5-12 strategies with rationale + bans rather than a one-strategy stub.
+
+End-to-end on the EIP-2929 / SLOAD objective produced a plan with sloadGenerator=80 + nested-call strategies + BLOCKHASH/SELFDESTRUCT bans; `dump` confirms SLOAD: 2093 over 200 programs (vs ~10 for stock random) and zero BLOCKHASH/SELFDESTRUCT.
+
+What's **not yet** built: goevmlab differential harness wiring, divergence summaries fed back into the next prompt, plateau rotation, preference tuning. See `WhiteishPaper.md`.
 
 ## Baseline runner
 
@@ -211,8 +222,15 @@ Weight semantics: numbers on a 1–100 scale (same as `Strategy.Importance()`). 
 ├── orchestrator/
 │   ├── plan_schema.json       JSON Schema for the DSL (semantic validation)
 │   ├── plan.gbnf              GBNF grammar for llama.cpp (shape validation)
-│   ├── rag_stub.py            Day-2 RAG stub; real FAISS lands Day 3
+│   ├── rag_stub.py            Day-2 fallback retriever (used if index absent)
+│   ├── rag_faiss.py           Day-3 FAISS retriever (preferred)
 │   ├── run_batch.py           objective → LLM → validate → FuzzyVM
+│   ├── rag/
+│   │   ├── build_index.py     embeds corpus into orchestrator/rag/index/
+│   │   ├── corpus/
+│   │   │   ├── opcodes.md     hand-written opcode reference (committed)
+│   │   │   └── EIPs/          shallow clone of ethereum/EIPs (gitignored, 153 MB)
+│   │   └── index/             FAISS index + chunks.jsonl (gitignored, 1.4 MiB)
 │   └── plans/
 │       └── smoke_storage_heavy.json   manual smoke-test plan
 ├── scripts/
@@ -231,6 +249,14 @@ Weight semantics: numbers on a 1–100 scale (same as `Strategy.Importance()`). 
 External (outside repo, not version-controlled):
 - `~/tools/llama.cpp/`              CUDA-built llama.cpp
 - `~/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf`  local model (~5.1 GB)
+- `~/models/sentence-transformers/` bge-small-en-v1.5 cache (~25 MiB)
+
+To rebuild the RAG index from a fresh checkout:
+```
+cd orchestrator/rag/corpus
+git clone --depth 1 --filter=blob:limit=200k https://github.com/ethereum/EIPs.git
+cd ../.. && python3 rag/build_index.py
+```
 
 **To build in the future:** `orchestrator/plan_schema.json`, `orchestrator/plan.gbnf`, `orchestrator/rag/`, `orchestrator/prompts/`, `out/llm_guided/<plan_id>/`.
 

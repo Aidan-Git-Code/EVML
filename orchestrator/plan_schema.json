@@ -5,7 +5,7 @@
   "description": "LLM-emitted plan consumed by FuzzyVM/generator/plan.go:LoadPlanFile. Only strategy_weights, fork, and constraints.banned_opcodes are wired into generation today; other fields are accepted but currently ignored.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["plan_id", "objective", "fork"],
+  "required": ["plan_id", "objective", "fork", "strategy_weights"],
   "properties": {
     "plan_id": {
       "type": "string",
@@ -51,7 +51,6 @@
       "minProperties": 1,
       "properties": {
         "opcodeGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
-        "validOpcodeGenerator":   { "type": "integer", "minimum": 1, "maximum": 100 },
         "memStorageGenerator":    { "type": "integer", "minimum": 1, "maximum": 100 },
         "mstoreGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },
         "sstoreGenerator":        { "type": "integer", "minimum": 1, "maximum": 100 },

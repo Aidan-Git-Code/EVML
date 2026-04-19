@@ -24,3 +24,9 @@ __pycache__/
 # Local llama-server session state (started by scripts/start_llama_server.sh).
 out/llama_server.pid
 out/llama_server.log
+
+# RAG corpus + FAISS index — regenerable from build_index.py + a shallow
+# clone of ethereum/EIPs. EIPs alone is 153 MB; index is small but depends
+# on the embedding model version, so we don't pin it.
+orchestrator/rag/corpus/EIPs/
+orchestrator/rag/index/
