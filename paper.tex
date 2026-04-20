@@ -13,6 +13,10 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit,backgrounds,calc}
 
+% \NUM{key} renders a red TBD marker. Grep \\NUM to find unfilled slots.
+% After the post-hoc diff completes, replace each \NUM{key} with the real value.
+\newcommand{\NUM}[1]{\textcolor{red}{\texttt{[#1]}}}
+
 \lstset{
   basicstyle=\ttfamily\footnotesize,
   breaklines=true,
@@ -65,7 +69,7 @@ The generator in FuzzyVM picks among twenty or so strategies (SSTORE-heavy seque
 
 This project asks whether an LLM can steer strategy selection toward objectives with a known consensus-sensitive structure. The LLM does not produce bytecode. It produces a structured JSON plan that biases the random generator: which strategies to emphasize, which to omit, which opcodes to forbid, and what fork to target. FuzzyVM consumes the plan and generates bytecode under the biased distribution. goevmlab runs the output across two client binaries (geth and revm). The divergence report feeds back into the next LLM prompt alongside a retrieval-augmented context built from the EIP corpus and prior incident summaries. A plateau detector rotates the objective when repeated batches find nothing new.
 
-The contribution is threefold. First, a strategy-plan domain-specific language (DSL) that constrains the LLM output to a validatable JSON schema and a GBNF grammar. Second, an end-to-end pipeline implementing the fuzzillai-style loop \cite{fuzzillai} on a single machine with a 16 GB-VRAM consumer GPU and no hosted-API dependency. Third, a direct comparison against a stock-random FuzzyVM baseline at equal CPU budget, with metrics chosen to address the null hypothesis that LLM guidance adds overhead without improving divergence discovery.
+This paper makes three contributions. First, a strategy-plan domain-specific language (DSL) that constrains the LLM output to a validatable JSON schema and a GBNF grammar. Second, an end-to-end pipeline implementing the fuzzillai-style loop \cite{fuzzillai} on a single machine with a 16 GB-VRAM consumer GPU and no hosted-API dependency. Third, a direct comparison against a stock-random FuzzyVM baseline at equal CPU budget, with metrics chosen to address the null hypothesis that LLM guidance adds overhead without improving divergence discovery.
 
 \section{Related Work}
 
@@ -260,9 +264,33 @@ Static corpus metrics computed post-hoc confirm the random-generation hypothesis
 
 \subsection{LLM-Guided Run}
 
-\textit{[TODO: fill in once post-hoc diff pass completes. Target fields: wall-clock duration, batches completed, plans rotated, total state-tests generated, tests per CPU-second, divergences found by objective, slow-test count.]}
+The LLM-guided run was launched on 2026-04-20 at 00:53:26 Eastern Time with a 13h30m wall-clock budget, matching the baseline's equal-CPU-budget window on the same sixteen-thread hardware. Batch-level parameters were sixteen fuzz threads, a ninety-second per-batch fuzz budget, and no inline differential. Differential runs as a single post-hoc pass over the accumulated corpus. The no-inline-diff mode is necessary for fair comparison against the baseline, which also did not run differential during its 13h30m generation phase.
 
-The active run was launched on 2026-04-20 at 00:53:26 Eastern Time with a 13h30m wall-clock budget. Batch-level parameters: sixteen fuzz threads, ninety-second per-batch fuzz budget, no inline differential. Differential runs as a single post-hoc pass over the accumulated corpus. The no-inline-diff mode is necessary for fair comparison against the baseline, which did not run differential during its 13h30m generation phase.
+Over the 13h30m window, the loop driver completed \NUM{llm-batches} batches and generated \NUM{llm-tests-total} state-tests. Throughput averaged \NUM{llm-tests-per-cpuh} tests per CPU-hour, against a baseline of \NUM{baseline-tests-per-cpuh} tests per CPU-hour over the same wall-clock window. The LLM plan-generation step added \NUM{llm-plan-overhead-pct} percent overhead to each batch's wall-clock, measured as plan-decode duration divided by total batch duration.
+
+The plateau detector triggered \NUM{llm-rotations} objective rotations during the run. Each rotation inspects the last $K=3$ diff reports; the first few rotations in this run occurred early because the LLM-guided path was operating under \texttt{--no-diff} and diff reports are not produced inline. The rotations that did fire were driven by the driver's start-time heuristic and by manually seeded prior objectives; in a diff-enabled run these would be driven by true zero-divergence plateaus. This behavior is documented as a known limitation of the \texttt{--no-diff} mode.
+
+Static metrics over the LLM-guided corpus are reported in Table~\ref{tab:llm_static} in the same format as the baseline (Table~\ref{tab:baseline_static}), to allow direct coverage comparison. The dedup rate, $n$-gram coverage, and top-opcode distribution are the evidence for whether the LLM biasing actually shifts the generated distribution toward the stated objectives.
+
+\begin{table}[t]
+\centering
+\caption{Static metrics over the LLM-guided corpus, reported in the same format as Table~\ref{tab:baseline_static} for direct comparison.}
+\label{tab:llm_static}
+\begin{tabular}{lr}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+State-tests generated & \NUM{llm-tests-total} \\
+Tests with non-empty contract code & \NUM{llm-tests-with-code} \\
+Unique bytecode hashes (SHA-256) & \NUM{llm-unique-bc} \\
+Corpus dedup rate & \NUM{llm-dedup} \\
+Total opcodes disassembled & \NUM{llm-total-ops} \\
+Mean opcodes per coded test & \NUM{llm-mean-ops} \\
+Unique opcode 3-grams & \NUM{llm-n3} \\
+Unique opcode 5-grams & \NUM{llm-n5} \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Two Robustness Issues Observed in Preliminary Runs}
 
@@ -274,17 +302,40 @@ Two issues surfaced during a 5-minute smoke test and a subsequent 90-second-batc
 
 \subsection{Comparison Metrics}
 
-\textit{[TODO: complete once post-hoc diff finishes on both corpora.]}
+The comparison is structured across three axes.
 
-The comparison is structured across three axes:
+\textbf{Divergences per CPU-hour.} The baseline produced \NUM{baseline-div} divergences over 215.8 CPU-hours, a rate of \NUM{baseline-div-per-cpuh} divergences per CPU-hour. The LLM-guided run produced \NUM{llm-div} divergences over \NUM{llm-cpuh} CPU-hours, a rate of \NUM{llm-div-per-cpuh} divergences per CPU-hour. The ratio \NUM{div-rate-ratio} expresses the LLM-guided rate as a multiple of the baseline rate.
 
-\begin{enumerate}
-\item \textbf{Divergences per CPU-hour.} Direct productivity metric. Baseline: [N] divergences over 215.8 CPU-hours. LLM-guided: [M] divergences over [CPU-hours].
-\item \textbf{Unique opcode-sequence coverage.} Extracted via a post-hoc pass over each state-test JSON that tokenizes the bytecode and hashes $n$-grams ($n=3$, $n=5$). The LLM-guided path is predicted to have higher diversity in narrow EIP-keyed regions and lower diversity in broadly-convergent regions.
-\item \textbf{Corpus-dedup rate.} After canonicalization (strip addresses, normalize gas fields), the fraction of unique tests per generated test. Baseline expected to have high dedup due to random overlap; LLM-guided expected to have moderate dedup, biased toward the objective's region.
-\end{enumerate}
+\textbf{Unique opcode-sequence coverage.} The baseline achieved 272{,}408 unique 3-grams and 656{,}511 unique 5-grams. The LLM-guided run achieved \NUM{llm-n3} unique 3-grams (\NUM{n3-ratio} of baseline) and \NUM{llm-n5} unique 5-grams (\NUM{n5-ratio} of baseline). Lower $n$-gram diversity is expected for the LLM-guided path when the objectives target narrow EIP regions; higher diversity would suggest the biasing is not successfully concentrating the distribution.
 
-Objective-to-divergence attribution requires that each divergence be traced back to the plan that produced it. Because FuzzyVM writes outputs keyed on a content hash, the attribution is exact: the divergence's filename indexes into the \texttt{plan\_<id>/out/} directory, and the sibling \texttt{plan.json} records the objective at the time.
+\textbf{Corpus-dedup rate.} The baseline's dedup rate was 0.534 (528{,}212 unique bytecode bodies of 989{,}892 generated tests). The LLM-guided rate is \NUM{llm-dedup} (\NUM{llm-unique-bc} unique bodies of \NUM{llm-tests-total} tests). A dedup rate closer to 1.0 indicates more diverse output; a rate closer to the baseline's 0.534 indicates similar redundancy despite the biasing.
+
+\textbf{Plan-to-divergence attribution.} Of the \NUM{llm-plans-total} plans executed during the run, \NUM{llm-plans-with-div} produced at least one divergence and \NUM{llm-plans-zero-div} produced none. Table~\ref{tab:top_objectives} lists the objectives that produced the most divergences; these are the objectives that the plateau detector should keep or combine with, while zero-div objectives are candidates for rotation. The most productive objectives in this run were \NUM{top-objective-1} (\NUM{top-objective-1-count} divergences) and \NUM{top-objective-2} (\NUM{top-objective-2-count} divergences). Divergences broke down by client pair as \NUM{vm-pair-breakdown} (geth versus revm).
+
+\begin{table}[t]
+\centering
+\caption{Top five objectives by divergence count in the LLM-guided run. Objectives that produced zero divergences are omitted but counted toward the plateau-rotation analysis.}
+\label{tab:top_objectives}
+\begin{tabular}{lrr}
+\hline
+\textbf{Objective} & \textbf{Tests} & \textbf{Divergences} \\
+\hline
+\NUM{obj-row-1} \\
+\NUM{obj-row-2} \\
+\NUM{obj-row-3} \\
+\NUM{obj-row-4} \\
+\NUM{obj-row-5} \\
+\hline
+\end{tabular}
+\end{table}
+
+The attribution is exact by construction: FuzzyVM writes outputs keyed on a content hash into \texttt{plan\_<id>/out/}, so each divergence file path indexes back to exactly one \texttt{plan.json} and its \texttt{objective} field.
+
+\subsection{Discussion}
+
+\NUM{discussion-summary-one-line} summarizes the outcome in one sentence. The expected pattern, if LLM guidance is useful at this CPU budget, is a higher divergences-per-CPU-hour rate for the LLM-guided arm combined with lower $n$-gram diversity, because the LLM concentrates generation into a narrower region that is more likely to surface bugs. The null hypothesis is the opposite: equal or higher diversity on the baseline and equal or higher divergence rate on the baseline, which would suggest the LLM biasing adds overhead without improving targeted coverage. The observed numbers fall in the \NUM{outcome-category} regime. Plausible reasons and their evidence are discussed below.
+
+The \NUM{llm-plans-zero-div} zero-divergence plans account for \NUM{zero-div-tests-pct} percent of the LLM-guided test budget. This is the strongest single signal in the comparison: if zero-div plans dominate, the plateau detector is either not firing often enough, or the LLM is not generating sufficiently distinct objectives after a rotation. Both are addressable in future work without changing the pipeline structure.
 
 \section{Security and Ethical Analysis}
 
