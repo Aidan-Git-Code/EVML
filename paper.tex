@@ -124,7 +124,7 @@ The system has five components: a local LLM server, a retrieval index, a Python 
 \draw[arr] (fuzz) -- node[right]{\footnotesize state tests} (rt);
 \draw[arr] (rt) -- (rep);
 
-\draw[fb] (rep.west) -- ++(-0.6,0) |- node[pos=0.25, left, text width=22mm, align=center]{\footnotesize feedback\\+ plateau\\rotation} (fb.west);
+\draw[fb] (rep.west) -- ++(-0.3,0) |- node[pos=0.35, above, text width=22mm, align=center]{\footnotesize feedback\\+ plateau\\rotation} (fb.east);
 
 \begin{pgfonlayer}{background}
   \node[draw=gray, dashed, rounded corners, inner sep=6pt, fit=(obj)(rag)(fb)(llm)(fuzz)(rt)(rep)] {};
