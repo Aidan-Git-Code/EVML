@@ -225,7 +225,25 @@ Finally, the LLM-guided path does not yet cover EIP-7692 (EOF) semantics because
 
 ---
 
-## 8. References
+## 8. Author Contributions and AI Disclosure
+
+### 8.1 Team composition and individual contributions
+
+This project was carried out by a two-person team: Aidan Morgan and Odessa Rybski.
+
+**Aidan Morgan** designed the project scope and methodology. This includes the decision to adapt the fuzzillai agentic pattern to the EVM differential domain, the choice of strategy-plan DSL as the LLM output shape, and the overall pipeline architecture described in Section 4. Aidan produced the initial project plan (`WhiteishPaper.md`), identified the relevant prior art (FuzzyVM, goevmlab, fuzzillai, differential-fuzzing surveys), and specified the evaluation methodology and baseline-comparison design.
+
+**Odessa Rybski** performed the implementation, experimental runs, and analysis. This includes the patches to FuzzyVM (`generator/plan.go`, the `makeMapNormalized` weight-normalization function, the banned-opcode filter, the `dump` subcommand, and the `--out-dir` / `--plan` CLI surface), the Python orchestrator (`orchestrator/run_batch.py`, `differential.py`, `rotate.py`, and the RAG retriever), the GBNF grammar and JSON Schema, the supervised run scripts (`start_baseline.sh`, `start_llm_loop.sh`, `crasher_watcher.sh`, `start_llama_server.sh`), the baseline and LLM-guided experimental runs, and the post-hoc analysis and metrics computation.
+
+### 8.2 AI tool disclosure
+
+The implementation work was assisted by Anthropic's Claude, accessed through the Claude Code command-line interface. Claude was used as a coding assistant for two purposes: help with isolated bug fixes where the root cause was non-obvious from the immediate context, and pair-programming support on specific implementation details where it accelerated the search for a working approach. The majority of the code was written by the human author, with Claude serving as a debugging and implementation aide rather than the primary author of any module.
+
+The model under test in this project (Qwen2.5-Coder-7B-Instruct) is distinct from the model used to assist with coding. Qwen2.5-Coder-7B runs locally under llama.cpp with grammar-constrained decoding and is the subject of evaluation. Claude does not participate in the fuzzing pipeline at runtime; it was used only during development.
+
+No proprietary data was shared with any hosted LLM service. The retrieval corpus is built from the public `ethereum/EIPs` repository.
+
+## 9. References
 
 1. Ethereum Foundation. *General State Tests*. https://github.com/ethereum/tests
 2. M. van der Wijden. *Introducing FuzzyVM*. https://mariusvanderwijden.github.io/blog/2021/05/02/FuzzyVM/, 2021.
