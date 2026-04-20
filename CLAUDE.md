@@ -342,9 +342,9 @@ Defined under `FuzzyVM/generator/`:
 
 **Phase 2: light fine-tuning / preference tuning** only if Phase 1 plateaus. Reward: new coverage + cross-client disagreement. Penalize: invalid/unproductive plans.
 
-## Current status (as of 2026-04-19)
+## Current status (as of 2026-04-20)
 
-Day 1, Day 2, Day 3, and Day 4 are complete. Day 5 step 1 (plateau rotation) landed. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). The LLM-guided pipeline runs end-to-end: objective → (optional plateau rotation) → RAG → LLM plan → FuzzyVM batch → goevmlab differential (geth + revme) → divergence summary → next prompt.
+Day 1 through Day 5 step 2 are complete. Preference tuning (Phase 2) is out of scope for the 6-day build. Baseline ran 16h36m (1.26M state-tests, 339 crashers preserved, see `baseline_writeup.md`). The LLM-guided pipeline runs end-to-end and has a supervised overnight loop driver. A 13h30m equal-CPU-budget LLM-guided fuzz run is active on the 16-thread baseline comparison target. Post-hoc differential pass planned over the final corpus.
 
 **Day 1 (baseline + plumbing):**
 - **Plan loader** in `FuzzyVM/generator/plan.go`: reads a JSON plan via `--plan path.json` or the `FUZZYVM_PLAN=path.json` env var. Overrides strategy weights, fork, and banned opcodes. Stock behavior is the default when no plan is present.
@@ -388,7 +388,18 @@ End-to-end on the EIP-2929 / SLOAD objective produced a plan with sloadGenerator
 - **`run_batch.py --rotate-if-plateau K`**: when set, calls `rotate.resolve()` before the RAG+LLM pipeline. If a plateau is detected, the user-supplied `--objective` is swapped for the LLM's proposal. Logged as `plateau on last K batch(es); rotated objective → ...`. K=0 disables.
 - **Verified**: with one zero-div batch on disk, `--rotate-if-plateau 1` fires and rotates EIP-1153 TSTORE into EIP-2929 warm/cold accounting (distinct angle). `--rotate-if-plateau 2` correctly declines because only one diff report exists yet.
 
-What's **not yet** built: Day-5-step-2 loop driver (run → diff → feedback → rotate → repeat, overnight), preference tuning. See `WhiteishPaper.md`.
+**Day 5 step 2 (loop driver + long run):**
+- **`scripts/start_llm_loop.sh`**: supervised loop driver for overnight LLM-guided runs. Mirrors `start_baseline.sh` conventions: pid/start/stop/log files under `out/`, `nohup + disown`, trap forwards SIGTERM to the child, optional detached wall-clock timer. Idempotent: no-ops if a previous loop is alive. Log rotates to `.log.prev` on each session start. Flags: `--objective` (required), `--fork`, `--llm-url`, `--threads`, `--diff-threads`, `--feedback-n`, `--rotate-if-plateau`, `--batch-duration`, `--duration`, `--out-root`, `--no-diff`.
+- **`--no-diff`**: skips per-batch differential. Required for fair comparison with the baseline methodology, which generated tests without diffing during the 13.5h run. The LLM plan pipeline and FuzzyVM batch still run; rotation + feedback no-op since neither can read diff reports. Differential runs as a single post-hoc pass.
+- **run_batch.py hardening**:
+  - Wipes `FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/` before each FuzzyVM spawn. Go-fuzz retains every crasher under that directory and replays it on the next baseline-coverage phase. Without the wipe, one early crasher causes every subsequent batch to abort at ~12s of fuzzing. Same mechanism `scripts/start_baseline.sh` uses between supervisor restarts. The persistent `~/.cache/go-build/fuzz/.../FuzzVMBasic/` cache is deliberately left alone so coverage carries across batches.
+  - Spawns FuzzyVM with `start_new_session=True` and kills the whole process group with `os.killpg` on timeout. Without this, SIGTERM to the FuzzyVM wrapper leaves its `go test --fuzz` grandchild (and 16 fuzz workers) orphaned under /init, where it kept writing state-tests into the batch's `out/` directory while `runtest` was diffing it. Race condition + runaway CPU. The pgroup kill also runs belt-and-braces after normal exit, in case any straggler remained.
+- **Observed batch shape (no-diff mode)**: baseline-coverage replay ~25-30s on 16 threads, then ~60s of active fuzzing at ~1500 execs/sec per worker. One batch yields ~90k state-tests. LLM plan generation and grammar-constrained decode add ~3-5s of overhead between batches. Inter-batch sleep is 2s.
+- **Active run (launched 2026-04-20T00:53:26)**: `--objective "EIP-1153 TSTORE visibility across nested DELEGATECALL" --duration 13h30m --threads 16 --batch-duration 90s --no-diff`. Runs until 2026-04-20T14:23:29. Output under `out/llm_guided/plan_*/out/`.
+
+Post-run plan: single `orchestrator/differential.py` pass over the entire `out/llm_guided/` tree, using a higher `--diff-threads` budget than the per-batch config (CPU is free after fuzzing stops). Metrics: divergences per CPU-hour, plan-attribution per divergence, unique-opcode-sequence novelty vs baseline.
+
+Out of scope for the 6-day build: preference tuning (Phase 2). See `WhiteishPaper.md`.
 
 ## Baseline runner
 
@@ -512,7 +523,7 @@ Weight semantics: numbers on a 1-100 scale (same as `Strategy.Importance()`). Pl
 
 **Day 4, differential harness.** Wire goevmlab against 2-3 client binaries (geth + revm minimum; add besu if time allows). Run the first full loop: LLM → plan → FuzzyVM batch → goevmlab → diffs → LLM. Log coverage and divergence counts per batch.
 
-**Day 5, plateau rotation + long run.** Add plateau detection. If divergence rate stays below threshold for K batches, rotate objective via a second prompt template. Start the long overnight run.
+**Day 5, plateau rotation + long run. ✅ done.** Plateau detection in `orchestrator/rotate.py`. Supervised loop driver at `scripts/start_llm_loop.sh` with a `--no-diff` mode for fair-comparison runs. The 13h30m equal-CPU-budget run is active and produces post-hoc-diffable state-test corpora.
 
 **Day 6, compare & write up.** Metrics: unique divergences per CPU-hour, unique opcode sequences, corpus-dedup rate, objective→divergence attribution. Stock-random baseline vs. LLM-guided on equal CPU budget.
 
@@ -546,6 +557,7 @@ Weight semantics: numbers on a 1-100 scale (same as `Strategy.Importance()`). Pl
 │       └── smoke_storage_heavy.json   manual smoke-test plan
 ├── scripts/
 │   ├── start_baseline.sh      supervised baseline runner
+│   ├── start_llm_loop.sh      Day-5 LLM-guided loop driver (overnight)
 │   ├── start_llama_server.sh  idempotent llama-server launcher
 │   └── crasher_watcher.sh     preserves testdata crashers to out/crashers/
 └── out/
@@ -554,6 +566,7 @@ Weight semantics: numbers on a 1-100 scale (same as `Strategy.Importance()`). Pl
     ├── crashers/              preserved go-fuzz crashers (+ manifest.tsv)
     ├── baseline.{pid,start,stop,log}          supervisor session state
     ├── baseline.watcher.{pid,log}             crasher-watcher session state
+    ├── llm_loop.{pid,start,stop,log,log.prev} loop-driver session state
     └── llama_server.{pid,log}                 llama-server session state
 ```
 

@@ -23,6 +23,8 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
+import signal
 import subprocess
 import sys
 import time
@@ -138,10 +140,28 @@ def validate_plan(plan: dict, schema: dict) -> None:
 def run_fuzzyvm(plan_file: Path, out_dir: Path, threads: int, duration: str | None) -> int:
     if not FUZZYVM_BIN.exists():
         sys.exit(f"FuzzyVM binary not found at {FUZZYVM_BIN} — run `cd FuzzyVM && go build -o FuzzyVM ./cmd/fuzzyvm` first.")
+    # Wipe go-fuzz's retained testdata seed corpus so a cached crasher from
+    # a prior batch doesn't crash replay on the next baseline-coverage phase.
+    # Mirrors scripts/start_baseline.sh. Persistent coverage in ~/.cache
+    # is intentionally left alone.
+    testdata_dir = REPO_ROOT / "FuzzyVM" / "fuzzer" / "testdata" / "fuzz" / "FuzzVMBasic"
+    if testdata_dir.exists():
+        shutil.rmtree(testdata_dir, ignore_errors=True)
     out_dir.mkdir(parents=True, exist_ok=True)
     cmd = [str(FUZZYVM_BIN), "run", "--plan", str(plan_file), "--out-dir", str(out_dir), "--threads", str(threads)]
     print(f"[orchestrator] launching: {' '.join(cmd)}", flush=True)
-    proc = subprocess.Popen(cmd, cwd=REPO_ROOT / "FuzzyVM")
+    # start_new_session=True puts FuzzyVM (and its go-test grandchild) in a new
+    # process group. SIGTERM to the group cascades to every descendant so the
+    # go-test fuzz workers can't survive the wrapper and race with the diff.
+    proc = subprocess.Popen(cmd, cwd=REPO_ROOT / "FuzzyVM", start_new_session=True)
+    pgid = os.getpgid(proc.pid)
+
+    def _kill_group(sig: int) -> None:
+        try:
+            os.killpg(pgid, sig)
+        except ProcessLookupError:
+            pass
+
     if duration:
         secs = _parse_duration(duration)
         t_end = time.monotonic() + secs
@@ -149,13 +169,19 @@ def run_fuzzyvm(plan_file: Path, out_dir: Path, threads: int, duration: str | No
             time.sleep(1)
         if proc.poll() is None:
             print(f"[orchestrator] duration {duration} elapsed; terminating", flush=True)
-            proc.terminate()
+            _kill_group(signal.SIGTERM)
             try:
                 proc.wait(timeout=15)
             except subprocess.TimeoutExpired:
-                proc.kill()
+                _kill_group(signal.SIGKILL)
+                try:
+                    proc.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    pass
     else:
         proc.wait()
+    # Belt-and-braces: reap any stragglers before diff scans the output dir.
+    _kill_group(signal.SIGKILL)
     return proc.returncode or 0
 
 

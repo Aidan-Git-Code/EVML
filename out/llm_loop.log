@@ -1,0 +1,1828 @@
+[loop 2026-04-20T00:53:26-04:00] === batch 1 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3940.41it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/plan.json
+[orchestrator] objective: EIP-1153 DELEGATECALL TSTORE visibility
+[orchestrator] fork: Cancun  weights: 5  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_dd6ddbe6de118173/out/ff
+[FuzzyVM plan] loaded plan_id="plan_dd6ddbe6de118173" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+[FuzzyVM plan] loaded plan_id="plan_dd6ddbe6de118173" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+&map[name:0x347ac3984680]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/8759 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 1090/8759 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 2123/8759 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 3256/8759 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 4239/8759 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 5095/8759 completed
+fuzz: elapsed: 18s, gathering baseline coverage: 6093/8759 completed
+fuzz: elapsed: 21s, gathering baseline coverage: 6903/8759 completed
+fuzz: elapsed: 24s, gathering baseline coverage: 7893/8759 completed
+fuzz: elapsed: 27s, gathering baseline coverage: 8756/8759 completed
+fuzz: elapsed: 30s, gathering baseline coverage: 8759/8759 completed, now fuzzing with 16 workers
+fuzz: elapsed: 30s, execs: 9343 (196/sec), new interesting: 3 (total: 8762)
+fuzz: elapsed: 33s, execs: 13039 (1232/sec), new interesting: 32 (total: 8791)
+fuzz: elapsed: 36s, execs: 17998 (1653/sec), new interesting: 74 (total: 8833)
+fuzz: elapsed: 39s, execs: 22370 (1457/sec), new interesting: 112 (total: 8871)
+fuzz: elapsed: 42s, execs: 26947 (1526/sec), new interesting: 141 (total: 8900)
+fuzz: elapsed: 45s, execs: 32075 (1709/sec), new interesting: 174 (total: 8933)
+fuzz: elapsed: 48s, execs: 36770 (1565/sec), new interesting: 215 (total: 8974)
+fuzz: elapsed: 51s, execs: 41898 (1710/sec), new interesting: 248 (total: 9007)
+fuzz: elapsed: 54s, execs: 46894 (1665/sec), new interesting: 274 (total: 9033)
+fuzz: elapsed: 57s, execs: 52226 (1777/sec), new interesting: 292 (total: 9051)
+fuzz: elapsed: 1m0s, execs: 57296 (1690/sec), new interesting: 320 (total: 9079)
+fuzz: elapsed: 1m3s, execs: 61569 (1424/sec), new interesting: 349 (total: 9108)
+fuzz: elapsed: 1m6s, execs: 66010 (1481/sec), new interesting: 371 (total: 9130)
+fuzz: elapsed: 1m9s, execs: 70591 (1527/sec), new interesting: 388 (total: 9147)
+fuzz: elapsed: 1m12s, execs: 75656 (1688/sec), new interesting: 406 (total: 9165)
+fuzz: elapsed: 1m15s, execs: 80379 (1575/sec), new interesting: 421 (total: 9180)
+fuzz: elapsed: 1m18s, execs: 84790 (1470/sec), new interesting: 431 (total: 9190)
+fuzz: elapsed: 1m21s, execs: 89977 (1729/sec), new interesting: 446 (total: 9205)
+fuzz: elapsed: 1m24s, execs: 94805 (1609/sec), new interesting: 462 (total: 9221)
+fuzz: elapsed: 1m27s, execs: 99086 (1427/sec), new interesting: 479 (total: 9238)
+[orchestrator] duration 90s elapsed; terminating
+[orchestrator] FuzzyVM exited with rc=-15
+[loop 2026-04-20T00:55:15-04:00] batch 1 finished rc=0
+[loop 2026-04-20T00:55:17-04:00] === batch 2 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4039.39it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/plan.json
+[orchestrator] objective: EIP-1153 DELEGATECALL TSTORE visibility
+[orchestrator] fork: Cancun  weights: 5  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_3faf570cc5bac789/out/ff
+[FuzzyVM plan] loaded plan_id="plan_3faf570cc5bac789" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+[FuzzyVM plan] loaded plan_id="plan_3faf570cc5bac789" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+&map[name:0x2f498ab249c0]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/9243 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 787/9243 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 1460/9243 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 2036/9243 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 2669/9243 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 3461/9243 completed
+fuzz: elapsed: 18s, gathering baseline coverage: 4286/9243 completed
+fuzz: elapsed: 21s, gathering baseline coverage: 5151/9243 completed
+fuzz: elapsed: 24s, gathering baseline coverage: 5884/9243 completed
+fuzz: elapsed: 27s, gathering baseline coverage: 6533/9243 completed
+fuzz: elapsed: 30s, gathering baseline coverage: 7231/9243 completed
+fuzz: elapsed: 33s, gathering baseline coverage: 8053/9243 completed
+fuzz: elapsed: 36s, gathering baseline coverage: 8837/9243 completed
+fuzz: elapsed: 39s, gathering baseline coverage: 9241/9243 completed
+fuzz: elapsed: 41s, gathering baseline coverage: 9243/9243 completed, now fuzzing with 16 workers
+fuzz: elapsed: 42s, execs: 11203 (654/sec), new interesting: 22 (total: 9265)
+fuzz: elapsed: 45s, execs: 14444 (1080/sec), new interesting: 53 (total: 9296)
+fuzz: elapsed: 48s, execs: 17876 (1144/sec), new interesting: 95 (total: 9338)
+fuzz: elapsed: 51s, execs: 20623 (916/sec), new interesting: 125 (total: 9368)
+fuzz: elapsed: 54s, execs: 23839 (1072/sec), new interesting: 160 (total: 9403)
+fuzz: elapsed: 57s, execs: 27117 (1093/sec), new interesting: 187 (total: 9430)
+fuzz: elapsed: 1m0s, execs: 30956 (1280/sec), new interesting: 228 (total: 9471)
+fuzz: elapsed: 1m3s, execs: 35052 (1365/sec), new interesting: 257 (total: 9500)
+fuzz: elapsed: 1m6s, execs: 39381 (1443/sec), new interesting: 292 (total: 9535)
+fuzz: elapsed: 1m9s, execs: 43454 (1358/sec), new interesting: 317 (total: 9560)
+fuzz: elapsed: 1m12s, execs: 47884 (1477/sec), new interesting: 337 (total: 9580)
+fuzz: elapsed: 1m15s, execs: 52195 (1437/sec), new interesting: 367 (total: 9610)
+fuzz: elapsed: 1m18s, execs: 56398 (1401/sec), new interesting: 398 (total: 9641)
+fuzz: elapsed: 1m21s, execs: 59614 (1072/sec), new interesting: 408 (total: 9651)
+fuzz: elapsed: 1m24s, execs: 62355 (914/sec), new interesting: 425 (total: 9668)
+fuzz: elapsed: 1m27s, execs: 65722 (1122/sec), new interesting: 439 (total: 9682)
+[orchestrator] duration 90s elapsed; terminating
+[orchestrator] FuzzyVM exited with rc=-15
+[loop 2026-04-20T00:57:06-04:00] batch 2 finished rc=0
+[loop 2026-04-20T00:57:08-04:00] === batch 3 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3988.83it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/plan.json
+[orchestrator] objective: EIP-1153 Transient Storage Visibility Across Nested DELEGATECALL
+[orchestrator] fork: Cancun  weights: 6  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_7eb207e190bc1d64/out/ff
+[FuzzyVM plan] loaded plan_id="plan_7eb207e190bc1d64" objective="EIP-1153 Transient Storage Visibility Across Nested DELEGATECALL" fork="Cancun" banned=2 weighted=6
+[FuzzyVM plan] loaded plan_id="plan_7eb207e190bc1d64" objective="EIP-1153 Transient Storage Visibility Across Nested DELEGATECALL" fork="Cancun" banned=2 weighted=6
+&map[name:0x24a9298ba680]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/9697 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 561/9697 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 1194/9697 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 1748/9697 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 2387/9697 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 3062/9697 completed
+fuzz: elapsed: 18s, gathering baseline coverage: 3837/9697 completed
+fuzz: elapsed: 21s, gathering baseline coverage: 4287/9697 completed
+fuzz: elapsed: 24s, gathering baseline coverage: 4845/9697 completed
+fuzz: elapsed: 27s, gathering baseline coverage: 5495/9697 completed
+fuzz: elapsed: 30s, gathering baseline coverage: 6110/9697 completed
+fuzz: elapsed: 33s, gathering baseline coverage: 6714/9697 completed
+fuzz: elapsed: 36s, gathering baseline coverage: 7293/9697 completed
+fuzz: elapsed: 39s, gathering baseline coverage: 7777/9697 completed
+fuzz: elapsed: 42s, gathering baseline coverage: 8419/9697 completed
+fuzz: elapsed: 45s, gathering baseline coverage: 8904/9697 completed
+fuzz: elapsed: 48s, gathering baseline coverage: 9515/9697 completed
+fuzz: elapsed: 50s, gathering baseline coverage: 9697/9697 completed, now fuzzing with 16 workers
+fuzz: elapsed: 51s, execs: 11891 (792/sec), new interesting: 1 (total: 9698)
+fuzz: elapsed: 54s, execs: 14048 (719/sec), new interesting: 1 (total: 9698)
+fuzz: elapsed: 57s, execs: 17770 (1241/sec), new interesting: 4 (total: 9701)
+fuzz: elapsed: 1m0s, execs: 21244 (1158/sec), new interesting: 8 (total: 9705)
+fuzz: elapsed: 1m3s, execs: 24827 (1194/sec), new interesting: 16 (total: 9713)
+fuzz: elapsed: 1m6s, execs: 27698 (957/sec), new interesting: 21 (total: 9718)
+fuzz: elapsed: 1m9s, execs: 32220 (1507/sec), new interesting: 25 (total: 9722)
+fuzz: elapsed: 1m12s, execs: 36198 (1326/sec), new interesting: 27 (total: 9724)
+fuzz: elapsed: 1m15s, execs: 39947 (1250/sec), new interesting: 30 (total: 9727)
+fuzz: elapsed: 1m18s, execs: 43721 (1258/sec), new interesting: 33 (total: 9730)
+fuzz: elapsed: 1m21s, execs: 47941 (1407/sec), new interesting: 37 (total: 9734)
+fuzz: elapsed: 1m24s, execs: 51510 (1190/sec), new interesting: 40 (total: 9737)
+fuzz: elapsed: 1m27s, execs: 55041 (1177/sec), new interesting: 41 (total: 9738)
+[orchestrator] duration 90s elapsed; terminating
+[orchestrator] FuzzyVM exited with rc=-15
+[loop 2026-04-20T00:58:58-04:00] batch 3 finished rc=0
+[loop 2026-04-20T00:59:03-04:00] === batch 4 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4026.18it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/plan.json
+[orchestrator] objective: EIP-1153 DELEGATECALL TSTORE visibility across nested calls
+[orchestrator] fork: Cancun  weights: 5  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_d119755ea592454d/out/ff
+[FuzzyVM plan] loaded plan_id="plan_d119755ea592454d" objective="EIP-1153 DELEGATECALL TSTORE visibility across nested calls" fork="Cancun" banned=2 weighted=5
+[FuzzyVM plan] loaded plan_id="plan_d119755ea592454d" objective="EIP-1153 DELEGATECALL TSTORE visibility across nested calls" fork="Cancun" banned=2 weighted=5
+&map[name:0x360019fb51e0]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/9738 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 1282/9738 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 2639/9738 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 3850/9738 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 5011/9738 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 6033/9738 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 6033/9738 completed
+--- FAIL: FuzzVMBasic (15.44s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/30623f031bcb0fdb
+    To re-run:
+    go test -run=FuzzVMBasic/30623f031bcb0fdb
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	15.515s
+exit status 1
+[orchestrator] FuzzyVM exited with rc=1
+[loop 2026-04-20T00:59:28-04:00] batch 4 finished rc=0
+[loop 2026-04-20T00:59:30-04:00] === batch 5 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3955.20it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/plan.json
+[orchestrator] objective: EIP-1153 DELEGATECALL TSTORE visibility
+[orchestrator] fork: Cancun  weights: 5  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_e595efa8e64b1ebb/out/ff
+[FuzzyVM plan] loaded plan_id="plan_e595efa8e64b1ebb" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+[FuzzyVM plan] loaded plan_id="plan_e595efa8e64b1ebb" objective="EIP-1153 DELEGATECALL TSTORE visibility" fork="Cancun" banned=2 weighted=5
+&map[name:0x38ed3400e9c0]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/9738 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 841/9738 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 1509/9738 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 2116/9738 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 2690/9738 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 3279/9738 completed
+fuzz: elapsed: 18s, gathering baseline coverage: 3941/9738 completed
+fuzz: elapsed: 21s, gathering baseline coverage: 4041/9738 completed
+--- FAIL: FuzzVMBasic (20.68s)
+    fuzzing process hung or terminated unexpectedly: exit status 2
+    Failing input written to testdata/fuzz/FuzzVMBasic/30623f031bcb0fdb
+    To re-run:
+    go test -run=FuzzVMBasic/30623f031bcb0fdb
+FAIL
+exit status 1
+FAIL	github.com/MariusVanDerWijden/FuzzyVM/fuzzer	21.335s
+exit status 1
+[orchestrator] FuzzyVM exited with rc=1
+[loop 2026-04-20T01:00:05-04:00] batch 5 finished rc=0
+[loop 2026-04-20T01:00:07-04:00] === batch 6 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4248.34it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
+[orchestrator] plan validated + written: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/plan.json
+[orchestrator] objective: EIP-1153TransientStorage visibility across nested DELEGATECALL
+[orchestrator] fork: Cancun  weights: 6  banned: 2
+[orchestrator] launching: /home/odessa/AIingFuzzyVM/FuzzyVM/FuzzyVM run --plan /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/plan.json --out-dir /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out --threads 16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/00
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/01
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/02
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/03
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/04
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/05
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/06
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/07
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/08
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/09
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/0f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/10
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/11
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/12
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/13
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/14
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/15
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/16
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/17
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/18
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/19
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/1f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/20
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/21
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/22
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/23
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/24
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/25
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/26
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/27
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/28
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/29
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/2f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/30
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/31
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/32
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/33
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/34
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/35
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/36
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/37
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/38
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/39
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/3f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/40
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/41
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/42
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/43
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/44
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/45
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/46
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/47
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/48
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/49
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/4f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/50
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/51
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/52
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/53
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/54
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/55
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/56
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/57
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/58
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/59
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/5f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/60
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/61
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/62
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/63
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/64
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/65
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/66
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/67
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/68
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/69
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/6f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/70
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/71
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/72
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/73
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/74
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/75
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/76
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/77
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/78
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/79
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/7f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/80
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/81
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/82
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/83
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/84
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/85
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/86
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/87
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/88
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/89
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/8f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/90
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/91
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/92
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/93
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/94
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/95
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/96
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/97
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/98
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/99
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9a
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9b
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9c
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9d
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9e
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/9f
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/a9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/aa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ab
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ac
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ad
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ae
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/af
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/b9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ba
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/bb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/bc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/bd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/be
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/bf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/c9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ca
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/cb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/cc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/cd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ce
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/cf
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/d9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/da
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/db
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/dc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/dd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/de
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/df
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/e9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ea
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/eb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ec
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ed
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ee
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ef
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f0
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f1
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f2
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f3
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f4
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f5
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f6
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f7
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f8
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/f9
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/fa
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/fb
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/fc
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/fd
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/fe
+Creating directory: /home/odessa/AIingFuzzyVM/out/llm_guided/plan_89f56e6efd18c7db/out/ff
+[FuzzyVM plan] loaded plan_id="plan_89f56e6efd18c7db" objective="EIP-1153TransientStorage visibility across nested DELEGATECALL" fork="Cancun" banned=2 weighted=6
+[FuzzyVM plan] loaded plan_id="plan_89f56e6efd18c7db" objective="EIP-1153TransientStorage visibility across nested DELEGATECALL" fork="Cancun" banned=2 weighted=6
+&map[name:0x386ac0b50680]Error reading corpus directory: open ./../corpus/: no such file or directory
+fuzz: elapsed: 0s, gathering baseline coverage: 0/9738 completed
+fuzz: elapsed: 3s, gathering baseline coverage: 558/9738 completed
+fuzz: elapsed: 6s, gathering baseline coverage: 1192/9738 completed
+fuzz: elapsed: 9s, gathering baseline coverage: 1730/9738 completed
+fuzz: elapsed: 12s, gathering baseline coverage: 2380/9738 completed
+fuzz: elapsed: 15s, gathering baseline coverage: 3033/9738 completed
+fuzz: elapsed: 18s, gathering baseline coverage: 3746/9738 completed
+fuzz: elapsed: 21s, gathering baseline coverage: 4251/9738 completed
+fuzz: elapsed: 24s, gathering baseline coverage: 4805/9738 completed
+fuzz: elapsed: 27s, gathering baseline coverage: 5420/9738 completed
+fuzz: elapsed: 30s, gathering baseline coverage: 6056/9738 completed
+fuzz: elapsed: 33s, gathering baseline coverage: 6683/9738 completed
+fuzz: elapsed: 36s, gathering baseline coverage: 7274/9738 completed
+fuzz: elapsed: 39s, gathering baseline coverage: 7736/9738 completed
+fuzz: elapsed: 42s, gathering baseline coverage: 8403/9738 completed
+fuzz: elapsed: 45s, gathering baseline coverage: 8857/9738 completed
+fuzz: elapsed: 48s, gathering baseline coverage: 9405/9738 completed
+fuzz: elapsed: 50s, gathering baseline coverage: 9738/9738 completed, now fuzzing with 16 workers
+fuzz: elapsed: 51s, execs: 11160 (585/sec), new interesting: 1 (total: 9739)
+fuzz: elapsed: 54s, execs: 13656 (832/sec), new interesting: 8 (total: 9746)
+fuzz: elapsed: 57s, execs: 16979 (1107/sec), new interesting: 13 (total: 9751)
+fuzz: elapsed: 1m0s, execs: 20136 (1052/sec), new interesting: 16 (total: 9754)
+fuzz: elapsed: 1m3s, execs: 23639 (1168/sec), new interesting: 20 (total: 9758)
+fuzz: elapsed: 1m6s, execs: 26643 (1001/sec), new interesting: 26 (total: 9764)
+fuzz: elapsed: 1m9s, execs: 30183 (1180/sec), new interesting: 31 (total: 9769)
+fuzz: elapsed: 1m12s, execs: 34216 (1344/sec), new interesting: 35 (total: 9773)
+fuzz: elapsed: 1m15s, execs: 37701 (1162/sec), new interesting: 37 (total: 9775)
+fuzz: elapsed: 1m18s, execs: 41805 (1368/sec), new interesting: 40 (total: 9778)
+fuzz: elapsed: 1m21s, execs: 45277 (1157/sec), new interesting: 45 (total: 9783)
+fuzz: elapsed: 1m24s, execs: 49799 (1508/sec), new interesting: 47 (total: 9785)
+fuzz: elapsed: 1m27s, execs: 53553 (1251/sec), new interesting: 48 (total: 9786)
+[orchestrator] duration 90s elapsed; terminating
+[orchestrator] FuzzyVM exited with rc=-15
+[loop 2026-04-20T01:01:56-04:00] batch 6 finished rc=0
+[loop 2026-04-20T01:02:01-04:00] === batch 7 ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4017.49it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[orchestrator] calling LLM at http://127.0.0.1:8080
