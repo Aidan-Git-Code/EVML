@@ -1,0 +1,24 @@
+{
+  "plan_id": "plan_52414f4e0f14a3a8",
+  "objective": "EIP-2929 Warm/Cold Access Divergence on Nested DELEGATECALL",
+  "fork": "Cancun",
+  "strategy_weights": {
+    "sloadGenerator": 80,
+    "jumpGenerator": 75,
+    "createCallRNGGenerator": 60,
+    "callPrecompileGenerator": 45,
+    "opcodeGenerator": 10,
+    "pushGenerator": 5
+  },
+  "constraints": {
+    "banned_opcodes": [
+      "SELFDESTRUCT",
+      "BLOCKHASH"
+    ]
+  },
+  "rationale": "Target persistent storage reads and control flow within nested DELEGATECALL to maximize EIP-2929 access divergence.",
+  "expected_signal": [
+    "storage_divergence",
+    "gas_divergence"
+  ]
+}

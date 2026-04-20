@@ -1,0 +1,12 @@
+{
+  "batch_dir": "/home/odessa/AIingFuzzyVM/out/demo/plan_42d01646c65fed6a/out",
+  "tests_run": 0,
+  "slow_tests": 0,
+  "divergences": [],
+  "duration_s": 2.37,
+  "runtest_rc": 0,
+  "vms": [
+    "geth",
+    "revme"
+  ]
+}

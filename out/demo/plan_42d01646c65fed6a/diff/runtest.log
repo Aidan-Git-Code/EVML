@@ -1,0 +1,10 @@
+[32mINFO [0m[04-20|05:04:15.731] Fuzzing started                          [32mthreads[0m=4 [32mcleanup[0m=false
+[32mINFO [0m[04-20|05:04:15.733] Test factory thread started
+[32mINFO [0m[04-20|05:04:15.733] Test factory thread started
+[32mINFO [0m[04-20|05:04:17.857] Test provider done, exiting
+[32mINFO [0m[04-20|05:04:17.857] Factory exiting
+[32mINFO [0m[04-20|05:04:17.875] Test provider done, exiting
+[32mINFO [0m[04-20|05:04:17.875] Factory exiting
+[32mINFO [0m[04-20|05:04:17.875] Last test factory exiting
+
+[32mINFO [0m[04-20|05:04:18.052] Waiting for processes to exit

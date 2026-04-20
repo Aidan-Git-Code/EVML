@@ -71,7 +71,9 @@ The contribution is threefold. First, a strategy-plan domain-specific language (
 
 FuzzyVM \cite{fuzzyvm} provides the strategy-based state-test generator that this work extends. The generator composes bytecode from a registry of Go-defined strategies, each emitting a short sequence of opcodes under an importance weight. A separate cumulative-distribution map resolves random byte inputs into strategy choices. The work reported here preserves FuzzyVM's strategy registry unchanged; only the weight map and a banned-opcode filter are overridden at runtime by a loaded plan.
 
-Fuzzilli \cite{fuzzilli} is a coverage-guided mutation fuzzer for JavaScript engines. It introduced FuzzIL, an intermediate language designed to preserve semantic correctness across mutations. fuzzillai \cite{fuzzillai} adds an agentic LLM layer to Fuzzilli, using an LLM to propose program plans and an ``evolve by generating'' plateau-recovery mechanism. The plateau-recovery idea, the retrieval-augmented objective selection, and the structured-plan output format are adapted from fuzzillai. Several components were deliberately not adapted: the PostgreSQL-backed distributed corpus, gdb-based crash triage (EVM differential runs produce text diffs rather than native crashes), and reliance on hosted LLM APIs. The present system runs entirely on-device.
+Fuzzilli \cite{fuzzilli} is a coverage-guided mutation fuzzer for JavaScript engines. It introduced FuzzIL, an intermediate language designed to preserve semantic correctness across mutations: a randomly mutated FuzzIL program still parses and still type-checks in most cases, which sidesteps the dominant failure mode of byte-level fuzzing (the vast majority of random bytes are syntactically invalid and never reach the interpreter). The EVM analogue is weaker. EVM bytecode has no syntax level beyond byte-alignment, and every byte decodes to either a defined opcode, an undefined opcode (treated as \texttt{INVALID}), or a jump target. Random bytes are always ``valid'' in the sense that they run; the challenge is that most random programs run trivial paths. FuzzyVM solves this at the strategy level rather than the IR level, by composing programs from hand-written templates. The LLM layer added in this work steers that composition.
+
+fuzzillai \cite{fuzzillai} adds an agentic LLM layer to Fuzzilli, using an LLM to propose program plans and an ``evolve by generating'' plateau-recovery mechanism. The plateau-recovery idea, the retrieval-augmented objective selection, and the structured-plan output format are adapted from fuzzillai. Several components were deliberately not adapted. The PostgreSQL-backed distributed corpus is unnecessary for a single-machine six-day project. gdb-based crash triage does not apply because EVM differential runs produce text diffs rather than native crashes: a consensus flaw is a state-root mismatch between two processes that both exited zero, not a segfault. Hosted LLM APIs were avoided to keep the system fully offline and reproducible without per-call cost. The present system runs entirely on-device on a 16 GB-VRAM consumer GPU.
 
 The differential-fuzzing methodology follows the pattern surveyed in \cite{differential} and adapted to cross-language EVM comparison by goevmlab \cite{goevmlab}. goevmlab's \texttt{runtest} tool implements the comparison loop: parse a state-test JSON, run it against each configured client binary, diff the resulting traces, and emit a consensus-flaw line on mismatch. goevmlab is used unmodified; all changes in this project sit upstream of the harness.
 
@@ -139,6 +141,31 @@ Each batch is driven by one JSON plan. The required fields are \texttt{objective
 
 Two layers of validation apply to LLM output. The llama.cpp server is loaded with a GBNF grammar that forces the output token stream into valid JSON matching the expected shape. After decoding, a JSON Schema validator (Draft 2020-12) checks semantic constraints: strategy names must exist in the FuzzyVM registry, banned-opcode names must be real EVM opcodes, and the weight range is bounded. A plan that fails either layer aborts the batch before any FuzzyVM invocation.
 
+A typical plan for an EIP-2929 warm-cold accounting objective looks like the following:
+
+\begin{lstlisting}[language=, basicstyle=\ttfamily\scriptsize]
+{
+  "plan_id": "sha256(...)",
+  "objective": "EIP-2929 warm/cold access divergence on nested DELEGATECALL",
+  "fork": "Cancun",
+  "strategy_weights": {
+    "sstoreGenerator": 25,
+    "sloadGenerator":  25,
+    "createCallGenerator": 12,
+    "randomCallGenerator": 20,
+    "tstoreGenerator": 15,
+    "tloadGenerator":  15
+  },
+  "constraints": {
+    "banned_opcodes":  ["BLOCKHASH", "SELFDESTRUCT"],
+    "allowed_call_ops":["CALL", "DELEGATECALL", "STATICCALL"]
+  },
+  "rationale": "nested delegatecalls share warm-set across frames; bias storage ops plus varied call types"
+}
+\end{lstlisting}
+
+Weight values are integers in the range one to one hundred, mirroring the stock FuzzyVM \texttt{Importance()} scale. The loader divides each weight by the total and spreads across 256 buckets. This side-steps a byte-overflow bug in upstream \texttt{makeMap} that stomps buckets when the cumulative weight exceeds 255.
+
 \subsection{FuzzyVM Patches}
 
 The upstream FuzzyVM is modified in three places. First, a plan loader in \texttt{generator/plan.go} reads the JSON plan via \texttt{--plan path.json} or the \texttt{FUZZYVM\_PLAN=path.json} environment variable. Second, a replacement weight-normalization function, \texttt{makeMapNormalized}, avoids a byte-overflow bug in the upstream \texttt{makeMap} function that manifests when plan-driven weights exceed a cumulative value of 255. Third, the \texttt{opcodeGenerator} and \texttt{validOpcodeGenerator} Execute methods consult an \texttt{IsBanned} check before emitting an opcode, substituting a no-op when a banned opcode would be chosen. Stock FuzzyVM behavior is the default when no plan is supplied; the patches touch only the plan-driven path.
@@ -157,6 +184,10 @@ The retrieval corpus combines three sources: 912 Ethereum Improvement Proposals 
 
 At query time, the orchestrator retrieves the top-$k$ chunks for the current objective and injects them into the LLM prompt under a ``Relevant reference material'' section. Empirically, $k=4$ balances context window usage against coverage of multi-EIP topics.
 
+The retrieval query is the raw objective string (for example, ``EIP-1153 TSTORE visibility across nested DELEGATECALL''). BGE's instruction-prefix convention for asymmetric retrieval was applied verbatim: the query carries the \texttt{Represent this sentence for searching relevant passages:} prefix, while the indexed chunks are stored without a prefix. Queries are embedded on demand and never cached, since the objective space is small (tens of distinct strings across a full run) and embedding a 384-dimensional vector on CPU takes under ten milliseconds.
+
+A limitation of the current retrieval setup is that it does not re-rank by semantic relevance beyond the initial nearest-neighbor lookup. A cross-encoder re-ranker would improve precision at the top of the returned list, at the cost of an additional 50-100 ms per query. The cost is not prohibitive but was not prioritized within the six-day schedule.
+
 \subsection{Differential Harness}
 
 goevmlab's \texttt{runtest} is invoked with the geth \texttt{evm} binary and the revm \texttt{revme} binary as the two clients. FuzzyVM uses a two-level output layout (\texttt{<hashprefix>/FuzzyVM-<hash>.json}) because Go's \texttt{filepath.Glob} does not support \texttt{**}. The pattern \texttt{*/FuzzyVM-*.json} matches it exactly. On a consensus flaw, \texttt{runtest} logs a \texttt{Consensus flaw} line with file, per-client result, and reference-client result, dumps per-VM JSONL traces into the output directory, and exits.
@@ -173,13 +204,59 @@ The overnight run is supervised by \texttt{scripts/start\_llm\_loop.sh}. The dri
 
 The stock-random baseline uses \texttt{scripts/start\_baseline.sh}, a separate supervisor with a matching interface. The baseline supervisor wipes \texttt{FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/} between supervisor restarts to avoid a Go fuzz crasher-replay trap, and passes \texttt{-fuzzminimizetime=0} to the underlying \texttt{go test --fuzz} child to skip Go's expensive post-crash minimization phase.
 
+\subsection{Prompt Structure}
+
+Each batch assembles a prompt with four sections. A system preamble describes the DSL and lists the available strategy names with one-line descriptions. A reference-material block contains the top-$k$ RAG chunks. A feedback block summarizes the last $N$ diff reports (``objective X produced zero divergences over 89{,}000 tests''). A final instruction block names the current objective and asks for one JSON plan.
+
+A few-shot example was added during Day-3 tuning after the model was observed to produce stub plans with only one or two strategies weighted. The example shows a full plan for a contrived objective distinct from any corpus topic, with 7-10 weighted strategies, a non-empty ban list, and a one-paragraph rationale. After the example was added, the typical plan shape stabilized at 5-12 weighted strategies with 0-3 banned opcodes.
+
+The prompt fits comfortably in the 8k-token context window of Qwen2.5-Coder-7B. A typical assembled prompt is 1300-1700 input tokens; the model's reply is 250-400 output tokens. At 107 tokens per second of constrained decoding, a plan is produced in two to four seconds per batch.
+
+\subsection{Reproducibility}
+
+The full system is open-source. A README walks a grader or reviewer through the nine-step setup: clone with submodules, build FuzzyVM and goevmlab, install \texttt{geth evm} and \texttt{revme}, build llama.cpp with CUDA, download the Qwen2.5-Coder-7B GGUF, build the FAISS index from a shallow clone of \texttt{ethereum/EIPs}, start the llama server, run a 60-second smoke batch, and finally launch a long run. Each of the three shell supervisors (\texttt{start\_baseline.sh}, \texttt{start\_llm\_loop.sh}, \texttt{start\_llama\_server.sh}) writes a PID file plus a log, so an observer can attach with \texttt{tail -f} or kill the whole session with one \texttt{kill} call. The generated corpora are gitignored; they are regenerable but not redistributable in full because their size (approximately 5 GB per 13h30m run) exceeds typical repository quotas.
+
 \section{Experimental Results}
+
+\subsection{Metrics Methodology}
+
+Three metrics drive the comparison, each defined concretely so the post-hoc computation is deterministic given the state-test corpus.
+
+\emph{Divergences per CPU-hour} is the number of consensus flaws reported by goevmlab's \texttt{runtest} over the corpus, divided by the CPU-hour budget consumed by the generation phase. CPU-hours are computed as wall-clock duration times the thread count; on a sixteen-thread 13h30m run, that is 216.0 CPU-hours. Post-hoc differential work is excluded from the denominator because both arms of the comparison share the same post-hoc diffing tool.
+
+\emph{Unique opcode-sequence coverage} is extracted by disassembling each state-test's contract code with a static opcode table (including \texttt{PUSH1}-\texttt{PUSH32} immediate-byte handling) and hashing every $n$-gram of opcode names. Two sequence lengths are reported: $n=3$ captures short motifs like \texttt{SLOAD; ISZERO; JUMPI}, and $n=5$ captures longer templates. The count of unique hashes per corpus is the coverage number. This metric is invariant to bytecode-level stylistic noise (stack shuffles, differing \texttt{PUSH} widths emitting the same opcode name) and reflects the shape of behavior rather than the exact byte encoding.
+
+\emph{Corpus-dedup rate} is the number of unique contract-code bodies divided by the total number of tests with non-empty code. A value near 1.0 indicates every generated test is structurally distinct; a value near 0.5 indicates half the budget was spent re-emitting bytecode already present. Duplicates waste fuzz budget on state spaces already covered, so lower dedup rates correspond to wasted work per test. Tests with no contract code are excluded from the denominator, since they exercise a different path (value transfer, calldata-only).
+
+A fourth quantity, \emph{plan-to-divergence attribution}, is computed only for the LLM-guided corpus. Each divergence file path indexes unambiguously into a \texttt{plan\_<id>/out/} directory, whose sibling \texttt{plan.json} records the objective that produced it. The attribution map aggregates flaws by objective, letting the analysis separate productive objectives from dry ones without manual inspection.
 
 \subsection{Baseline Characterization}
 
 The stock-random FuzzyVM baseline ran for 16 hours and 36 minutes on a single workstation, producing 1,260,741 \texttt{GeneralStateTest} JSON files across a two-phase schedule: a four-thread warm-up followed by a sixteen-thread production phase. The sixteen-thread phase contributed 215.8 CPU-hours over 13 hours 30 minutes wall-clock, which defines the equal-CPU-budget target for the LLM-guided comparison. Across the full run, 339 unique crashers were preserved to \texttt{out/crashers/} with a watcher script.
 
 Throughput metrics observed during the sixteen-thread phase: approximately 26 state-tests per CPU-second net of Go fuzz startup overhead, with approximately 37 percent of wall-clock spent in active fuzzing and the remainder in Go's baseline-coverage-replay phase after supervisor restarts. The 37 percent figure is substrate-level (go-fuzz's crasher-replay behavior on every restart) and applies identically to the LLM-guided path.
+
+\begin{table}[t]
+\centering
+\caption{Static metrics over the stock-random baseline corpus. Opcode $n$-grams are extracted by disassembling each test's generated bytecode with a static opcode table.}
+\label{tab:baseline_static}
+\begin{tabular}{lr}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+State-tests generated & 989{,}892 \\
+Tests with non-empty contract code & 936{,}901 \\
+Unique bytecode hashes (SHA-256) & 528{,}212 \\
+Corpus dedup rate & 0.534 \\
+Total opcodes disassembled & 126{,}540{,}294 \\
+Mean opcodes per coded test & 135.1 \\
+Unique opcode 3-grams & 272{,}408 \\
+Unique opcode 5-grams & 656{,}511 \\
+\hline
+\end{tabular}
+\end{table}
+
+Static corpus metrics computed post-hoc confirm the random-generation hypothesis (Table~\ref{tab:baseline_static}). Of the 989{,}892 generated state-tests, 94.6 percent carry non-empty contract code; the rest execute a pure value-transfer path. Among tests with code, only 53.4 percent of bytecode bodies are unique: roughly half the random-generation budget is spent re-emitting bytecode that has already been tested earlier in the run. The top-frequency opcodes are \texttt{PUSH1} (48.9M), \texttt{JUMPDEST} (15.2M), \texttt{MSTORE8} (12.4M), and \texttt{MSTORE} (9.0M). \texttt{SLOAD} and \texttt{TLOAD} do not appear in the top-twelve, consistent with stock FuzzyVM's write-biased \texttt{Importance()} defaults. A non-trivial tail of undefined opcodes (bytes in the ranges \texttt{0xE0-0xEF} and \texttt{0xF6-0xF9}) is present at approximately one percent of total opcodes; these produce \texttt{INVALID} execution paths and offer a secondary divergence surface across clients that disagree on fork-specific opcode activation.
 
 \subsection{LLM-Guided Run}
 
@@ -210,6 +287,12 @@ The comparison is structured across three axes:
 Objective-to-divergence attribution requires that each divergence be traced back to the plan that produced it. Because FuzzyVM writes outputs keyed on a content hash, the attribution is exact: the divergence's filename indexes into the \texttt{plan\_<id>/out/} directory, and the sibling \texttt{plan.json} records the objective at the time.
 
 \section{Security and Ethical Analysis}
+
+\subsection{Threat Model}
+
+Three classes of adversary are relevant. First, a \emph{defensive user} who runs the tool against client binaries they administer and reports findings through the official bounty process. The tool is designed for this case. Second, an \emph{opportunistic attacker} who runs the tool, finds a divergence, and attempts to exploit it on mainnet before the affected clients patch. The tool does not produce a direct exploit; it produces a state-test JSON that, if the same divergent behavior can be triggered by a transaction crafted to match the test's bytecode and gas profile, becomes exploitable. Translating a state-test divergence into an on-chain exploit is non-trivial and often requires additional work to fit within mainnet gas and size limits. Third, a \emph{supply-chain attacker} who contributes poisoned content into the retrieval corpus (for example, a crafted EIP). This vector is discussed in detail below.
+
+The trust boundary within the system is the orchestrator. The LLM is treated as untrusted: all output passes through grammar-constrained decoding, JSON Schema validation, and the FuzzyVM plan loader's name-check pass before reaching a subprocess. The RAG corpus is treated as partially trusted: the content is public but not curated. The client binaries (geth \texttt{evm}, revm \texttt{revme}) are treated as trusted within the meaning of the differential test: any disagreement between them is a candidate bug, not an attack.
 
 \subsection{Dual-Use Concerns}
 
