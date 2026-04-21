@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  20 APR 2026 20:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  20 APR 2026 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1018,51 +1018,70 @@ Underfull \hbox (badness 10000) in paragraph at lines 301--302
  []
 
 
-Overfull \hbox (88.86984pt too wide) in paragraph at lines 321--332
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
+[]\OT1/ptm/m/n/9 EIP-1153 DEL-E-GATE-CALL
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
+\OT1/ptm/m/n/9 TSTORE vis-i-bil-ity across nested
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--330
+[]\OT1/ptm/m/n/9 EIP-1153 DEL-E-GATE-CALL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--330
+\OT1/ptm/m/n/9 TSTORE vis-i-bil-ity across nested
+ []
+
+
+Underfull \vbox (badness 3482) has occurred while \output is active []
+
+ [6]
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
 []\OT1/ptm/b/n/10 Feedback-loop am-pli-fi-ca-tion of spu-ri-ous sig-nals.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
 \OT1/ptm/m/n/10 The feed-back mech-a-nism sum-ma-rizes re-cent diff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
 \OT1/ptm/m/n/10 re-ports into the next prompt. A parse er-ror in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
 \OT1/pcr/m/n/10 orchestrator/differential.py \OT1/ptm/m/n/10 could in-ject
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
-82.
+83.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 2846) in paragraph at lines 392--393
+Underfull \hbox (badness 2846) in paragraph at lines 393--394
 []\OT1/ptm/m/n/10 The single-flaw-per-invocation be-hav-ior of go-evm-lab's
  []
 
 [8]
-Underfull \hbox (badness 2856) in paragraph at lines 410--411
+Underfull \hbox (badness 2856) in paragraph at lines 411--412
 []\OT1/ptm/m/n/10 Odessa Ryb-ski per-formed the im-ple-men-ta-tion, ex-per-
  []
 
 
-Underfull \hbox (badness 3792) in paragraph at lines 410--411
+Underfull \hbox (badness 3792) in paragraph at lines 411--412
 \OT1/ptm/m/n/10 i-men-tal runs, and anal-y-sis. This in-cludes the patches
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 416--417
+Underfull \hbox (badness 2846) in paragraph at lines 417--418
 \OT1/ptm/m/n/10 ser-vice. The re-trieval cor-pus is built from the pub-lic
  []
 
@@ -1077,9 +1096,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[9
-
-] (./paper.aux)
+[9] (./paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1094,7 +1111,7 @@ Here is how much of TeX's memory you used:
  45873 multiletter control sequences out of 15000+600000
  601791 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,87p,2084b,1969s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,87p,2084b,1969s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
@@ -1104,7 +1121,7 @@ fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 178390 bytes).
+Output written on paper.pdf (9 pages, 178387 bytes).
 PDF statistics:
  309 PDF objects out of 1000 (max. 8388607)
  275 compressed objects within 3 object streams

@@ -79,7 +79,7 @@ FuzzyVM \cite{fuzzyvm} provides the strategy-based state-test generator that thi
 
 Fuzzilli \cite{fuzzilli} is a coverage-guided mutation fuzzer for JavaScript engines. It introduced FuzzIL, an intermediate language designed to preserve semantic correctness across mutations: a randomly mutated FuzzIL program still parses and still type-checks in most cases, which sidesteps the dominant failure mode of byte-level fuzzing (the vast majority of random bytes are syntactically invalid and never reach the interpreter). The EVM analogue is weaker. EVM bytecode has no syntax level beyond byte-alignment, and every byte decodes to either a defined opcode, an undefined opcode (treated as \texttt{INVALID}), or a jump target. Random bytes are always ``valid'' in the sense that they run; the challenge is that most random programs run trivial paths. FuzzyVM solves this at the strategy level rather than the IR level, by composing programs from hand-written templates. The LLM layer added in this work steers that composition.
 
-fuzzillai \cite{fuzzillai} adds an agentic LLM layer to Fuzzilli, using an LLM to propose program plans and an ``evolve by generating'' plateau-recovery mechanism. The plateau-recovery idea, the retrieval-augmented objective selection, and the structured-plan output format are adapted from fuzzillai. Several components were deliberately not adapted. The PostgreSQL-backed distributed corpus is unnecessary for a single-machine six-day project. gdb-based crash triage does not apply because EVM differential runs produce text diffs rather than native crashes: a consensus flaw is a state-root mismatch between two processes that both exited zero, not a segfault. Hosted LLM APIs were avoided to keep the system fully offline and reproducible without per-call cost. The present system runs entirely on-device on a 16 GB-VRAM consumer GPU.
+fuzzillai \cite{fuzzillai} adds an agentic LLM layer to Fuzzilli, using an LLM to propose program plans and an ``evolve by generating'' plateau-recovery mechanism. The plateau-recovery idea, the retrieval-augmented objective selection, and the structured-plan output format are adapted from fuzzillai. Several components were deliberately not adapted. The PostgreSQL-backed distributed corpus is unnecessary for a single-machine implementation. gdb-based crash triage does not apply because EVM differential runs produce text diffs rather than native crashes: a consensus flaw is a state-root mismatch between two processes that both exited zero, not a segfault. Hosted LLM APIs were avoided to keep the system fully offline and reproducible without per-call cost. The present system runs entirely on-device on a 16 GB-VRAM consumer GPU.
 
 The differential-fuzzing methodology follows the pattern surveyed in \cite{differential} and adapted to cross-language EVM comparison by goevmlab \cite{goevmlab}. goevmlab's \texttt{runtest} tool implements the comparison loop: parse a state-test JSON, run it against each configured client binary, diff the resulting traces, and emit a consensus-flaw line on mismatch. goevmlab is used unmodified; all changes in this project sit upstream of the harness.
 
@@ -192,7 +192,7 @@ At query time, the orchestrator retrieves the top-$k$ chunks for the current obj
 
 The retrieval query is the raw objective string (for example, ``EIP-1153 TSTORE visibility across nested DELEGATECALL''). BGE's instruction-prefix convention for asymmetric retrieval was applied verbatim: the query carries the \texttt{Represent this sentence for searching relevant passages:} prefix, while the indexed chunks are stored without a prefix. Queries are embedded on demand and never cached, since the objective space is small (tens of distinct strings across a full run) and embedding a 384-dimensional vector on CPU takes under ten milliseconds.
 
-A limitation of the current retrieval setup is that it does not re-rank by semantic relevance beyond the initial nearest-neighbor lookup. A cross-encoder re-ranker would improve precision at the top of the returned list, at the cost of an additional 50-100 ms per query. The cost is not prohibitive but was not prioritized within the six-day schedule.
+A limitation of the current retrieval setup is that it does not re-rank by semantic relevance beyond the initial nearest-neighbor lookup. A cross-encoder re-ranker would improve precision at the top of the returned list, at the cost of an additional 50-100 ms per query. The cost is not prohibitive and is left to future work.
 
 \subsection{Differential Harness}
 
@@ -214,7 +214,7 @@ The stock-random baseline uses \texttt{scripts/start\_baseline.sh}, a separate s
 
 Each batch assembles a prompt with four sections. A system preamble describes the DSL and lists the available strategy names with one-line descriptions. A reference-material block contains the top-$k$ RAG chunks. A feedback block summarizes the last $N$ diff reports (``objective X produced zero divergences over 89{,}000 tests''). A final instruction block names the current objective and asks for one JSON plan.
 
-A few-shot example was added during Day-3 tuning after the model was observed to produce stub plans with only one or two strategies weighted. The example shows a full plan for a contrived objective distinct from any corpus topic, with 7-10 weighted strategies, a non-empty ban list, and a one-paragraph rationale. After the example was added, the typical plan shape stabilized at 5-12 weighted strategies with 0-3 banned opcodes.
+A few-shot example was added after the model was observed to produce stub plans with only one or two strategies weighted. The example shows a full plan for a contrived objective distinct from any corpus topic, with 7-10 weighted strategies, a non-empty ban list, and a one-paragraph rationale. After the example was added, the typical plan shape stabilized at 5-12 weighted strategies with 0-3 banned opcodes.
 
 The prompt fits comfortably in the 8k-token context window of Qwen2.5-Coder-7B. A typical assembled prompt is 1300-1700 input tokens; the model's reply is 250-400 output tokens. At 107 tokens per second of constrained decoding, a plan is produced in two to four seconds per batch.
 
@@ -318,13 +318,14 @@ The comparison is structured across three axes.
 \centering
 \caption{Top five objectives by test count in the LLM-guided run. Every plan produced zero divergences under the 1/16 hash-prefix sample, so the table is ordered by generation volume, not productivity.}
 \label{tab:top_objectives}
-\begin{tabular}{lrr}
+\small
+\begin{tabular}{p{4.9cm}rr}
 \hline
-\textbf{Objective} & \textbf{Tests} & \textbf{Divergences} \\
+\textbf{Objective} & \textbf{Tests} & \textbf{Div.} \\
 \hline
-EIP-1153 Transient Storage Visibility Across Nested DELEGATECALL & 102{,}940 & 0 \\
+EIP-1153 transient storage visibility across nested DELEGATECALL (A) & 102{,}940 & 0 \\
 EIP-1153 DELEGATECALL TSTORE visibility across nested calls & 7{,}862 & 0 \\
-EIP-1153Transient storage visibility across nested DELEGATECALL & 4{,}597 & 0 \\
+EIP-1153 transient storage visibility across nested DELEGATECALL (B) & 4{,}597 & 0 \\
 EIP-1153 transient storage visibility across DELEGATECALL & 1{,}484 & 0 \\
 EIP-1153 DELEGATECALL TSTORE visibility across nested CALLs & 599 & 0 \\
 \hline
@@ -341,7 +342,7 @@ The second finding is null: on a 216-CPU-hour budget against geth and revm at Ca
 
 Three hypotheses explain the null and are not separable at this budget. First, the LLM may be picking objectives that are genuinely harder than average. All 654 plans orbited EIP-1153 TSTORE semantics, because the plateau detector never rotated the starting objective. The detector reads per-batch diff reports, and the run used \texttt{--no-diff} mode to match the baseline's generation-only methodology, so no diff reports existed to trigger rotation. Second, 216 CPU-hours is a short run for mature clients. The geth-revm pair has been differentially tested by FuzzyVM's author and by independent researchers for years; remaining divergences are rare. Third, the 1/16 hash-prefix sample on the LLM-guided arm was uniform but still a sample, and a rate on the order of one divergence per tens of millions of tests would likely not appear at this scale on either arm.
 
-The design tension isolated by this run is the most actionable finding. Inline differential at every batch gave the rotation feedback loop real signal but capped generation throughput at roughly baseline levels, because \texttt{runtest}'s per-invocation overhead dominates at the 90-second batch size used here. \texttt{--no-diff} mode removed that cap and produced 12$\times$ more state-tests, but starved the rotation detector of input. Neither extreme is correct. A future run that inline-diffs at a sparser cadence (every tenth batch, or on a fixed wall-clock schedule orthogonal to generation batching) would restore rotation without surrendering the bulk of the throughput. This is not a hindsight apology for the null result; the trade is visible in the numbers and is specific enough to specify a corrected run.
+The design tension isolated by this run is the most actionable finding. Inline differential at every batch gave the rotation feedback loop real signal but capped generation throughput at roughly baseline levels, because \texttt{runtest}'s per-invocation overhead dominates at the 90-second batch size used here. \texttt{--no-diff} mode removed that cap and produced 12$\times$ more state-tests, but starved the rotation detector of input. A future run that inline-diffs at a sparser cadence (every tenth batch, or on a fixed wall-clock schedule orthogonal to generation batching) would restore rotation without surrendering the bulk of the throughput. The trade between throughput and rotation feedback is visible in the numbers reported here and is specific enough to define a corrected run.
 
 All 654 plans produced zero divergences, accounting for 100.0 percent of the LLM-guided test budget. Under an inline-diff configuration with working rotation, the dominant outcome of this run would be an early (and likely correct) plateau-rotation away from EIP-1153 toward objectives with higher prior divergence yield. Evaluating that configuration is the first item of future work below.
 
@@ -391,13 +392,13 @@ Release artifacts include the patched FuzzyVM, the orchestrator, the plan schema
 
 The single-flaw-per-invocation behavior of goevmlab's \texttt{runtest} means that a post-hoc differential over a large corpus either stops at the first divergence or requires an outer retry loop that skips previously-flagged files. The current pipeline uses the retry approach for exhaustive coverage, at a wall-clock cost proportional to the number of divergences found.
 
-The comparison uses two clients (geth and revm). Adding a third (besu, nethermind, or erigon) would increase the probability of catching divergences where one client matches the reference and one does not. Besu and nethermind are on the list for future work; they were deferred because of Rust and JVM toolchain-version constraints that would have cost build time during the six-day schedule.
+The comparison uses two clients (geth and revm). Adding a third (besu, nethermind, or erigon) would increase the probability of catching divergences where one client matches the reference and one does not. Besu and nethermind are on the list for future work; they were deferred because of Rust and JVM toolchain-version constraints that would have cost non-trivial build time.
 
-Qwen2.5-Coder-7B is a general-purpose code model without EVM-specific training. A Phase-2 preference-tuning pass (DPO or KTO) on pairs of (plan, divergence count) from this run's output would bias the model toward objectives that historically produce divergences on the deployed client pair. This is explicitly out of scope for the six-day build; the infrastructure to collect the preference pairs is in place.
+Qwen2.5-Coder-7B is a general-purpose code model without EVM-specific training. A Phase-2 preference-tuning pass (DPO or KTO) on pairs of (plan, divergence count) from this run's output would bias the model toward objectives that historically produce divergences on the deployed client pair. This is explicitly out of scope for the current work; the infrastructure to collect the preference pairs is in place.
 
 The plateau detector rotates one objective at a time. More sophisticated exploration policies (Thompson sampling over a bank of objectives, or a structured crossover between successful plans) remain future work.
 
-The comparison is a single paired run rather than a cross-validated experiment. Stochastic variance in both the random-baseline and the LLM-sampled plans means that run-to-run differences in divergence count could be noise-level. A rigorous evaluation would require at least five paired runs with different random seeds; each such run consumes 27 hours of workstation time, which exceeds the six-day project schedule.
+The comparison is a single paired run rather than a cross-validated experiment. Stochastic variance in both the random-baseline and the LLM-sampled plans means that run-to-run differences in divergence count could be noise-level. A rigorous evaluation would require at least five paired runs with different random seeds; each such run consumes 27 hours of workstation time, which exceeded the available schedule.
 
 Finally, the LLM-guided path does not yet cover EIP-7692 (EOF) semantics because Cancun is the target fork. Extending to Prague (which adds EOF) requires updating both the FuzzyVM strategy set and the grammar. This is a straightforward extension for future work.
 
