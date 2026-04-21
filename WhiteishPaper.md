@@ -195,7 +195,6 @@ Implementation notes from bringing the stock-random baseline online. Several of 
 
 ```
 .
-├── CLAUDE.md
 ├── README.md
 ├── WhiteishPaper.md
 ├── FuzzyVM/                submodule: generator (we patch here)

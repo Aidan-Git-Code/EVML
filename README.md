@@ -10,7 +10,6 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 
 ```
 .
-├── CLAUDE.md                  full project context (read this first)
 ├── WhiteishPaper.md           original methodology / rationale
 ├── final_report.md            project report (markdown draft)
 ├── paper.tex                  IEEE conference-format report
@@ -36,8 +35,6 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
     ├── llm_guided/<plan_id>/  per-plan LLM-guided batches (gitignored)
     └── *.{pid,start,stop,log} session-state files
 ```
-
-`CLAUDE.md` documents every design decision, every patched bug, and the day-by-day status. Read it before changing anything.
 
 ## Reproducing the experiment
 
@@ -154,7 +151,7 @@ The supervisor's SIGTERM trap forwards to its children.
 
 ## What's in the report
 
-`paper.tex` has the IEEE conference-format writeup with a TikZ architecture diagram. `final_report.md` is the markdown draft that fed into it. `CLAUDE.md` has the engineering log. `WhiteishPaper.md` has the original plan from before any code was written.
+`paper.tex` has the IEEE conference-format writeup with a TikZ architecture diagram. `final_report.md` is the markdown draft that fed into it. `WhiteishPaper.md` has the original plan from before any code was written.
 
 ## Authors
 
