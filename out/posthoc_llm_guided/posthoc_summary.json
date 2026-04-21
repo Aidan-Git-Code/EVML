@@ -1,0 +1,11 @@
+{
+  "root": "out/llm_guided",
+  "sample_glob": "*/FuzzyVM-0*.json",
+  "plans_with_reports": 653,
+  "tests_total": 472713,
+  "slow_tests_total": 345,
+  "divergences_total": 0,
+  "duration_s_total": 8703.76,
+  "unique_flaw_files": 0,
+  "divergences_by_vm_pair": {}
+}

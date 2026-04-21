@@ -1,0 +1,525 @@
+[posthoc] root=out/baseline shards=257 threads=16 out=/home/odessa/AIingFuzzyVM/out/posthoc_baseline
+[posthoc] skip (cached) out/baseline/35
+{"shard": "out/baseline/35", "tests": 3194, "slow": 5, "divergences": 0, "duration_s": 48.67}
+[posthoc] skip (cached) out/baseline/cc
+{"shard": "out/baseline/cc", "tests": 3142, "slow": 2, "divergences": 0, "duration_s": 48.58}
+[posthoc] out/baseline/dc
+{"shard": "out/baseline/dc", "tests": 3601, "slow": 0, "divergences": 0, "duration_s": 41.55}
+[posthoc] out/baseline/22
+{"shard": "out/baseline/22", "tests": 3283, "slow": 6, "divergences": 0, "duration_s": 37.65}
+[posthoc] out/baseline/5e
+{"shard": "out/baseline/5e", "tests": 3455, "slow": 6, "divergences": 0, "duration_s": 44.22}
+[posthoc] out/baseline/b9
+{"shard": "out/baseline/b9", "tests": 3352, "slow": 3, "divergences": 0, "duration_s": 36.4}
+[posthoc] out/baseline/6d
+{"shard": "out/baseline/6d", "tests": 3357, "slow": 2, "divergences": 0, "duration_s": 36.32}
+[posthoc] out/baseline/c5
+{"shard": "out/baseline/c5", "tests": 3367, "slow": 3, "divergences": 0, "duration_s": 35.89}
+[posthoc] out/baseline/a8
+{"shard": "out/baseline/a8", "tests": 3355, "slow": 6, "divergences": 0, "duration_s": 36.06}
+[posthoc] out/baseline/ec
+{"shard": "out/baseline/ec", "tests": 3403, "slow": 7, "divergences": 0, "duration_s": 35.82}
+[posthoc] out/baseline/59
+{"shard": "out/baseline/59", "tests": 3406, "slow": 5, "divergences": 0, "duration_s": 36.76}
+[posthoc] out/baseline/50
+{"shard": "out/baseline/50", "tests": 3398, "slow": 4, "divergences": 0, "duration_s": 37.2}
+[posthoc] out/baseline/7e
+{"shard": "out/baseline/7e", "tests": 3416, "slow": 5, "divergences": 0, "duration_s": 37.24}
+[posthoc] out/baseline/98
+{"shard": "out/baseline/98", "tests": 3388, "slow": 3, "divergences": 0, "duration_s": 37.13}
+[posthoc] out/baseline/4b
+{"shard": "out/baseline/4b", "tests": 3413, "slow": 2, "divergences": 0, "duration_s": 36.97}
+[posthoc] out/baseline/8c
+{"shard": "out/baseline/8c", "tests": 3408, "slow": 3, "divergences": 0, "duration_s": 36.07}
+[posthoc] out/baseline/61
+{"shard": "out/baseline/61", "tests": 3410, "slow": 1, "divergences": 0, "duration_s": 36.12}
+[posthoc] out/baseline/1f
+{"shard": "out/baseline/1f", "tests": 3409, "slow": 5, "divergences": 0, "duration_s": 36.26}
+[posthoc] out/baseline/2f
+{"shard": "out/baseline/2f", "tests": 3376, "slow": 6, "divergences": 0, "duration_s": 37.16}
+[posthoc] out/baseline/fc
+{"shard": "out/baseline/fc", "tests": 3387, "slow": 7, "divergences": 0, "duration_s": 36.53}
+[posthoc] out/baseline/c6
+{"shard": "out/baseline/c6", "tests": 3405, "slow": 8, "divergences": 0, "duration_s": 35.74}
+[posthoc] out/baseline/2e
+{"shard": "out/baseline/2e", "tests": 3397, "slow": 3, "divergences": 0, "duration_s": 35.05}
+[posthoc] out/baseline/ed
+{"shard": "out/baseline/ed", "tests": 3406, "slow": 3, "divergences": 0, "duration_s": 36.33}
+[posthoc] out/baseline/0d
+{"shard": "out/baseline/0d", "tests": 3383, "slow": 4, "divergences": 0, "duration_s": 36.72}
+[posthoc] out/baseline/b7
+{"shard": "out/baseline/b7", "tests": 3415, "slow": 5, "divergences": 0, "duration_s": 36.01}
+[posthoc] out/baseline/fa
+{"shard": "out/baseline/fa", "tests": 3423, "slow": 6, "divergences": 0, "duration_s": 36.06}
+[posthoc] out/baseline/d2
+{"shard": "out/baseline/d2", "tests": 3376, "slow": 2, "divergences": 0, "duration_s": 35.92}
+[posthoc] out/baseline/a1
+{"shard": "out/baseline/a1", "tests": 3368, "slow": 3, "divergences": 0, "duration_s": 37.61}
+[posthoc] out/baseline/f9
+{"shard": "out/baseline/f9", "tests": 3380, "slow": 1, "divergences": 0, "duration_s": 36.19}
+[posthoc] out/baseline/bb
+{"shard": "out/baseline/bb", "tests": 3372, "slow": 2, "divergences": 0, "duration_s": 37.43}
+[posthoc] out/baseline/2a
+{"shard": "out/baseline/2a", "tests": 3385, "slow": 7, "divergences": 0, "duration_s": 37.44}
+[posthoc] out/baseline/4c
+{"shard": "out/baseline/4c", "tests": 3388, "slow": 7, "divergences": 0, "duration_s": 36.86}
+[posthoc] out/baseline/24
+{"shard": "out/baseline/24", "tests": 3409, "slow": 5, "divergences": 0, "duration_s": 36.59}
+[posthoc] out/baseline/82
+{"shard": "out/baseline/82", "tests": 3401, "slow": 1, "divergences": 0, "duration_s": 35.96}
+[posthoc] out/baseline/da
+{"shard": "out/baseline/da", "tests": 3425, "slow": 3, "divergences": 0, "duration_s": 36.08}
+[posthoc] out/baseline/ac
+{"shard": "out/baseline/ac", "tests": 3401, "slow": 7, "divergences": 0, "duration_s": 35.83}
+[posthoc] out/baseline/b5
+{"shard": "out/baseline/b5", "tests": 3401, "slow": 6, "divergences": 0, "duration_s": 37.25}
+[posthoc] out/baseline/1d
+{"shard": "out/baseline/1d", "tests": 3393, "slow": 2, "divergences": 0, "duration_s": 35.87}
+[posthoc] out/baseline/e6
+{"shard": "out/baseline/e6", "tests": 3399, "slow": 3, "divergences": 0, "duration_s": 36.52}
+[posthoc] out/baseline/69
+{"shard": "out/baseline/69", "tests": 3384, "slow": 7, "divergences": 0, "duration_s": 36.49}
+[posthoc] out/baseline/2b
+{"shard": "out/baseline/2b", "tests": 3416, "slow": 2, "divergences": 0, "duration_s": 36.48}
+[posthoc] out/baseline/f3
+{"shard": "out/baseline/f3", "tests": 3400, "slow": 4, "divergences": 0, "duration_s": 36.55}
+[posthoc] out/baseline/0e
+{"shard": "out/baseline/0e", "tests": 3394, "slow": 3, "divergences": 0, "duration_s": 36.88}
+[posthoc] out/baseline/ea
+{"shard": "out/baseline/ea", "tests": 3406, "slow": 0, "divergences": 0, "duration_s": 35.79}
+[posthoc] out/baseline/87
+{"shard": "out/baseline/87", "tests": 3406, "slow": 0, "divergences": 0, "duration_s": 35.8}
+[posthoc] out/baseline/fb
+{"shard": "out/baseline/fb", "tests": 3400, "slow": 5, "divergences": 0, "duration_s": 35.58}
+[posthoc] out/baseline/ab
+{"shard": "out/baseline/ab", "tests": 3420, "slow": 5, "divergences": 0, "duration_s": 35.19}
+[posthoc] out/baseline/fd
+{"shard": "out/baseline/fd", "tests": 3396, "slow": 8, "divergences": 0, "duration_s": 35.31}
+[posthoc] out/baseline/b8
+{"shard": "out/baseline/b8", "tests": 3391, "slow": 0, "divergences": 0, "duration_s": 36.62}
+[posthoc] out/baseline/9a
+{"shard": "out/baseline/9a", "tests": 3396, "slow": 5, "divergences": 0, "duration_s": 35.02}
+[posthoc] out/baseline/a7
+{"shard": "out/baseline/a7", "tests": 3437, "slow": 3, "divergences": 0, "duration_s": 35.8}
+[posthoc] out/baseline/45
+{"shard": "out/baseline/45", "tests": 3427, "slow": 2, "divergences": 0, "duration_s": 35.09}
+[posthoc] out/baseline/00
+{"shard": "out/baseline/00", "tests": 3395, "slow": 6, "divergences": 0, "duration_s": 36.53}
+[posthoc] out/baseline/57
+{"shard": "out/baseline/57", "tests": 3391, "slow": 4, "divergences": 0, "duration_s": 36.58}
+[posthoc] out/baseline/5b
+{"shard": "out/baseline/5b", "tests": 3409, "slow": 4, "divergences": 0, "duration_s": 37.61}
+[posthoc] out/baseline/90
+{"shard": "out/baseline/90", "tests": 3394, "slow": 1, "divergences": 0, "duration_s": 35.94}
+[posthoc] out/baseline/8b
+{"shard": "out/baseline/8b", "tests": 3364, "slow": 2, "divergences": 0, "duration_s": 37.0}
+[posthoc] out/baseline/03
+{"shard": "out/baseline/03", "tests": 3391, "slow": 2, "divergences": 0, "duration_s": 36.41}
+[posthoc] out/baseline/29
+{"shard": "out/baseline/29", "tests": 3420, "slow": 2, "divergences": 0, "duration_s": 36.03}
+[posthoc] out/baseline/d9
+{"shard": "out/baseline/d9", "tests": 3400, "slow": 4, "divergences": 0, "duration_s": 37.1}
+[posthoc] out/baseline/95
+{"shard": "out/baseline/95", "tests": 3403, "slow": 8, "divergences": 0, "duration_s": 36.66}
+[posthoc] out/baseline/ff
+{"shard": "out/baseline/ff", "tests": 3425, "slow": 7, "divergences": 0, "duration_s": 37.0}
+[posthoc] out/baseline/7b
+{"shard": "out/baseline/7b", "tests": 3411, "slow": 7, "divergences": 0, "duration_s": 37.27}
+[posthoc] out/baseline/37
+{"shard": "out/baseline/37", "tests": 3344, "slow": 3, "divergences": 0, "duration_s": 36.59}
+[posthoc] out/baseline/15
+{"shard": "out/baseline/15", "tests": 3318, "slow": 4, "divergences": 0, "duration_s": 36.55}
+[posthoc] out/baseline/e4
+{"shard": "out/baseline/e4", "tests": 3325, "slow": 11, "divergences": 0, "duration_s": 37.61}
+[posthoc] out/baseline/43
+{"shard": "out/baseline/43", "tests": 3332, "slow": 4, "divergences": 0, "duration_s": 37.06}
+[posthoc] out/baseline/89
+{"shard": "out/baseline/89", "tests": 3350, "slow": 10, "divergences": 0, "duration_s": 35.87}
+[posthoc] out/baseline/04
+{"shard": "out/baseline/04", "tests": 3359, "slow": 2, "divergences": 0, "duration_s": 36.67}
+[posthoc] out/baseline/ad
+{"shard": "out/baseline/ad", "tests": 3436, "slow": 9, "divergences": 0, "duration_s": 36.44}
+[posthoc] out/baseline/06
+{"shard": "out/baseline/06", "tests": 3443, "slow": 7, "divergences": 0, "duration_s": 36.7}
+[posthoc] out/baseline/c0
+{"shard": "out/baseline/c0", "tests": 3352, "slow": 7, "divergences": 0, "duration_s": 37.75}
+[posthoc] out/baseline/c3
+{"shard": "out/baseline/c3", "tests": 3382, "slow": 4, "divergences": 0, "duration_s": 37.9}
+[posthoc] out/baseline/c9
+{"shard": "out/baseline/c9", "tests": 3401, "slow": 4, "divergences": 0, "duration_s": 36.1}
+[posthoc] out/baseline/b3
+{"shard": "out/baseline/b3", "tests": 3417, "slow": 3, "divergences": 0, "duration_s": 36.39}
+[posthoc] out/baseline/f2
+{"shard": "out/baseline/f2", "tests": 3409, "slow": 3, "divergences": 0, "duration_s": 36.77}
+[posthoc] out/baseline/64
+{"shard": "out/baseline/64", "tests": 3362, "slow": 1, "divergences": 0, "duration_s": 36.52}
+[posthoc] out/baseline/8d
+{"shard": "out/baseline/8d", "tests": 3422, "slow": 5, "divergences": 0, "duration_s": 35.97}
+[posthoc] out/baseline/36
+{"shard": "out/baseline/36", "tests": 3396, "slow": 4, "divergences": 0, "duration_s": 35.2}
+[posthoc] out/baseline/diff
+{"shard": "out/baseline/diff", "tests": 0, "slow": 0, "divergences": 0, "duration_s": 0.0}
+[posthoc] out/baseline/b2
+{"shard": "out/baseline/b2", "tests": 3410, "slow": 3, "divergences": 0, "duration_s": 36.09}
+[posthoc] out/baseline/86
+{"shard": "out/baseline/86", "tests": 3441, "slow": 4, "divergences": 0, "duration_s": 36.86}
+[posthoc] out/baseline/0f
+{"shard": "out/baseline/0f", "tests": 3463, "slow": 4, "divergences": 0, "duration_s": 35.9}
+[posthoc] out/baseline/46
+{"shard": "out/baseline/46", "tests": 3439, "slow": 2, "divergences": 0, "duration_s": 36.59}
+[posthoc] out/baseline/af
+{"shard": "out/baseline/af", "tests": 3443, "slow": 0, "divergences": 0, "duration_s": 35.15}
+[posthoc] out/baseline/a9
+{"shard": "out/baseline/a9", "tests": 3385, "slow": 3, "divergences": 0, "duration_s": 36.49}
+[posthoc] out/baseline/a2
+{"shard": "out/baseline/a2", "tests": 3407, "slow": 1, "divergences": 0, "duration_s": 36.87}
+[posthoc] out/baseline/7c
+{"shard": "out/baseline/7c", "tests": 3385, "slow": 1, "divergences": 0, "duration_s": 36.84}
+[posthoc] out/baseline/3b
+{"shard": "out/baseline/3b", "tests": 3434, "slow": 3, "divergences": 0, "duration_s": 34.82}
+[posthoc] out/baseline/09
+{"shard": "out/baseline/09", "tests": 3420, "slow": 1, "divergences": 0, "duration_s": 35.26}
+[posthoc] out/baseline/81
+{"shard": "out/baseline/81", "tests": 3440, "slow": 3, "divergences": 0, "duration_s": 35.8}
+[posthoc] out/baseline/5a
+{"shard": "out/baseline/5a", "tests": 3400, "slow": 4, "divergences": 0, "duration_s": 36.93}
+[posthoc] out/baseline/78
+{"shard": "out/baseline/78", "tests": 3426, "slow": 2, "divergences": 0, "duration_s": 36.5}
+[posthoc] out/baseline/62
+{"shard": "out/baseline/62", "tests": 3410, "slow": 3, "divergences": 0, "duration_s": 36.46}
+[posthoc] out/baseline/1c
+{"shard": "out/baseline/1c", "tests": 3409, "slow": 2, "divergences": 0, "duration_s": 36.79}
+[posthoc] out/baseline/3c
+{"shard": "out/baseline/3c", "tests": 3404, "slow": 0, "divergences": 0, "duration_s": 35.55}
+[posthoc] out/baseline/c4
+{"shard": "out/baseline/c4", "tests": 3413, "slow": 3, "divergences": 0, "duration_s": 36.29}
+[posthoc] out/baseline/8a
+{"shard": "out/baseline/8a", "tests": 3438, "slow": 3, "divergences": 0, "duration_s": 36.18}
+[posthoc] out/baseline/27
+{"shard": "out/baseline/27", "tests": 3437, "slow": 3, "divergences": 0, "duration_s": 35.66}
+[posthoc] out/baseline/ba
+{"shard": "out/baseline/ba", "tests": 3450, "slow": 7, "divergences": 0, "duration_s": 36.22}
+[posthoc] out/baseline/74
+{"shard": "out/baseline/74", "tests": 3410, "slow": 0, "divergences": 0, "duration_s": 36.35}
+[posthoc] out/baseline/ee
+{"shard": "out/baseline/ee", "tests": 3404, "slow": 9, "divergences": 0, "duration_s": 35.68}
+[posthoc] out/baseline/b4
+{"shard": "out/baseline/b4", "tests": 3402, "slow": 9, "divergences": 0, "duration_s": 36.62}
+[posthoc] out/baseline/26
+{"shard": "out/baseline/26", "tests": 3381, "slow": 4, "divergences": 0, "duration_s": 36.83}
+[posthoc] out/baseline/7f
+{"shard": "out/baseline/7f", "tests": 3420, "slow": 0, "divergences": 0, "duration_s": 36.8}
+[posthoc] out/baseline/42
+{"shard": "out/baseline/42", "tests": 3321, "slow": 1, "divergences": 0, "duration_s": 36.82}
+[posthoc] out/baseline/5c
+{"shard": "out/baseline/5c", "tests": 3421, "slow": 6, "divergences": 0, "duration_s": 35.8}
+[posthoc] out/baseline/70
+{"shard": "out/baseline/70", "tests": 3427, "slow": 4, "divergences": 0, "duration_s": 36.32}
+[posthoc] out/baseline/ca
+{"shard": "out/baseline/ca", "tests": 3408, "slow": 10, "divergences": 0, "duration_s": 35.23}
+[posthoc] out/baseline/3f
+{"shard": "out/baseline/3f", "tests": 3426, "slow": 6, "divergences": 0, "duration_s": 36.48}
+[posthoc] out/baseline/96
+{"shard": "out/baseline/96", "tests": 3381, "slow": 2, "divergences": 0, "duration_s": 36.55}
+[posthoc] out/baseline/48
+{"shard": "out/baseline/48", "tests": 3415, "slow": 6, "divergences": 0, "duration_s": 36.18}
+[posthoc] out/baseline/20
+{"shard": "out/baseline/20", "tests": 3407, "slow": 5, "divergences": 0, "duration_s": 35.65}
+[posthoc] out/baseline/51
+{"shard": "out/baseline/51", "tests": 3438, "slow": 6, "divergences": 0, "duration_s": 35.68}
+[posthoc] out/baseline/84
+{"shard": "out/baseline/84", "tests": 3408, "slow": 5, "divergences": 0, "duration_s": 36.29}
+[posthoc] out/baseline/f8
+{"shard": "out/baseline/f8", "tests": 3435, "slow": 4, "divergences": 0, "duration_s": 35.7}
+[posthoc] out/baseline/58
+{"shard": "out/baseline/58", "tests": 3395, "slow": 4, "divergences": 0, "duration_s": 36.91}
+[posthoc] out/baseline/32
+{"shard": "out/baseline/32", "tests": 3410, "slow": 7, "divergences": 0, "duration_s": 36.43}
+[posthoc] out/baseline/4d
+{"shard": "out/baseline/4d", "tests": 3421, "slow": 11, "divergences": 0, "duration_s": 36.2}
+[posthoc] out/baseline/71
+{"shard": "out/baseline/71", "tests": 3423, "slow": 8, "divergences": 0, "duration_s": 36.74}
+[posthoc] out/baseline/68
+{"shard": "out/baseline/68", "tests": 3429, "slow": 3, "divergences": 0, "duration_s": 36.25}
+[posthoc] out/baseline/40
+{"shard": "out/baseline/40", "tests": 3399, "slow": 2, "divergences": 0, "duration_s": 37.47}
+[posthoc] out/baseline/11
+{"shard": "out/baseline/11", "tests": 3404, "slow": 0, "divergences": 0, "duration_s": 36.41}
+[posthoc] out/baseline/f4
+{"shard": "out/baseline/f4", "tests": 3447, "slow": 1, "divergences": 0, "duration_s": 35.79}
+[posthoc] out/baseline/18
+{"shard": "out/baseline/18", "tests": 3400, "slow": 1, "divergences": 0, "duration_s": 35.98}
+[posthoc] out/baseline/bf
+{"shard": "out/baseline/bf", "tests": 3434, "slow": 2, "divergences": 0, "duration_s": 36.36}
+[posthoc] out/baseline/1b
+{"shard": "out/baseline/1b", "tests": 3458, "slow": 10, "divergences": 0, "duration_s": 35.76}
+[posthoc] out/baseline/99
+{"shard": "out/baseline/99", "tests": 3443, "slow": 9, "divergences": 0, "duration_s": 35.69}
+[posthoc] out/baseline/38
+{"shard": "out/baseline/38", "tests": 3434, "slow": 3, "divergences": 0, "duration_s": 35.29}
+[posthoc] out/baseline/7a
+{"shard": "out/baseline/7a", "tests": 3415, "slow": 6, "divergences": 0, "duration_s": 35.66}
+[posthoc] out/baseline/17
+{"shard": "out/baseline/17", "tests": 3434, "slow": 4, "divergences": 0, "duration_s": 36.4}
+[posthoc] out/baseline/4a
+{"shard": "out/baseline/4a", "tests": 3411, "slow": 6, "divergences": 0, "duration_s": 36.54}
+[posthoc] out/baseline/f6
+{"shard": "out/baseline/f6", "tests": 3417, "slow": 2, "divergences": 0, "duration_s": 36.02}
+[posthoc] out/baseline/39
+{"shard": "out/baseline/39", "tests": 3837, "slow": 7, "divergences": 0, "duration_s": 41.28}
+[posthoc] out/baseline/83
+{"shard": "out/baseline/83", "tests": 3283, "slow": 5, "divergences": 0, "duration_s": 37.09}
+[posthoc] out/baseline/cf
+{"shard": "out/baseline/cf", "tests": 3338, "slow": 0, "divergences": 0, "duration_s": 37.1}
+[posthoc] out/baseline/80
+{"shard": "out/baseline/80", "tests": 3378, "slow": 0, "divergences": 0, "duration_s": 35.94}
+[posthoc] out/baseline/3d
+{"shard": "out/baseline/3d", "tests": 3368, "slow": 3, "divergences": 0, "duration_s": 37.36}
+[posthoc] out/baseline/47
+{"shard": "out/baseline/47", "tests": 3366, "slow": 2, "divergences": 0, "duration_s": 36.89}
+[posthoc] out/baseline/5d
+{"shard": "out/baseline/5d", "tests": 3362, "slow": 1, "divergences": 0, "duration_s": 36.79}
+[posthoc] out/baseline/97
+{"shard": "out/baseline/97", "tests": 3336, "slow": 8, "divergences": 0, "duration_s": 36.35}
+[posthoc] out/baseline/92
+{"shard": "out/baseline/92", "tests": 3330, "slow": 1, "divergences": 0, "duration_s": 36.84}
+[posthoc] out/baseline/73
+{"shard": "out/baseline/73", "tests": 3369, "slow": 4, "divergences": 0, "duration_s": 36.09}
+[posthoc] out/baseline/a5
+{"shard": "out/baseline/a5", "tests": 3332, "slow": 4, "divergences": 0, "duration_s": 36.47}
+[posthoc] out/baseline/cd
+{"shard": "out/baseline/cd", "tests": 3347, "slow": 8, "divergences": 0, "duration_s": 37.62}
+[posthoc] out/baseline/52
+{"shard": "out/baseline/52", "tests": 3369, "slow": 5, "divergences": 0, "duration_s": 36.15}
+[posthoc] out/baseline/41
+{"shard": "out/baseline/41", "tests": 3344, "slow": 4, "divergences": 0, "duration_s": 37.32}
+[posthoc] out/baseline/6a
+{"shard": "out/baseline/6a", "tests": 3361, "slow": 5, "divergences": 0, "duration_s": 38.05}
+[posthoc] out/baseline/93
+{"shard": "out/baseline/93", "tests": 3313, "slow": 2, "divergences": 0, "duration_s": 37.42}
+[posthoc] out/baseline/33
+{"shard": "out/baseline/33", "tests": 3382, "slow": 3, "divergences": 0, "duration_s": 36.23}
+[posthoc] out/baseline/31
+{"shard": "out/baseline/31", "tests": 3355, "slow": 2, "divergences": 0, "duration_s": 37.5}
+[posthoc] out/baseline/54
+{"shard": "out/baseline/54", "tests": 3337, "slow": 4, "divergences": 0, "duration_s": 36.18}
+[posthoc] out/baseline/8e
+{"shard": "out/baseline/8e", "tests": 3403, "slow": 3, "divergences": 0, "duration_s": 36.91}
+[posthoc] out/baseline/5f
+{"shard": "out/baseline/5f", "tests": 3397, "slow": 3, "divergences": 0, "duration_s": 37.08}
+[posthoc] out/baseline/6c
+{"shard": "out/baseline/6c", "tests": 3374, "slow": 4, "divergences": 0, "duration_s": 37.55}
+[posthoc] out/baseline/07
+{"shard": "out/baseline/07", "tests": 3371, "slow": 3, "divergences": 0, "duration_s": 37.17}
+[posthoc] out/baseline/10
+{"shard": "out/baseline/10", "tests": 3377, "slow": 6, "divergences": 0, "duration_s": 36.08}
+[posthoc] out/baseline/72
+{"shard": "out/baseline/72", "tests": 3365, "slow": 4, "divergences": 0, "duration_s": 36.87}
+[posthoc] out/baseline/cb
+{"shard": "out/baseline/cb", "tests": 3343, "slow": 5, "divergences": 0, "duration_s": 37.3}
+[posthoc] out/baseline/23
+{"shard": "out/baseline/23", "tests": 3337, "slow": 2, "divergences": 0, "duration_s": 35.4}
+[posthoc] out/baseline/bc
+{"shard": "out/baseline/bc", "tests": 3591, "slow": 4, "divergences": 0, "duration_s": 42.58}
+[posthoc] out/baseline/01
+{"shard": "out/baseline/01", "tests": 3307, "slow": 2, "divergences": 0, "duration_s": 45.75}
+[posthoc] out/baseline/e8
+{"shard": "out/baseline/e8", "tests": 3370, "slow": 3, "divergences": 0, "duration_s": 46.06}
+[posthoc] out/baseline/bd
+{"shard": "out/baseline/bd", "tests": 3392, "slow": 5, "divergences": 0, "duration_s": 45.51}
+[posthoc] out/baseline/9b
+{"shard": "out/baseline/9b", "tests": 3325, "slow": 7, "divergences": 0, "duration_s": 45.75}
+[posthoc] out/baseline/d4
+{"shard": "out/baseline/d4", "tests": 3357, "slow": 5, "divergences": 0, "duration_s": 46.95}
+[posthoc] out/baseline/6e
+{"shard": "out/baseline/6e", "tests": 3348, "slow": 2, "divergences": 0, "duration_s": 46.87}
+[posthoc] out/baseline/0a
+{"shard": "out/baseline/0a", "tests": 3358, "slow": 3, "divergences": 0, "duration_s": 45.61}
+[posthoc] out/baseline/7d
+{"shard": "out/baseline/7d", "tests": 3382, "slow": 3, "divergences": 0, "duration_s": 45.36}
+[posthoc] out/baseline/53
+{"shard": "out/baseline/53", "tests": 3375, "slow": 1, "divergences": 0, "duration_s": 46.87}
+[posthoc] out/baseline/de
+{"shard": "out/baseline/de", "tests": 3404, "slow": 7, "divergences": 0, "duration_s": 46.01}
+[posthoc] out/baseline/9e
+{"shard": "out/baseline/9e", "tests": 3440, "slow": 2, "divergences": 0, "duration_s": 45.38}
+[posthoc] out/baseline/f1
+{"shard": "out/baseline/f1", "tests": 3411, "slow": 9, "divergences": 0, "duration_s": 44.81}
+[posthoc] out/baseline/db
+{"shard": "out/baseline/db", "tests": 3414, "slow": 3, "divergences": 0, "duration_s": 45.58}
+[posthoc] out/baseline/34
+{"shard": "out/baseline/34", "tests": 3344, "slow": 3, "divergences": 0, "duration_s": 47.18}
+[posthoc] out/baseline/e7
+{"shard": "out/baseline/e7", "tests": 3364, "slow": 3, "divergences": 0, "duration_s": 46.31}
+[posthoc] out/baseline/1e
+{"shard": "out/baseline/1e", "tests": 3405, "slow": 5, "divergences": 0, "duration_s": 44.32}
+[posthoc] out/baseline/67
+{"shard": "out/baseline/67", "tests": 3432, "slow": 4, "divergences": 0, "duration_s": 45.79}
+[posthoc] out/baseline/b6
+{"shard": "out/baseline/b6", "tests": 3404, "slow": 8, "divergences": 0, "duration_s": 45.7}
+[posthoc] out/baseline/c2
+{"shard": "out/baseline/c2", "tests": 3404, "slow": 2, "divergences": 0, "duration_s": 46.21}
+[posthoc] out/baseline/8f
+{"shard": "out/baseline/8f", "tests": 3389, "slow": 4, "divergences": 0, "duration_s": 45.83}
+[posthoc] out/baseline/0b
+{"shard": "out/baseline/0b", "tests": 3401, "slow": 5, "divergences": 0, "duration_s": 45.45}
+[posthoc] out/baseline/e5
+{"shard": "out/baseline/e5", "tests": 3415, "slow": 4, "divergences": 0, "duration_s": 45.47}
+[posthoc] out/baseline/85
+{"shard": "out/baseline/85", "tests": 3437, "slow": 3, "divergences": 0, "duration_s": 44.89}
+[posthoc] out/baseline/08
+{"shard": "out/baseline/08", "tests": 3433, "slow": 3, "divergences": 0, "duration_s": 45.44}
+[posthoc] out/baseline/2d
+{"shard": "out/baseline/2d", "tests": 3419, "slow": 3, "divergences": 0, "duration_s": 46.4}
+[posthoc] out/baseline/76
+{"shard": "out/baseline/76", "tests": 3446, "slow": 3, "divergences": 0, "duration_s": 46.01}
+[posthoc] out/baseline/d7
+{"shard": "out/baseline/d7", "tests": 3435, "slow": 7, "divergences": 0, "duration_s": 45.48}
+[posthoc] out/baseline/0c
+{"shard": "out/baseline/0c", "tests": 3412, "slow": 3, "divergences": 0, "duration_s": 45.69}
+[posthoc] out/baseline/88
+{"shard": "out/baseline/88", "tests": 3075, "slow": 5, "divergences": 0, "duration_s": 39.64}
+[posthoc] out/baseline/77
+{"shard": "out/baseline/77", "tests": 3371, "slow": 4, "divergences": 0, "duration_s": 37.11}
+[posthoc] out/baseline/94
+{"shard": "out/baseline/94", "tests": 3362, "slow": 0, "divergences": 0, "duration_s": 36.76}
+[posthoc] out/baseline/79
+{"shard": "out/baseline/79", "tests": 3328, "slow": 4, "divergences": 0, "duration_s": 36.07}
+[posthoc] out/baseline/dd
+{"shard": "out/baseline/dd", "tests": 3337, "slow": 3, "divergences": 0, "duration_s": 37.28}
+[posthoc] out/baseline/d5
+{"shard": "out/baseline/d5", "tests": 3318, "slow": 2, "divergences": 0, "duration_s": 37.09}
+[posthoc] out/baseline/9f
+{"shard": "out/baseline/9f", "tests": 3284, "slow": 2, "divergences": 0, "duration_s": 38.02}
+[posthoc] out/baseline/28
+{"shard": "out/baseline/28", "tests": 3328, "slow": 4, "divergences": 0, "duration_s": 36.69}
+[posthoc] out/baseline/e2
+{"shard": "out/baseline/e2", "tests": 3310, "slow": 8, "divergences": 0, "duration_s": 37.73}
+[posthoc] out/baseline/9d
+{"shard": "out/baseline/9d", "tests": 3294, "slow": 5, "divergences": 0, "duration_s": 37.03}
+[posthoc] out/baseline/b0
+{"shard": "out/baseline/b0", "tests": 3308, "slow": 4, "divergences": 0, "duration_s": 36.52}
+[posthoc] out/baseline/a4
+{"shard": "out/baseline/a4", "tests": 3313, "slow": 7, "divergences": 0, "duration_s": 37.6}
+[posthoc] out/baseline/9c
+{"shard": "out/baseline/9c", "tests": 3300, "slow": 6, "divergences": 0, "duration_s": 37.28}
+[posthoc] out/baseline/df
+{"shard": "out/baseline/df", "tests": 3322, "slow": 1, "divergences": 0, "duration_s": 36.85}
+[posthoc] out/baseline/d6
+{"shard": "out/baseline/d6", "tests": 3327, "slow": 5, "divergences": 0, "duration_s": 37.74}
+[posthoc] out/baseline/eb
+{"shard": "out/baseline/eb", "tests": 3302, "slow": 1, "divergences": 0, "duration_s": 36.77}
+[posthoc] out/baseline/d8
+{"shard": "out/baseline/d8", "tests": 3305, "slow": 0, "divergences": 0, "duration_s": 37.22}
+[posthoc] out/baseline/f0
+{"shard": "out/baseline/f0", "tests": 3304, "slow": 0, "divergences": 0, "duration_s": 37.69}
+[posthoc] out/baseline/a3
+{"shard": "out/baseline/a3", "tests": 3339, "slow": 11, "divergences": 0, "duration_s": 37.14}
+[posthoc] out/baseline/a6
+{"shard": "out/baseline/a6", "tests": 3328, "slow": 3, "divergences": 0, "duration_s": 38.35}
+[posthoc] out/baseline/21
+{"shard": "out/baseline/21", "tests": 3304, "slow": 4, "divergences": 0, "duration_s": 36.46}
+[posthoc] out/baseline/2c
+{"shard": "out/baseline/2c", "tests": 3307, "slow": 2, "divergences": 0, "duration_s": 37.83}
+[posthoc] out/baseline/be
+{"shard": "out/baseline/be", "tests": 3371, "slow": 3, "divergences": 0, "duration_s": 36.69}
+[posthoc] out/baseline/6b
+{"shard": "out/baseline/6b", "tests": 3350, "slow": 2, "divergences": 0, "duration_s": 36.17}
+[posthoc] out/baseline/25
+{"shard": "out/baseline/25", "tests": 3346, "slow": 4, "divergences": 0, "duration_s": 36.91}
+[posthoc] out/baseline/65
+{"shard": "out/baseline/65", "tests": 3352, "slow": 6, "divergences": 0, "duration_s": 36.73}
+[posthoc] out/baseline/3a
+{"shard": "out/baseline/3a", "tests": 3336, "slow": 3, "divergences": 0, "duration_s": 37.22}
+[posthoc] out/baseline/02
+{"shard": "out/baseline/02", "tests": 3323, "slow": 1, "divergences": 0, "duration_s": 37.43}
+[posthoc] out/baseline/30
+{"shard": "out/baseline/30", "tests": 3294, "slow": 5, "divergences": 0, "duration_s": 36.65}
+[posthoc] out/baseline/ef
+{"shard": "out/baseline/ef", "tests": 3372, "slow": 2, "divergences": 0, "duration_s": 36.64}
+[posthoc] out/baseline/fe
+{"shard": "out/baseline/fe", "tests": 3437, "slow": 7, "divergences": 0, "duration_s": 36.48}
+[posthoc] out/baseline/60
+{"shard": "out/baseline/60", "tests": 3412, "slow": 5, "divergences": 0, "duration_s": 35.84}
+[posthoc] out/baseline/d1
+{"shard": "out/baseline/d1", "tests": 3390, "slow": 2, "divergences": 0, "duration_s": 36.09}
+[posthoc] out/baseline/44
+{"shard": "out/baseline/44", "tests": 3376, "slow": 3, "divergences": 0, "duration_s": 35.6}
+[posthoc] out/baseline/4f
+{"shard": "out/baseline/4f", "tests": 3420, "slow": 4, "divergences": 0, "duration_s": 36.96}
+[posthoc] out/baseline/05
+{"shard": "out/baseline/05", "tests": 3424, "slow": 7, "divergences": 0, "duration_s": 35.23}
+[posthoc] out/baseline/b1
+{"shard": "out/baseline/b1", "tests": 3399, "slow": 6, "divergences": 0, "duration_s": 36.75}
+[posthoc] out/baseline/c7
+{"shard": "out/baseline/c7", "tests": 3409, "slow": 6, "divergences": 0, "duration_s": 36.48}
+[posthoc] out/baseline/55
+{"shard": "out/baseline/55", "tests": 3371, "slow": 2, "divergences": 0, "duration_s": 36.77}
+[posthoc] out/baseline/d3
+{"shard": "out/baseline/d3", "tests": 3436, "slow": 4, "divergences": 0, "duration_s": 36.04}
+[posthoc] out/baseline/3e
+{"shard": "out/baseline/3e", "tests": 3376, "slow": 10, "divergences": 0, "duration_s": 37.16}
+[posthoc] out/baseline/c1
+{"shard": "out/baseline/c1", "tests": 3400, "slow": 2, "divergences": 0, "duration_s": 36.9}
+[posthoc] out/baseline/f7
+{"shard": "out/baseline/f7", "tests": 3366, "slow": 6, "divergences": 0, "duration_s": 36.95}
+[posthoc] out/baseline/56
+{"shard": "out/baseline/56", "tests": 3402, "slow": 3, "divergences": 0, "duration_s": 37.21}
+[posthoc] out/baseline/e1
+{"shard": "out/baseline/e1", "tests": 3375, "slow": 8, "divergences": 0, "duration_s": 35.98}
+[posthoc] out/baseline/d0
+{"shard": "out/baseline/d0", "tests": 3385, "slow": 4, "divergences": 0, "duration_s": 37.21}
+[posthoc] out/baseline/49
+{"shard": "out/baseline/49", "tests": 3309, "slow": 3, "divergences": 0, "duration_s": 37.51}
+[posthoc] out/baseline/e3
+{"shard": "out/baseline/e3", "tests": 3368, "slow": 5, "divergences": 0, "duration_s": 37.42}
+[posthoc] out/baseline/e0
+{"shard": "out/baseline/e0", "tests": 3376, "slow": 7, "divergences": 0, "duration_s": 37.32}
+[posthoc] out/baseline/13
+{"shard": "out/baseline/13", "tests": 3432, "slow": 1, "divergences": 0, "duration_s": 35.55}
+[posthoc] out/baseline/14
+{"shard": "out/baseline/14", "tests": 3397, "slow": 2, "divergences": 0, "duration_s": 37.42}
+[posthoc] out/baseline/16
+{"shard": "out/baseline/16", "tests": 3392, "slow": 5, "divergences": 0, "duration_s": 36.77}
+[posthoc] out/baseline/19
+{"shard": "out/baseline/19", "tests": 3419, "slow": 5, "divergences": 0, "duration_s": 35.88}
+[posthoc] out/baseline/f5
+{"shard": "out/baseline/f5", "tests": 3286, "slow": 4, "divergences": 0, "duration_s": 37.31}
+[posthoc] out/baseline/ce
+{"shard": "out/baseline/ce", "tests": 3480, "slow": 0, "divergences": 0, "duration_s": 34.9}
+[posthoc] out/baseline/aa
+{"shard": "out/baseline/aa", "tests": 3451, "slow": 6, "divergences": 0, "duration_s": 35.88}
+[posthoc] out/baseline/1a
+{"shard": "out/baseline/1a", "tests": 3313, "slow": 4, "divergences": 0, "duration_s": 38.54}
+[posthoc] out/baseline/e9
+{"shard": "out/baseline/e9", "tests": 3344, "slow": 4, "divergences": 0, "duration_s": 36.85}
+[posthoc] out/baseline/6f
+{"shard": "out/baseline/6f", "tests": 3349, "slow": 4, "divergences": 0, "duration_s": 37.01}
+[posthoc] out/baseline/4e
+{"shard": "out/baseline/4e", "tests": 3313, "slow": 5, "divergences": 0, "duration_s": 37.35}
+[posthoc] out/baseline/a0
+{"shard": "out/baseline/a0", "tests": 4046, "slow": 3, "divergences": 0, "duration_s": 40.47}
+[posthoc] out/baseline/91
+{"shard": "out/baseline/91", "tests": 3340, "slow": 4, "divergences": 0, "duration_s": 36.94}
+[posthoc] out/baseline/66
+{"shard": "out/baseline/66", "tests": 3217, "slow": 2, "divergences": 0, "duration_s": 37.95}
+[posthoc] out/baseline/75
+{"shard": "out/baseline/75", "tests": 3272, "slow": 10, "divergences": 0, "duration_s": 37.24}
+[posthoc] out/baseline/63
+{"shard": "out/baseline/63", "tests": 3226, "slow": 4, "divergences": 0, "duration_s": 37.84}
+[posthoc] out/baseline/12
+{"shard": "out/baseline/12", "tests": 3278, "slow": 0, "divergences": 0, "duration_s": 37.66}
+[posthoc] out/baseline/ae
+{"shard": "out/baseline/ae", "tests": 3318, "slow": 2, "divergences": 0, "duration_s": 37.48}
+[posthoc] out/baseline/c8
+{"shard": "out/baseline/c8", "tests": 3408, "slow": 9, "divergences": 0, "duration_s": 36.11}
+{
+  "root": "out/baseline",
+  "shards_with_reports": 257,
+  "tests_total": 866813,
+  "slow_tests_total": 1028,
+  "divergences_total": 0,
+  "duration_s_total": 9675.66,
+  "unique_flaw_files": 0,
+  "divergences_by_vm_pair": {}
+}

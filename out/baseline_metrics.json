@@ -1,0 +1,135 @@
+{
+  "root": "/home/odessa/AIingFuzzyVM/out/baseline",
+  "tests_total": 989892,
+  "tests_with_code": 936901,
+  "unique_bytecodes": 528212,
+  "dedup_rate": 0.533606,
+  "total_opcodes": 126540294,
+  "avg_opcodes_per_test": 135.06,
+  "unique_ngrams_n3": 272408,
+  "unique_ngrams_n5": 656511,
+  "top_opcodes": [
+    {
+      "op": "PUSH1",
+      "count": 48940891
+    },
+    {
+      "op": "JUMPDEST",
+      "count": 15165162
+    },
+    {
+      "op": "MSTORE8",
+      "count": 12370016
+    },
+    {
+      "op": "MSTORE",
+      "count": 9033512
+    },
+    {
+      "op": "PUSH32",
+      "count": 8586223
+    },
+    {
+      "op": "PUSH2",
+      "count": 5463025
+    },
+    {
+      "op": "SSTORE",
+      "count": 1895894
+    },
+    {
+      "op": "PUSH3",
+      "count": 1883877
+    },
+    {
+      "op": "PUSH4",
+      "count": 1366022
+    },
+    {
+      "op": "CALL",
+      "count": 1316736
+    },
+    {
+      "op": "DUP1",
+      "count": 1108071
+    },
+    {
+      "op": "PUSH8",
+      "count": 1084371
+    },
+    {
+      "op": "MLOAD",
+      "count": 973686
+    },
+    {
+      "op": "JUMP",
+      "count": 896299
+    },
+    {
+      "op": "TSTORE",
+      "count": 893580
+    },
+    {
+      "op": "STATICCALL",
+      "count": 831174
+    },
+    {
+      "op": "MSIZE",
+      "count": 712427
+    },
+    {
+      "op": "RETURN",
+      "count": 670521
+    },
+    {
+      "op": "CALLCODE",
+      "count": 635196
+    },
+    {
+      "op": "STOP",
+      "count": 558060
+    },
+    {
+      "op": "PUSH20",
+      "count": 467785
+    },
+    {
+      "op": "CREATE",
+      "count": 406112
+    },
+    {
+      "op": "KECCAK256",
+      "count": 370740
+    },
+    {
+      "op": "RETURNDATASIZE",
+      "count": 352274
+    },
+    {
+      "op": "RETURNDATACOPY",
+      "count": 343217
+    },
+    {
+      "op": "BLOBHASH",
+      "count": 338713
+    },
+    {
+      "op": "TLOAD",
+      "count": 307506
+    },
+    {
+      "op": "SLOAD",
+      "count": 296604
+    },
+    {
+      "op": "UNKNOWN_e5",
+      "count": 283199
+    },
+    {
+      "op": "CREATE2",
+      "count": 273685
+    }
+  ],
+  "scan_duration_s": 25.91,
+  "files_scanned": 989892
+}

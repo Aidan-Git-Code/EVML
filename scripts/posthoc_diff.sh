@@ -82,13 +82,19 @@ DIVS_JSONL="$OUT_DIR/divergences.jsonl"
 : > "$DIVS_JSONL"
 
 for shard in "${SHARDS[@]}"; do
-	report_dir="$shard/../diff"
+	# Per-shard diff directory so each shard gets its own report and runtest traces.
+	# Without --diff-dir, differential.py defaults to <shard>/../diff, which means
+	# every shard overwrites the same file at the corpus root.
+	report_dir="$shard/diff"
 	report="$report_dir/diff_report.json"
 	if [[ -f "$report" && "$FORCE" -ne 1 ]]; then
 		echo "[posthoc] skip (cached) $shard" | tee -a "$LOG"
 	else
 		echo "[posthoc] $shard" | tee -a "$LOG"
-		python3 orchestrator/differential.py "$shard" --threads "$THREADS" >> "$LOG" 2>&1 || true
+		python3 orchestrator/differential.py "$shard" \
+			--threads "$THREADS" \
+			--glob "FuzzyVM-*.json" \
+			--diff-dir "$report_dir" >> "$LOG" 2>&1 || true
 	fi
 	if [[ -f "$report" ]]; then
 		python3 - "$report" "$DIVS_JSONL" <<'PY'

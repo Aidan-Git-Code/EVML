@@ -1,0 +1,10 @@
+{
+  "root": "out/baseline",
+  "shards_with_reports": 257,
+  "tests_total": 866813,
+  "slow_tests_total": 1028,
+  "divergences_total": 0,
+  "duration_s_total": 9675.66,
+  "unique_flaw_files": 0,
+  "divergences_by_vm_pair": {}
+}

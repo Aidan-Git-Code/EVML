@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  20 APR 2026 12:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  20 APR 2026 20:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -779,7 +779,18 @@ Package hyperref Info: Link coloring ON on input line 51.
 \openout4 = `paper.out'.
 
 \c@lstlisting=\count332
+LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 Underfull \hbox (badness 2662) in paragraph at lines 58--60
 \OT1/ptm/b/n/9 blockchain se-cu-rity, Ethereum Vir-tual Ma-chine, retrieval-
  []
@@ -793,403 +804,268 @@ Underfull \hbox (badness 4454) in paragraph at lines 66--67
 []\OT1/ptm/m/n/10 Differential fuzzing treats the prob-lem as a cross-
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
--dist/fonts/enc/dvips/base/8r.enc}
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 1454) in paragraph at lines 78--79
+Underfull \hbox (badness 1454) in paragraph at lines 80--81
 []\OT1/ptm/m/n/10 Fuzzilli [[][]3[][]] is a coverage-guided mu-ta-tion fuzzer f
 or
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 113
-.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 113
-.
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \OT1/pcr/m/n/10 constraints.required_opcodes_any_of\OT1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \OT1/pcr/m/n/10 parameter_hints\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 seed_hint\OT1/
 ptm/m/n/10 , \OT1/pcr/m/n/10 rationale\OT1/ptm/m/n/10 , and
  []
 
 
-Underfull \hbox (badness 3428) in paragraph at lines 144--145
+Underfull \hbox (badness 3428) in paragraph at lines 146--147
 \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 banned_opcodes \OT1/ptm/m/n/10 are con-sume
 d by the cur-rent
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 146--147
+Underfull \hbox (badness 1540) in paragraph at lines 148--149
 []\OT1/ptm/m/n/10 Two lay-ers of val-i-da-tion ap-ply to LLM out-put. The
  []
 
 [2]
-Underfull \hbox (badness 1742) in paragraph at lines 175--176
+Underfull \hbox (badness 1742) in paragraph at lines 177--178
 []\OT1/ptm/m/n/10 The up-stream FuzzyVM is mod-i-fied in three places.
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 175--176
+Underfull \hbox (badness 4752) in paragraph at lines 177--178
 \OT1/ptm/m/n/10 First, a plan loader in \OT1/pcr/m/n/10 generator/plan.go \OT1/
 ptm/m/n/10 reads
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 \OT1/ptm/m/n/10 the JSON plan via \OT1/pcr/m/n/10 --plan path.json \OT1/ptm/m/n
 /10 or the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 \OT1/pcr/m/n/10 FUZZYVM_PLAN=path.json \OT1/ptm/m/n/10 en-vi-ron-ment vari-able
 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 \OT1/ptm/m/n/10 Sec-ond, a re-place-ment weight-normalization func-tion,
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 175--176
+Underfull \hbox (badness 2426) in paragraph at lines 177--178
 \OT1/pcr/m/n/10 makeMapNormalized\OT1/ptm/m/n/10 , avoids a byte-overflow bug i
 n
  []
 
 
-Underfull \hbox (badness 3646) in paragraph at lines 175--176
+Underfull \hbox (badness 3646) in paragraph at lines 177--178
 \OT1/ptm/m/n/10 Ex-e-cute meth-ods con-sult an \OT1/pcr/m/n/10 IsBanned \OT1/pt
 m/m/n/10 check be-fore
  []
 
-
-Underfull \hbox (badness 2495) in paragraph at lines 191--192
+[3]
+Underfull \hbox (badness 2495) in paragraph at lines 193--194
 []\OT1/ptm/m/n/10 The re-trieval query is the raw ob-jec-tive string (for
  []
 
 
-Underfull \hbox (badness 7613) in paragraph at lines 191--192
+Underfull \hbox (badness 7613) in paragraph at lines 193--194
 \OT1/ptm/m/n/10 ex-am-ple, ``EIP-1153 TSTORE vis-i-bil-ity across nested
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 \OT1/ptm/m/n/10 the \OT1/pcr/m/n/10 Represent this sentence for searching
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 191--192
+Underfull \hbox (badness 1424) in paragraph at lines 193--194
 \OT1/ptm/m/n/10 of dis-tinct strings across a full run) and em-bed-ding a
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 []\OT1/ptm/m/n/10 goevmlab's \OT1/pcr/m/n/10 runtest \OT1/ptm/m/n/10 is in-voke
 d with the geth
  []
 
 
-Underfull \hbox (badness 2401) in paragraph at lines 197--198
+Underfull \hbox (badness 2401) in paragraph at lines 199--200
 \OT1/pcr/m/n/10 evm \OT1/ptm/m/n/10 bi-nary and the revm \OT1/pcr/m/n/10 revme 
 \OT1/ptm/m/n/10 bi-nary as the two
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 \OT1/ptm/m/n/10 clients. FuzzyVM uses a two-level out-put lay-out
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 \OT1/ptm/m/n/10 (\OT1/pcr/m/n/10 <hashprefix>/FuzzyVM-<hash>.json\OT1/ptm/m/n/1
 0 ) be-cause
  []
 
-LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 1
-99.
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 2
+01.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 199.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 201.
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 []\OT1/ptm/m/n/10 The or-ches-tra-tor wraps \OT1/pcr/m/n/10 runtest \OT1/ptm/m/
 n/10 in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 \OT1/pcr/m/n/10 orchestrator/differential.py\OT1/ptm/m/n/10 , which strips
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 \OMS/cmsy/m/n/10 f\OT1/pcr/m/n/10 tests_run, slow_tests, divergences[],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 \OT1/pcr/m/n/10 duration_s, runtest_rc, vms\OMS/cmsy/m/n/10 g\OT1/ptm/m/n/10 . 
 Tests ex-ceed-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 []\OT1/ptm/m/n/10 The overnight run is su-per-vised by
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 207--208
+Underfull \hbox (badness 7540) in paragraph at lines 209--210
 \OT1/pcr/m/n/10 scripts/start_llm_loop.sh\OT1/ptm/m/n/10 . The driver pins a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 []\OT1/ptm/m/n/10 The stock-random base-line uses
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 \OT1/pcr/m/n/10 FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 221--222
+Underfull \hbox (badness 2221) in paragraph at lines 223--224
 \OT1/pcr/m/n/10 evm \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 revme\OT1/ptm/m/n/10 , 
 build llama.cpp with CUDA, down-
  []
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 221--222
+Underfull \hbox (badness 2512) in paragraph at lines 223--224
 \OT1/ptm/m/n/10 dex from a shal-low clone of \OT1/pcr/m/n/10 ethereum/EIPs\OT1/
 ptm/m/n/10 , start
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 221--222
+Underfull \hbox (badness 2503) in paragraph at lines 223--224
 \OT1/ptm/m/n/10 vi-sors (\OT1/pcr/m/n/10 start_baseline.sh\OT1/ptm/m/n/10 , \OT
 1/pcr/m/n/10 start_llm_loop.sh\OT1/ptm/m/n/10 ,
  []
 
 [4]
-Underfull \hbox (badness 2119) in paragraph at lines 263--264
+Underfull \hbox (badness 2119) in paragraph at lines 265--266
 []\OT1/ptm/m/n/10 Static cor-pus met-rics com-puted post-hoc con-firm the
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
-[]\OT1/ptm/m/n/10 Over the 13h30m win-dow, the loop driver
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
-\OT1/ptm/m/n/10 com-pleted []\OT1/pcr/m/n/10 [llm-batches][] \OT1/ptm/m/n/10 ba
-tches and gen-er-ated
- []
-
-
-Underfull \hbox (badness 3407) in paragraph at lines 269--270
-[]\OT1/pcr/m/n/10 [llm-tests-total][] \OT1/ptm/m/n/10 state-tests. Through-put 
-av-er-aged
- []
-
-
-Underfull \hbox (badness 2020) in paragraph at lines 269--270
-\OT1/ptm/m/n/10 base-line of []\OT1/pcr/m/n/10 [baseline-tests-per-cpuh][] \OT1
-/ptm/m/n/10 tests per
- []
-
-
-Underfull \hbox (badness 4913) in paragraph at lines 299--300
+[5]
+Underfull \hbox (badness 4913) in paragraph at lines 301--302
 []\OT1/ptm/b/n/10 Go-fuzz crasher-replay trap. \OT1/ptm/m/n/10 The first pre-li
 m-i-nary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 \OT1/ptm/m/n/10 run showed each batch ex-it-ing at ap-prox-i-mately
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 \OT1/ptm/m/n/10 12 sec-onds of ac-tive fuzzing, against a 90-second
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 \OT1/ptm/m/n/10 bud-get. The root cause was a cached crasher in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 \OT1/pcr/m/n/10 FuzzyVM/fuzzer/testdata/fuzz/FuzzVMBasic/\OT1/ptm/m/n/10 ,
  []
 
-[5]
-Underfull \hbox (badness 3724) in paragraph at lines 307--308
-[]\OT1/ptm/b/n/10 Divergences per CPU-hour. \OT1/ptm/m/n/10 The base-line pro-d
-uced
+
+Overfull \hbox (88.86984pt too wide) in paragraph at lines 321--332
+ [][] 
  []
 
-
-Underfull \hbox (badness 2165) in paragraph at lines 307--308
-\OT1/ptm/m/n/10 rate of []\OT1/pcr/m/n/10 [baseline-div-per-cpuh][] \OT1/ptm/m/
-n/10 di-ver-gences per
- []
-
-
-Underfull \hbox (badness 1803) in paragraph at lines 307--308
-\OT1/ptm/m/n/10 CPU-hour. The LLM-guided run pro-duced []\OT1/pcr/m/n/10 [llm-d
-iv][]
- []
-
-
-Underfull \hbox (badness 4120) in paragraph at lines 307--308
-\OT1/ptm/m/n/10 di-ver-gences over []\OT1/pcr/m/n/10 [llm-cpuh][] \OT1/ptm/m/n/
-10 CPU-hours, a rate of
- []
-
-
-Underfull \hbox (badness 3364) in paragraph at lines 309--310
-\OT1/ptm/m/n/10 272,408 unique 3-grams and 656,511 unique 5-grams.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-[]\OT1/ptm/b/n/10 Corpus-dedup rate. \OT1/ptm/m/n/10 The base-line's dedup rate
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-\OT1/ptm/m/n/10 was 0.534 (528,212 unique byte-code bod-ies of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-\OT1/ptm/m/n/10 989,892 gen-er-ated tests). The LLM-guided rate is
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-[]\OT1/pcr/m/n/10 [llm-dedup][] \OT1/ptm/m/n/10 ([]\OT1/pcr/m/n/10 [llm-unique-
-bc][] \OT1/ptm/m/n/10 unique bod-ies
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-[]\OT1/ptm/b/n/10 Plan-to-divergence at-tri-bu-tion. \OT1/ptm/m/n/10 Of the
- []
-
-
-Underfull \hbox (badness 2512) in paragraph at lines 313--314
-[]\OT1/pcr/m/n/10 [llm-plans-total][] \OT1/ptm/m/n/10 plans ex-e-cuted dur-ing 
-the run,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-[]\OT1/pcr/m/n/10 [llm-plans-with-div][] \OT1/ptm/m/n/10 pro-duced at least one
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-\OT1/ptm/m/n/10 di-ver-gence and []\OT1/pcr/m/n/10 [llm-plans-zero-div][] \OT1/
-ptm/m/n/10 pro-duced
- []
-
-
-Underfull \hbox (badness 2970) in paragraph at lines 313--314
-\OT1/ptm/m/n/10 none. Ta-ble [][]III[][] lists the ob-jec-tives that pro-duced 
-the
- []
-
-
-Underfull \hbox (badness 2698) in paragraph at lines 313--314
-\OT1/ptm/m/n/10 de-tec-tor should keep or com-bine with, while zero-div
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-\OT1/ptm/m/n/10 ob-jec-tives in this run were []\OT1/pcr/m/n/10 [top-objective-
-1][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-\OT1/ptm/m/n/10 ([]\OT1/pcr/m/n/10 [top-objective-1-count][] \OT1/ptm/m/n/10 di
--ver-gences) and
- []
-
-
-Underfull \hbox (badness 4084) in paragraph at lines 313--314
-[]\OT1/pcr/m/n/10 [top-objective-2][] \OT1/ptm/m/n/10 ([]\OT1/pcr/m/n/10 [top-o
-bjective-2-count][]
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 362--363
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 []\OT1/ptm/b/n/10 Feedback-loop am-pli-fi-ca-tion of spu-ri-ous sig-nals.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--363
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 \OT1/ptm/m/n/10 The feed-back mech-a-nism sum-ma-rizes re-cent diff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--363
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 \OT1/ptm/m/n/10 re-ports into the next prompt. A parse er-ror in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--363
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 \OT1/pcr/m/n/10 orchestrator/differential.py \OT1/ptm/m/n/10 could in-ject
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
-74.
+82.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [7]
-Underfull \hbox (badness 2846) in paragraph at lines 384--385
+)
+Underfull \hbox (badness 2846) in paragraph at lines 392--393
 []\OT1/ptm/m/n/10 The single-flaw-per-invocation be-hav-ior of go-evm-lab's
  []
 
-
-Underfull \hbox (badness 2856) in paragraph at lines 402--403
+[8]
+Underfull \hbox (badness 2856) in paragraph at lines 410--411
 []\OT1/ptm/m/n/10 Odessa Ryb-ski per-formed the im-ple-men-ta-tion, ex-per-
  []
 
 
-Underfull \hbox (badness 3792) in paragraph at lines 402--403
+Underfull \hbox (badness 3792) in paragraph at lines 410--411
 \OT1/ptm/m/n/10 i-men-tal runs, and anal-y-sis. This in-cludes the patches
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 408--409
+Underfull \hbox (badness 2846) in paragraph at lines 416--417
 \OT1/ptm/m/n/10 ser-vice. The re-trieval cor-pus is built from the pub-lic
  []
 
-[8]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1212,25 +1088,26 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 75D3A6D66622C8F8C8717C6C2F2EB2EE;5221.
  ) 
 Here is how much of TeX's memory you used:
- 24081 strings out of 474222
- 444283 string characters out of 5748733
- 2040975 words of memory out of 5000000
- 45868 multiletter control sequences out of 15000+600000
- 600761 words of font info for 119 fonts, out of 8000000 for 9000
+ 24089 strings out of 474222
+ 444360 string characters out of 5748733
+ 2005975 words of memory out of 5000000
+ 45873 multiletter control sequences out of 15000+600000
+ 601791 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,87p,1552b,1089s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,9n,87p,2084b,1969s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
-/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 165714 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 178390 bytes).
 PDF statistics:
- 304 PDF objects out of 1000 (max. 8388607)
- 272 compressed objects within 3 object streams
+ 309 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
  77 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 

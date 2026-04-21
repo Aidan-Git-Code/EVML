@@ -1,0 +1,135 @@
+{
+  "root": "/home/odessa/AIingFuzzyVM/out/llm_guided",
+  "tests_total": 11719896,
+  "tests_with_code": 11424573,
+  "unique_bytecodes": 3146151,
+  "dedup_rate": 0.268445,
+  "total_opcodes": 2596014857,
+  "avg_opcodes_per_test": 227.23,
+  "unique_ngrams_n3": 378188,
+  "unique_ngrams_n5": 1210019,
+  "top_opcodes": [
+    {
+      "op": "PUSH1",
+      "count": 1049060527
+    },
+    {
+      "op": "PUSH2",
+      "count": 265347503
+    },
+    {
+      "op": "MSTORE",
+      "count": 260615069
+    },
+    {
+      "op": "PUSH32",
+      "count": 235269571
+    },
+    {
+      "op": "TLOAD",
+      "count": 181410644
+    },
+    {
+      "op": "MSTORE8",
+      "count": 139392603
+    },
+    {
+      "op": "TSTORE",
+      "count": 102108554
+    },
+    {
+      "op": "PUSH3",
+      "count": 75584588
+    },
+    {
+      "op": "DUP1",
+      "count": 55263728
+    },
+    {
+      "op": "CALL",
+      "count": 25398112
+    },
+    {
+      "op": "PUSH4",
+      "count": 25390277
+    },
+    {
+      "op": "CALLCODE",
+      "count": 25087994
+    },
+    {
+      "op": "STATICCALL",
+      "count": 21568882
+    },
+    {
+      "op": "PUSH8",
+      "count": 15582863
+    },
+    {
+      "op": "PUSH20",
+      "count": 14871112
+    },
+    {
+      "op": "MSIZE",
+      "count": 8917274
+    },
+    {
+      "op": "SSTORE",
+      "count": 8455976
+    },
+    {
+      "op": "JUMPI",
+      "count": 7614708
+    },
+    {
+      "op": "JUMP",
+      "count": 7381582
+    },
+    {
+      "op": "STOP",
+      "count": 5440039
+    },
+    {
+      "op": "RETURNDATASIZE",
+      "count": 4614946
+    },
+    {
+      "op": "KECCAK256",
+      "count": 4591967
+    },
+    {
+      "op": "RETURNDATACOPY",
+      "count": 4324614
+    },
+    {
+      "op": "PUSH31",
+      "count": 4212480
+    },
+    {
+      "op": "MLOAD",
+      "count": 2774057
+    },
+    {
+      "op": "GAS",
+      "count": 2701673
+    },
+    {
+      "op": "CREATE",
+      "count": 2696454
+    },
+    {
+      "op": "DUP5",
+      "count": 2167570
+    },
+    {
+      "op": "SDIV",
+      "count": 2054414
+    },
+    {
+      "op": "DIV",
+      "count": 1567576
+    }
+  ],
+  "scan_duration_s": 419.65,
+  "files_scanned": 11719921
+}

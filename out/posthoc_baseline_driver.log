@@ -1,0 +1,4 @@
+[posthoc] root=out/baseline shards=257 threads=4 out=/home/odessa/AIingFuzzyVM/out/posthoc_baseline
+[posthoc] out/baseline/35
+{"shard": "out/baseline/35", "tests": 3194, "slow": 5, "divergences": 0, "duration_s": 48.67}
+[posthoc] out/baseline/cc

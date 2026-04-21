@@ -1,0 +1,20 @@
+baseline-div	0
+baseline-div-per-cpuh	0.000
+llm-div	0 (extrapolated from a 1/16 hash-prefix sample that observed 0 divergences)
+llm-div-per-cpuh	0.000
+div-rate-ratio	(undefined; baseline rate zero)
+llm-plans-with-div	0
+llm-plans-zero-div	654
+obj-row-1	EIP-1153 transient storage visibility across DELEGATECALL & 1,484 & 0
+top-objective-1	EIP-1153 transient storage visibility across DELEGATECALL
+top-objective-1-count	0
+obj-row-2	EIP-1153 DELEGATECALL TSTORE visibility across nested calls & 7,862 & 0
+top-objective-2	EIP-1153 DELEGATECALL TSTORE visibility across nested calls
+top-objective-2-count	0
+obj-row-3	EIP-1153Transient storage visibility across nested DELEGATECALL & 4,597 & 0
+obj-row-4	EIP-1153 Transient Storage Visibility Across Nested DELEGATECALL & 102,940 & 0
+obj-row-5	EIP-1153 DELEGATECALL TSTORE visibility across nested CALLs & 599 & 0
+vm-pair-breakdown	no divergences
+zero-div-tests-pct	100.0
+outcome-category	null
+discussion-summary-one-line	Over equal 13h30m CPU budgets, neither arm produced any geth/revm divergences; the LLM-guided arm generated an order of magnitude more state-tests at a concentrated per-test $n$-gram distribution

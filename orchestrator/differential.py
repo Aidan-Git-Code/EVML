@@ -106,18 +106,23 @@ def _preflight() -> list[str]:
 
 
 def run_diff(batch_out_dir: Path, threads: int = 4, glob: str = "*/FuzzyVM-*.json",
-             skiptrace: bool = True) -> DiffReport:
+             skiptrace: bool = True, diff_dir: Path | None = None) -> DiffReport:
     """Run runtest across every test JSON under batch_out_dir.
 
     Returns a DiffReport. Even on non-zero runtest rc we still parse what we
-    got — goevmlab aborts (rc!=0) *after* logging the flaw we want."""
+    got — goevmlab aborts (rc!=0) *after* logging the flaw we want.
+
+    diff_dir overrides the default diff output location. The default is
+    batch_out_dir.parent/diff (matches the per-plan layout). For posthoc
+    sharded runs the caller should pass batch_out_dir/diff so each shard
+    gets its own report."""
     batch_out_dir = Path(batch_out_dir)
     missing = _preflight()
     if missing:
         raise FileNotFoundError(f"differential preflight missing binaries: {missing}")
 
     # goevmlab dumps consensus-flaw traces into --outdir; keep those with the batch.
-    diff_out = batch_out_dir.parent / "diff"
+    diff_out = diff_dir if diff_dir is not None else batch_out_dir.parent / "diff"
     diff_out.mkdir(parents=True, exist_ok=True)
 
     pattern = str(batch_out_dir / glob)
@@ -179,7 +184,9 @@ if __name__ == "__main__":
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--glob", default="*/FuzzyVM-*.json")
     ap.add_argument("--with-trace", action="store_true")
+    ap.add_argument("--diff-dir", type=Path, default=None,
+                    help="override diff output directory (default: batch_out_dir/../diff)")
     args = ap.parse_args()
     rep = run_diff(args.batch_out_dir, threads=args.threads, glob=args.glob,
-                   skiptrace=not args.with_trace)
+                   skiptrace=not args.with_trace, diff_dir=args.diff_dir)
     print(summarize_report(rep))
