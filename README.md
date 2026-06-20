@@ -13,6 +13,8 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 ├── WhiteishPaper.md           original methodology / rationale
 ├── final_report.md            project report (markdown draft)
 ├── paper.tex                  IEEE conference-format report
+├── docs/
+│   └── distributed-fuzzing.md  design for scaling the fuzzer across machines
 ├── FuzzyVM/                   submodule: state-test generator (patched in-tree)
 ├── goevmlab/                  submodule: differential harness (unmodified)
 ├── orchestrator/
