@@ -4,25 +4,25 @@ Status: design, not built yet. This covers how the fuzzer's nodes get packaged a
 
 ## The roles, briefly
 
-The fleet has three kinds of node. A coordinator owns every fleet-wide decision, holds the corpus, and serves a dashboard. GPU nodes run the LLM and emit fuzzing plans. CPU nodes take a plan, run FuzzyVM to generate tests, run goevmlab to diff them across EVM clients, and report findings back. The planner and the worker are separate modules: a GPU box can run both, or run the planner alone when its CPU is needed elsewhere. That is the whole picture this doc needs. See [`distributed-fuzzing.md`](distributed-fuzzing.md) for how work and findings actually flow between them.
+The fleet has three kinds of node. A coordinator owns every fleet-wide decision, holds the corpus, and serves a dashboard. GPU nodes run the LLM and emit fuzzing plans. CPU nodes take a plan, run FuzzyVM to generate tests, run goevmlab to diff them across EVM clients, and report findings back. The planner and the worker are separate modules: a GPU box can run both, or run the planner alone when its CPU is needed elsewhere. See [`distributed-fuzzing.md`](distributed-fuzzing.md) for how work and findings flow between them.
 
 ![Per-host container layout: a registry serves the worker and planner images; the coordinator host holds the corpus volume, the GPU host runs the planner and worker containers with model and fuzz-cache volumes, the CPU host runs a worker container with its own fuzz-cache volume, and all hosts sit on the VPN.](dockerization-architecture.png)
 
 ## Why containers here
 
-Three reasons, ordered by how much they matter to this project specifically.
+Three reasons, ordered by how much they matter.
 
 Pinned client versions come first. A divergence only means something if every worker ran identical client builds. Today that is `evm@v1.15.11` and `revme` 15.0.0, installed by hand on each machine. Across a mixed local-and-cloud fleet that drift is a real hazard: a "divergence" that is really two different geth patch levels is a false positive, and it poisons the corpus every other node learns from. Baking the client binaries into the worker image makes the version a property of the image tag instead of whatever each host happened to install. That alone justifies the work.
 
-The module decoupling becomes literal. The distributed design requires the planner and worker to be independently stoppable on a GPU box. Two containers is exactly that. Run the planner container always, start and stop the worker container on its own, and `docker stop` on the worker hands the machine's cores back without touching the planner. The decoupling stops being something we engineer and becomes something the container runtime gives us.
+The module decoupling becomes literal. The distributed design requires the planner and worker to be independently stoppable on a GPU box. Two containers is exactly that. Run the planner container always, start and stop the worker container on its own, and `docker stop` on the worker hands the machine's cores back without touching the planner.
 
 Host package mess goes away, which was the original reason to ask. The Go toolchain for go-fuzz, Rust 1.91+ for revme (Debian ships 1.75), CUDA for llama.cpp, the Python embedding stack: standing all of that up consistently on heterogeneous hosts is the slow part of adding a machine. The image carries the environment instead.
 
-And the join is one command, which is the plug-and-play goal stated plainly.
+And the join is one command.
 
 ## What gets an image, what does not
 
-Two role images on a shared base: a worker image and a planner image. The coordinator stays host-optional. It is the stateful node with the big disk and the dashboard, a single long-lived process, so containerize it with the drive bind-mounted if you want one-command bring-up, or run it on bare host. Not worth blocking on. The two decisions worth calling out: two images rather than one image with a runtime role flag (cleaner separation, and it maps to the two-container decoupling), and coordinator left host-optional rather than committed to a container.
+Two role images on a shared base: a worker image and a planner image. One image per role rather than one image with a runtime flag, which keeps them separate and maps to the two-container decoupling on a GPU box. The coordinator is the control plane and is packaged separately (see below).
 
 ### Base image
 
@@ -54,6 +54,12 @@ A planner host is not fully package-free. It needs the NVIDIA driver and the NVI
 
 Nodes reach the coordinator over the VPN, and the VPN client runs on the host, so containers ride it with host networking (`--network host`). The coordinator API and the model endpoints stay bound to the VPN interface, same as the distributed design states. Containers add no security here. The only gate is the join token.
 
+## The control plane: registry and compose
+
+The coordinator is the control plane, and it comes up as one compose stack: the coordinator process, a local image registry, the database behind the corpus, and the dashboard, all on the control-plane host. The 4 TB drive and the corpus are bind-mounted into it. Bare host still works, but compose is the default, because the control plane is several services you stand up once, not a node you plug in and out.
+
+The registry is a plain `registry:2` running on the coordinator. The fleet pulls images from it over the VPN, the same trust boundary as everything else, so there are no per-node registry credentials and nothing is published outside the VPN. A cloud node's first pull of the planner image crosses the VPN once, then it is cached locally.
+
 ## Plugging in a node
 
 A worker, anywhere with Docker:
@@ -62,7 +68,7 @@ A worker, anywhere with Docker:
 docker run -d --restart unless-stopped --network host \
   -e COORDINATOR=10.0.0.5:PORT -e JOIN_TOKEN=... \
   -v fuzzcache:/root/.cache/go-build/fuzz \
-  registry.example/evml-worker:<tag>
+  10.0.0.5:5000/evml-worker:<tag>
 ```
 
 A planner, on a GPU host with the driver and container toolkit:
@@ -71,13 +77,13 @@ A planner, on a GPU host with the driver and container toolkit:
 docker run -d --restart unless-stopped --network host --gpus all \
   -e COORDINATOR=10.0.0.5:PORT -e JOIN_TOKEN=... \
   -v /models:/models \
-  registry.example/evml-planner:<tag>
+  10.0.0.5:5000/evml-planner:<tag>
 ```
 
 On a GPU box you run both containers. Stop the worker when you want the cores back; the planner keeps going. Pull a machine entirely and the coordinator notices the dropped heartbeat and frees its work.
 
-## Open questions
+## Bumping client versions
 
-- Where the images live: a public registry, or a small local registry on the coordinator so the fleet pulls over the VPN.
-- Whether the coordinator ships as an image too, so the whole stack comes up with one compose file, or stays host-managed.
-- How the fleet picks up a new image tag when client versions bump: a rolling stop-pull-start per node, or something the coordinator drives so the fleet does not run mixed client versions mid-experiment.
+Pinning client versions in the worker image only helps if the fleet never runs two versions at once during an experiment. The coordinator enforces that. It holds the required worker image tag, every worker reports its running tag on each heartbeat, and the coordinator only dispatches work to workers on the required tag.
+
+To bump a client version, rebuild the worker image with a new tag and tell the coordinator that tag is now required. The coordinator stops feeding old-tag workers. They finish their current batch, report, self-update (stop, pull, start), and start getting work again once the whole fleet has converged on the new tag. Nothing straddles the change. The tag is recorded with every finding, so results stay attributable to the exact client versions that produced them.

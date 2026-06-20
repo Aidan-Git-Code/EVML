@@ -6,7 +6,7 @@ Status: design, not built yet. This is the plan for running the LLM-guided fuzze
 
 Three tiers. GPU machines plan, the coordinator runs the show, CPU machines generate and diff.
 
-The split follows the hardware. Plan generation is the only part that needs a GPU, and it is cheap and infrequent, a few seconds per batch. Everything heavy is CPU: FuzzyVM generating tests and goevmlab diffing them across clients. So the machines with big GPUs become planners, and everything else, plus the spare CPU on the GPU boxes, becomes the worker mesh that does the actual fuzzing and diffing. One coordinator sits in the middle and owns every fleet-wide decision. No distributed store, no peer gossip, one brain.
+The split follows the hardware. Plan generation is the only part that needs a GPU, and it is cheap and infrequent, a few seconds per batch. Everything heavy is CPU: FuzzyVM generating tests and goevmlab diffing them across clients. So the machines with big GPUs become planners, and everything else, plus the spare CPU on the GPU boxes, becomes the worker mesh that fuzzes and diffs. One coordinator sits in the middle and owns every fleet-wide decision. No distributed store, no peer gossip, one brain.
 
 This does not change the pipeline. The single-machine flow already runs plan, then generate, then diff in one process ([`run_batch.py`](../orchestrator/run_batch.py)). We are cutting that same flow along the GPU/CPU line, nothing more.
 
@@ -16,7 +16,7 @@ This does not change the pipeline. The single-machine flow already runs plan, th
 
 The corpus is the planner's memory. It is what the model reads to write the next plan, and it is where run outputs go when they come back. Static knowledge seeds it: EIPs, the opcode reference, past client-divergence incidents, the same material the single-machine RAG index already holds. Then the fleet grows it. Every batch a worker finishes produces findings, and those findings flow back into the corpus, so the next plan is conditioned on what the whole fleet has seen, not just one machine's last few runs.
 
-That is the entire reason to centralize it. On one machine the feedback loop only knows what that machine just did. Pool the corpus across the fleet and a divergence found on any worker informs every planner's next plan. The corpus is the shared asset. The models are replicated, one per GPU, however many GPUs we have. The corpus is the one thing there is exactly one of.
+That is the reason to centralize it. On one machine the feedback loop only knows what that machine just did. Pool the corpus across the fleet and a divergence found on any worker informs every planner's next plan. The models are replicated, one per GPU. The corpus is the one thing there is exactly one of.
 
 It lives on a 4 TB disk drive hung off the coordinator. That drive is slow at tiny random reads but fine for the sequential, batched access this workload does, and at the node counts we are planning for it will not be the bottleneck. Planners read it live through the coordinator at plan time, so a new finding is visible to the next plan without any sync step.
 
@@ -39,6 +39,8 @@ If the coordinator dies it restarts and reads its state back from disk. Workers 
 
 Runs the LLM and emits plans. It pulls corpus context from the coordinator live, generates a plan the same way `call_llm` does today, and hands it back. The models sit behind the coordinator as a pool: a worker never talks to a GPU box directly, it asks the coordinator for a plan and the coordinator routes the request to whichever planner is free. Add a second GPU, you get a second planner in the pool, no worker-side change.
 
+The fleet needs very few planners, because planning is cheap and rare. A plan takes a few seconds and a worker pulls one about once per batch, so a single planner can feed roughly twenty workers. The coordinator designates the first one or two GPU boxes that register as planners and leaves the rest worker-only. A designated planner still runs its worker module, so planning costs no fuzzing capacity. Planner count is a manual knob, not an autoscaler: if the dashboard ever shows workers waiting on plans, add one.
+
 ### CPU node (worker)
 
 Takes a plan, runs FuzzyVM to generate the tests, runs goevmlab to diff them across clients, pushes the findings back to the corpus. Generate and diff stay together here, same as the current single-machine batch. The worker holds nothing durable. If it dies mid-batch the coordinator reissues the work and the half-finished local output is discarded, because nothing is reported until the batch completes.
@@ -47,13 +49,19 @@ Takes a plan, runs FuzzyVM to generate the tests, runs goevmlab to diff them acr
 
 The planner and the worker are separate modules, not one program. A GPU box can run both at once, using its GPU to plan and its spare cores to fuzz. Or you flip the worker module off and the box is a pure planner, which is what you want when you need that machine's CPU back for something else. The decoupling is mandatory: the worker has to be a thing you can stop on a GPU host without touching the planner.
 
+### Seed partitioning
+
+Two workers running the same objective should not grind through the same tests. FuzzyVM builds its bytecode from a byte stream: go-fuzz hands raw bytes to `filler.NewFiller` and the generator walks that stream deterministically ([`fuzzer/fuzzer.go`](../FuzzyVM/fuzzer/fuzzer.go), [`filler/fill.go`](../FuzzyVM/filler/fill.go)). Seed partitioning mixes a per-worker salt into that stream before the Filler reads it, so the same go-fuzz input maps to a different region of bytecode space on each worker. The coordinator hands each worker a salt at lease time, a small env-var knob read once like the plan.
+
+Reproducing a divergence does not depend on the salt: every generated state-test is written to disk in full, so goevmlab replays the saved JSON directly. The salt only matters when regenerating from the fuzzer, and it is recorded with the batch so that stays possible. The exact mix, prepend versus XOR across the stream, is settled at implementation.
+
 ### Corpus store
 
 The 4 TB drive, holding the planner memory described above plus the bulky artifacts worth keeping, the failing state-tests and per-VM traces behind each divergence. Most generated tests are never stored, only the ones tied to a finding. Live-queried by planners through the coordinator.
 
 ### Dashboard
 
-A frontend on the coordinator. One thing to run, one place to look. It shows per-node load and fuzzing progress, a live feed of findings as they come in, and fleet-wide stats: tests generated, divergences found, divergences per CPU-hour. It reads the same state the coordinator already keeps, so it shows what the coordinator knows and stores nothing of its own.
+A page the coordinator serves over the VPN, backed by a JSON stats endpoint. It shows per-node load and fuzzing progress, a live feed of findings, and fleet-wide stats: tests generated, divergences found, divergences per CPU-hour. It reads the coordinator's own state and stores nothing of its own. No external monitoring stack.
 
 ## Plugging in a node
 
@@ -64,7 +72,7 @@ The headline requirement is that adding a machine takes near-zero ceremony. No e
 3. Get assigned a role: planner if it has a GPU and the coordinator wants more planning capacity, worker otherwise. The coordinator decides, not the node.
 4. Start pulling work.
 
-Pull it out and the coordinator notices the missing heartbeat, frees whatever it was doing, and the fleet carries on. The whole point is that the fleet size is something you change by starting and stopping that one script, nothing else.
+Pull it out and the coordinator notices the missing heartbeat, frees whatever it was doing, and the fleet carries on. Fleet size is something you change by starting and stopping that one script.
 
 ## Auth
 
@@ -86,11 +94,6 @@ Not a rewrite. The existing modules already split along the right lines.
 - [`differential.py`](../orchestrator/differential.py) is the worker's diff step, with the `Divergence` records becoming the raw input to dedup. The trace-walking for the dedup key is new code next to it.
 - [`rotate.py`](../orchestrator/rotate.py) moves to the coordinator and reads the global corpus instead of a local directory. The `detect_plateau` and `propose_objective` functions are already pure enough to relocate.
 - `gather_recent_findings` becomes a coordinator query instead of a filesystem scan.
+- [`fuzzer/fuzzer.go`](../FuzzyVM/fuzzer/fuzzer.go) gains a per-worker seed salt, mixed into the byte stream before `filler.NewFiller`, delivered by an env var the coordinator sets. New code, small, in the FuzzyVM submodule.
 
 The new pieces are the coordinator service, the node-join script, and the dashboard. Everything else is existing logic moved to the side of the GPU/CPU line where it belongs.
-
-## Open questions
-
-- How the coordinator balances planner capacity against worker demand when GPU boxes can be either. Probably keep enough planners to never starve the workers and let the rest fuzz, but the exact policy is unsettled.
-- Whether workers need disjoint seed ranges so two of them don't explore the same space. Likely worth it, mechanism is small, but it is not load-bearing for a first cut.
-- Dashboard build: whether it is a small served web page or something we already have lying around. Decide when we get there.

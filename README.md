@@ -154,7 +154,7 @@ The supervisor's SIGTERM trap forwards to its children.
 
 ## Design docs
 
-This README and [`paper.tex`](paper.tex) describe the system as it runs today: one machine, one GPU, the single-machine pipeline above. Two forward-looking design docs live under `docs/`, both design-stage and not built yet.
+This README and [`paper.tex`](paper.tex) describe the system as it runs today: one machine, one GPU, the single-machine pipeline above. Two design docs live under `docs/`, both not built yet.
 
 - [`docs/distributed-fuzzing.md`](docs/distributed-fuzzing.md) plans scaling the pipeline across many machines: a GPU mesh of planners, a central coordinator, and a CPU mesh that generates and diffs, all sharing one corpus. Start here.
 - [`docs/dockerization.md`](docs/dockerization.md) plans packaging the fleet's nodes as containers so any machine can join without matching host packages, and so the differential client versions stay pinned fleet-wide. It builds on the distributed design but reads on its own.
