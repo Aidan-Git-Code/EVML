@@ -40,7 +40,7 @@ Base plus llama.cpp built against CUDA and the plan-generation client. It does n
 
 Three things must be persistent bind-mounts, or the design breaks. The go-fuzz coverage cache (`~/.cache/go-build/fuzz/.../FuzzVMBasic/`) carries coverage across restarts, and since go-fuzz crashes on cgo faults every few minutes, an ephemeral container would wipe that coverage on every restart; mount it. The model file is about 5 GB and does not belong baked into the planner image; mount it. The coordinator corpus lives on the 4 TB drive and is bind-mounted there.
 
-The rule of thumb: images hold the code and the pinned tools, volumes hold the data and the model.
+Images hold the code and the pinned tools. Volumes hold the data and the model.
 
 ## The entrypoint does the supervisor's job
 
@@ -52,7 +52,7 @@ A planner host is not fully package-free. It needs the NVIDIA driver and the NVI
 
 ## Networking
 
-Nodes reach the coordinator over the VPN, and the VPN client runs on the host, so containers ride it with host networking (`--network host`). The coordinator API and the model endpoints stay bound to the VPN interface, same as the distributed design states. The container boundary is not a security boundary; the join token is.
+Nodes reach the coordinator over the VPN, and the VPN client runs on the host, so containers ride it with host networking (`--network host`). The coordinator API and the model endpoints stay bound to the VPN interface, same as the distributed design states. Containers add no security here. The only gate is the join token.
 
 ## Plugging in a node
 

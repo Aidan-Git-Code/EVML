@@ -2,7 +2,7 @@
 
 LLM-guided differential fuzzer for Ethereum Virtual Machine implementations. The orchestrator wraps two existing tools (vendored as git submodules) with an AI strategy generator that biases test-case generation toward consensus-sensitive corners of EVM semantics.
 
-The pipeline is: objective + RAG context + recent divergences → local LLM emits a strategy plan (JSON DSL) → FuzzyVM consumes the plan to bias bytecode generation → goevmlab runs the resulting GeneralStateTests across geth and revm → divergences feed back into the next prompt → plateau detector rotates the objective when several batches stall.
+The pipeline is: objective + RAG context + recent divergences -> local LLM emits a strategy plan (JSON DSL) -> FuzzyVM consumes the plan to bias bytecode generation -> goevmlab runs the resulting GeneralStateTests across geth and revm -> divergences feed back into the next prompt -> plateau detector rotates the objective when several batches stall.
 
 This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 
@@ -25,7 +25,7 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 │   ├── rag_stub.py            keyword-overlap fallback
 │   ├── differential.py        goevmlab runtest wrapper + diff_report.json
 │   ├── rotate.py              plateau detector + LLM objective rotator
-│   ├── run_batch.py           one batch: objective → LLM → validate → fuzz → diff
+│   ├── run_batch.py           one batch: objective -> LLM -> validate -> fuzz -> diff
 │   ├── rag/build_index.py     embeds corpus into orchestrator/rag/index/
 │   └── plans/                 hand-written smoke plans
 ├── scripts/

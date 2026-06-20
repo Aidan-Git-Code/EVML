@@ -45,7 +45,7 @@ Takes a plan, runs FuzzyVM to generate the tests, runs goevmlab to diff them acr
 
 ### Module decoupling
 
-The planner and the worker are separate modules, not one program. A GPU box can run both at once, using its GPU to plan and its spare cores to fuzz. Or you flip the worker module off and the box is a pure planner, which is what you want when you need that machine's CPU back for something else. The decoupling is a hard requirement, not a convenience: the worker has to be a thing you can stop on a GPU host without touching the planner.
+The planner and the worker are separate modules, not one program. A GPU box can run both at once, using its GPU to plan and its spare cores to fuzz. Or you flip the worker module off and the box is a pure planner, which is what you want when you need that machine's CPU back for something else. The decoupling is mandatory: the worker has to be a thing you can stop on a GPU host without touching the planner.
 
 ### Corpus store
 
@@ -53,7 +53,7 @@ The 4 TB drive, holding the planner memory described above plus the bulky artifa
 
 ### Dashboard
 
-A frontend on the coordinator. One thing to run, one place to look. It shows per-node load and fuzzing progress, a live feed of findings as they come in, and fleet-wide stats: tests generated, divergences found, divergences per CPU-hour. It reads the same state the coordinator already keeps, so it is a view, not a second source of truth.
+A frontend on the coordinator. One thing to run, one place to look. It shows per-node load and fuzzing progress, a live feed of findings as they come in, and fleet-wide stats: tests generated, divergences found, divergences per CPU-hour. It reads the same state the coordinator already keeps, so it shows what the coordinator knows and stores nothing of its own.
 
 ## Plugging in a node
 
