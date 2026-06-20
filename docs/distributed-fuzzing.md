@@ -1,6 +1,6 @@
 # Distributed Fuzzing Design
 
-Status: design, not built yet. This is the plan for running the LLM-guided fuzzer across more than one machine so we can throw whatever compute we can get at it, local boxes and cloud boxes mixed. The single-machine system it scales is the one the README and `paper.tex` describe. Packaging the fleet's nodes as containers is covered in `dockerization.md`.
+Status: design, not built yet. This is the plan for running the LLM-guided fuzzer across more than one machine so we can throw whatever compute we can get at it, local boxes and cloud boxes mixed. The single-machine system it scales is the one the [README](../README.md) and [`paper.tex`](../paper.tex) describe. Packaging the fleet's nodes as containers is covered in [`dockerization.md`](dockerization.md).
 
 ## The shape
 
@@ -8,7 +8,7 @@ Three tiers. GPU machines plan, the coordinator runs the show, CPU machines gene
 
 The split follows the hardware. Plan generation is the only part that needs a GPU, and it is cheap and infrequent, a few seconds per batch. Everything heavy is CPU: FuzzyVM generating tests and goevmlab diffing them across clients. So the machines with big GPUs become planners, and everything else, plus the spare CPU on the GPU boxes, becomes the worker mesh that does the actual fuzzing and diffing. One coordinator sits in the middle and owns every fleet-wide decision. No distributed store, no peer gossip, one brain.
 
-This does not change the pipeline. The single-machine flow already runs plan, then generate, then diff in one process (`run_batch.py`). We are cutting that same flow along the GPU/CPU line, nothing more.
+This does not change the pipeline. The single-machine flow already runs plan, then generate, then diff in one process ([`run_batch.py`](../orchestrator/run_batch.py)). We are cutting that same flow along the GPU/CPU line, nothing more.
 
 ![Distributed architecture: GPU mesh of planners feeding a central coordinator, which dispatches work to a CPU mesh of generate-and-diff workers; the coordinator owns the corpus and serves a dashboard.](architecture.png)
 
@@ -29,7 +29,7 @@ One process, the only thing that makes fleet-wide decisions. That is what keeps 
 - Registration and the join token. A node phones home when it boots, presents the token, and gets admitted with a role.
 - Work dispatch. Planners ask for something to plan, workers ask for a plan to run. The coordinator hands it out.
 - Divergence dedup. When a worker reports a flaw, the coordinator decides whether it is a new bug or another hit on one already seen.
-- Plateau detection and rotation. This is the `rotate.py` logic, moved here and run against the global corpus instead of one node's local files.
+- Plateau detection and rotation. This is the [`rotate.py`](../orchestrator/rotate.py) logic, moved here and run against the global corpus instead of one node's local files.
 - Owning the corpus. Reads and writes go through the coordinator.
 - Serving the dashboard.
 
@@ -82,9 +82,9 @@ The dedup key cannot be the obvious one. The `Divergence` records `have` and `wa
 
 Not a rewrite. The existing modules already split along the right lines.
 
-- `run_batch.py` is the body of a worker. The LLM call moves out to the planner; the FuzzyVM run and the diff stay. `canonical_plan_id` is unchanged; that hash stays the plan's identity.
-- `differential.py` is the worker's diff step, with the `Divergence` records becoming the raw input to dedup. The trace-walking for the dedup key is new code next to it.
-- `rotate.py` moves to the coordinator and reads the global corpus instead of a local directory. The `detect_plateau` and `propose_objective` functions are already pure enough to relocate.
+- [`run_batch.py`](../orchestrator/run_batch.py) is the body of a worker. The LLM call moves out to the planner; the FuzzyVM run and the diff stay. `canonical_plan_id` is unchanged; that hash stays the plan's identity.
+- [`differential.py`](../orchestrator/differential.py) is the worker's diff step, with the `Divergence` records becoming the raw input to dedup. The trace-walking for the dedup key is new code next to it.
+- [`rotate.py`](../orchestrator/rotate.py) moves to the coordinator and reads the global corpus instead of a local directory. The `detect_plateau` and `propose_objective` functions are already pure enough to relocate.
 - `gather_recent_findings` becomes a coordinator query instead of a filesystem scan.
 
 The new pieces are the coordinator service, the node-join script, and the dashboard. Everything else is existing logic moved to the side of the GPU/CPU line where it belongs.

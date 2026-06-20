@@ -1,10 +1,10 @@
 # Dockerization Design
 
-Status: design, not built yet. This covers how the fuzzer's nodes get packaged as containers so any machine can join the fleet without matching a long list of host packages. It references the distributed design (`distributed-fuzzing.md`) for the full topology but does not depend on it. The single-machine system these nodes are built from is described in the README. The roles it needs are restated below, so this doc reads cold.
+Status: design, not built yet. This covers how the fuzzer's nodes get packaged as containers so any machine can join the fleet without matching a long list of host packages. It references the distributed design ([`distributed-fuzzing.md`](distributed-fuzzing.md)) for the full topology but does not depend on it. The single-machine system these nodes are built from is described in the [README](../README.md). The roles it needs are restated below, so this doc reads cold.
 
 ## The roles, briefly
 
-The fleet has three kinds of node. A coordinator owns every fleet-wide decision, holds the corpus, and serves a dashboard. GPU nodes run the LLM and emit fuzzing plans. CPU nodes take a plan, run FuzzyVM to generate tests, run goevmlab to diff them across EVM clients, and report findings back. The planner and the worker are separate modules: a GPU box can run both, or run the planner alone when its CPU is needed elsewhere. That is the whole picture this doc needs. See `distributed-fuzzing.md` for how work and findings actually flow between them.
+The fleet has three kinds of node. A coordinator owns every fleet-wide decision, holds the corpus, and serves a dashboard. GPU nodes run the LLM and emit fuzzing plans. CPU nodes take a plan, run FuzzyVM to generate tests, run goevmlab to diff them across EVM clients, and report findings back. The planner and the worker are separate modules: a GPU box can run both, or run the planner alone when its CPU is needed elsewhere. That is the whole picture this doc needs. See [`distributed-fuzzing.md`](distributed-fuzzing.md) for how work and findings actually flow between them.
 
 ![Per-host container layout: a registry serves the worker and planner images; the coordinator host holds the corpus volume, the GPU host runs the planner and worker containers with model and fuzz-cache volumes, the CPU host runs a worker container with its own fuzz-cache volume, and all hosts sit on the VPN.](dockerization-architecture.png)
 
