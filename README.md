@@ -43,8 +43,8 @@ The full setup needs a CUDA GPU (we used an RTX 4080, 16 GB VRAM), Linux (we ran
 ### 1. Clone with submodules
 
 ```bash
-git clone --recurse-submodules https://github.com/<owner>/AIingFuzzyVM.git
-cd AIingFuzzyVM
+git clone --recurse-submodules https://github.com/Aidan-Git-Code/EVML.git
+cd EVML
 ```
 
 If you cloned without `--recurse-submodules`, run `git submodule update --init --recursive`.
