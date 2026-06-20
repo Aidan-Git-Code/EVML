@@ -14,7 +14,8 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 ├── final_report.md            project report (markdown draft)
 ├── paper.tex                  IEEE conference-format report
 ├── docs/
-│   └── distributed-fuzzing.md  design for scaling the fuzzer across machines
+│   ├── distributed-fuzzing.md  design for scaling the fuzzer across machines
+│   └── dockerization.md        design for packaging fleet nodes as containers
 ├── FuzzyVM/                   submodule: state-test generator (patched in-tree)
 ├── goevmlab/                  submodule: differential harness (unmodified)
 ├── orchestrator/
@@ -150,6 +151,13 @@ kill $(cat out/llm_loop.pid)        # or out/baseline.pid
 ```
 
 The supervisor's SIGTERM trap forwards to its children.
+
+## Design docs
+
+This README and `paper.tex` describe the system as it runs today: one machine, one GPU, the single-machine pipeline above. Two forward-looking design docs live under `docs/`, both design-stage and not built yet.
+
+- `docs/distributed-fuzzing.md` plans scaling the pipeline across many machines: a GPU mesh of planners, a central coordinator, and a CPU mesh that generates and diffs, all sharing one corpus. Start here.
+- `docs/dockerization.md` plans packaging the fleet's nodes as containers so any machine can join without matching host packages, and so the differential client versions stay pinned fleet-wide. It builds on the distributed design but reads on its own.
 
 ## What's in the report
 
