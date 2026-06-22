@@ -19,6 +19,7 @@ import json
 import os
 import re
 import time
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -35,6 +36,85 @@ OUT_ROOT = REPO_ROOT / "out"
 LLM_GUIDED = OUT_ROOT / "llm_guided"
 
 _BATCH_RE = re.compile(r"=== batch (\d+) ===")
+
+# Post-hoc sweep log (out/posthoc_diff.log), same format scripts/posthoc_diff.sh
+# writes and scripts/posthoc_status.sh parses.
+_PH_START_RE = re.compile(r"POSTHOC START\s+(\S+)\s+dirs=(\d+)")
+_PH_SKIP_RE = re.compile(r"skipped=(\d+)")
+_PH_LINE_RE = re.compile(r"\[(\d+)/(\d+)\]\s+(\S+)\s+(\S+)\s+vms=(\S+)\s+divs=(\d+)\s+(\S+)")
+
+
+def _posthoc_running() -> bool:
+    """True if a posthoc_diff.sh process is alive. Scans /proc rather than a
+    pidfile so a sweep launched by hand (nohup) is detected without a restart."""
+    try:
+        for entry in Path("/proc").iterdir():
+            if not entry.name.isdigit():
+                continue
+            try:
+                if b"posthoc_diff.sh" in (entry / "cmdline").read_bytes():
+                    return True
+            except OSError:
+                continue
+    except OSError:
+        pass
+    return False
+
+
+def _posthoc() -> dict | None:
+    """Parse the most recent post-hoc sweep session from out/posthoc_diff.log.
+    Returns None when no sweep has ever run (no log)."""
+    log = OUT_ROOT / "posthoc_diff.log"
+    text = _tail(log, 400_000)
+    if not text or "POSTHOC START" not in text:
+        return None
+    # Only the latest session matters (the log is rotated per run, but tail may
+    # still straddle a boundary).
+    sess = text[text.rfind("POSTHOC START"):]
+
+    started = total = None
+    skipped = 0
+    sm = _PH_START_RE.search(sess)
+    if sm:
+        started, total = sm.group(1), int(sm.group(2))
+    skm = _PH_SKIP_RE.search(sess.split("\n", 1)[0])
+    if skm:
+        skipped = int(skm.group(1))
+
+    done = divs = nonok = 0
+    last_ts = last_plan = None
+    for m in _PH_LINE_RE.finditer(sess):
+        done = max(done, int(m.group(1)))
+        divs += int(m.group(6))
+        if m.group(7) != "ok":
+            nonok += 1
+        last_ts, last_plan = m.group(3), m.group(4)
+
+    finished = "POSTHOC DONE" in sess
+    running = _posthoc_running()
+
+    eta_s = None
+    if started and last_ts and done and total and done < total:
+        try:
+            elapsed = (datetime.fromisoformat(last_ts)
+                       - datetime.fromisoformat(started)).total_seconds()
+            if elapsed > 0:
+                eta_s = round((total - done) * elapsed / done)
+        except ValueError:
+            pass
+
+    return {
+        "running": running,
+        "finished": finished,
+        "started": started,
+        "total": total,
+        "done": done,
+        "skipped": skipped,
+        "divergences": divs,
+        "nonok": nonok,
+        "eta_s": eta_s,
+        "last_plan": last_plan,
+    }
 
 
 def _pid_alive(pid_file: Path) -> tuple[bool, int | None]:
@@ -184,6 +264,7 @@ def _scan() -> dict:
             "tests_per_batch": round(tests_total / batches) if batches else 0,
         },
         "clients": last_vms,
+        "posthoc": _posthoc(),
         "recent_batches": rows[:60],
         "recent_divergences": recent_divs[:30],
     }

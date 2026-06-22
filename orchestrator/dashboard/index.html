@@ -93,6 +93,11 @@
 
   footer { color: var(--faint); font-size: 12px; padding: 8px 24px 28px; max-width: 1180px; margin: 0 auto; }
   .empty { color: var(--faint); padding: 16px; }
+
+  .bar { height: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; background: var(--accent); transition: width .4s ease; }
+  .bar.done > i { background: var(--ok); }
+  .bar.stopped > i { background: var(--warn); }
 </style>
 </head>
 <body>
@@ -104,12 +109,18 @@
   <div class="meta">
     <span class="pill"><span id="loop-dot" class="dot"></span><span id="loop-text">loop —</span></span>
     <span class="pill"><span id="llama-dot" class="dot"></span><span id="llama-text">llama —</span></span>
+    <span class="pill" id="posthoc-pill" style="display:none"><span id="posthoc-dot" class="dot"></span><span id="posthoc-text">post-hoc —</span></span>
     <span id="updated">updated —</span>
   </div>
 </header>
 
 <main>
   <div class="cards" id="cards"></div>
+
+  <section class="panel" id="posthoc-panel" style="display:none">
+    <h2>Post-hoc differential sweep</h2>
+    <div class="body" id="posthoc-body"></div>
+  </section>
 
   <div class="grid2">
     <section class="panel">
@@ -190,6 +201,32 @@ function render(d) {
     <dt>Started</dt><dd>${L.started ? esc(L.started) + ` <span class="zero">(${ago(L.started)})</span>` : "—"}</dd>
     <dt>Scheduled stop</dt><dd>${L.stop_at ? esc(L.stop_at) + ` <span class="zero">(${ago(L.stop_at)})</span>` : "no cap"}</dd>
     <dt>Avg tests/batch</dt><dd class="num">${fmt(r.tests_per_batch)}</dd>`;
+
+  const ph = d.posthoc;
+  const phPill = document.getElementById("posthoc-pill");
+  const phPanel = document.getElementById("posthoc-panel");
+  if (!ph) {
+    phPill.style.display = "none";
+    phPanel.style.display = "none";
+  } else {
+    phPill.style.display = "";
+    phPanel.style.display = "";
+    const pct = ph.total ? Math.floor(ph.done * 100 / ph.total) : 0;
+    const state = ph.finished ? "done" : (ph.running ? "running" : "stopped");
+    setStatus("posthoc", ph.finished || ph.running,
+      `post-hoc ${ph.finished ? "done" : pct + "%"}`);
+    document.getElementById("posthoc-body").innerHTML = `
+      <div class="bar ${state}"><i style="width:${ph.finished ? 100 : pct}%"></i></div>
+      <dl class="kv" style="margin-top:14px">
+        <dt>Progress</dt><dd class="num">${fmt(ph.done)} / ${fmt(ph.total)} dirs (${pct}%)${ph.skipped ? ` <span class="zero">· ${fmt(ph.skipped)} already done</span>` : ""}</dd>
+        <dt>State</dt><dd>${ph.finished ? "done" : (ph.running ? "running" : `<span class="rc-bad">stopped (not finished)</span>`)}</dd>
+        <dt>Divergences</dt><dd class="num ${ph.divergences ? "hit" : "zero"}">${fmt(ph.divergences)}</dd>
+        ${ph.nonok ? `<dt>Non-ok dirs</dt><dd class="num rc-bad">${fmt(ph.nonok)}</dd>` : ""}
+        <dt>Started</dt><dd>${ph.started ? esc(ph.started) + ` <span class="zero">(${ago(ph.started)})</span>` : "—"}</dd>
+        <dt>ETA</dt><dd>${(ph.running && !ph.finished && ph.eta_s) ? "~" + rel(ph.eta_s) + " remaining" : "—"}</dd>
+        <dt>Latest dir</dt><dd class="mono">${esc(ph.last_plan) || "—"}</dd>
+      </dl>`;
+  }
 
   const dv = d.recent_divergences || [];
   const divbox = document.getElementById("divbox");

@@ -36,7 +36,7 @@ report() {
 	nonok=$(grep -c 'rc=' "$LOG" 2>/dev/null); nonok=${nonok:-0}
 
 	startts=$(grep -m1 -oE 'POSTHOC START [^ ]+' "$LOG" | awk '{print $3}')
-	running=""; pgrep -f "POSTHOC" >/dev/null 2>&1 && running=1
+	running=""; pgrep -f "posthoc_diff.sh" >/dev/null 2>&1 && running=1
 	if grep -q "POSTHOC DONE" "$LOG"; then state="${G}done${X}"; running=""
 	elif [[ -n "$running" ]]; then state="${G}running${X}"
 	else state="${R}stopped (not finished)${X}"; fi
@@ -85,7 +85,7 @@ if [[ "$WATCH" -eq 1 ]]; then
 		clear 2>/dev/null
 		report || break
 		grep -q "POSTHOC DONE" "$LOG" 2>/dev/null && break
-		pgrep -f "POSTHOC" >/dev/null 2>&1 || { echo; echo "(sweep not running)"; break; }
+		pgrep -f "posthoc_diff.sh" >/dev/null 2>&1 || { echo; echo "(sweep not running)"; break; }
 		sleep 10
 	done
 else
