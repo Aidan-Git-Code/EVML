@@ -29,7 +29,7 @@ up()   { printf '%s' "${G}● up${X}"; }
 down() { printf '%s' "${R}○ down${X}"; }
 
 echo
-echo "${B}AIingFuzzyVM — startup${X}  ${DIM}($REPO)${X}"
+echo "${B}EVML — startup${X}  ${DIM}($REPO)${X}"
 echo "${DIM}────────────────────────────────────────────────────────${X}"
 
 # ---- live status -------------------------------------------------------------

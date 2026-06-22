@@ -56,11 +56,24 @@ report() {
 		now=$(date +%s)
 		if [[ -n "$startep" && "$done" -gt 0 ]]; then
 			elapsed=$((now - startep))
-			per=$((elapsed / done))
+			printf '  elapsed    %s\n' "$(hms "$elapsed")"
+			# ETA from the recent rate (last up-to-15 dirs), not the cumulative
+			# average, which is skewed by any earlier CPU contention.
 			remain=$((total - done))
-			eta=$((remain * per))
-			printf '  elapsed    %s  (%ds/dir)\n' "$(hms "$elapsed")" "$per"
-			[[ -n "$running" && "$remain" -gt 0 ]] && printf '  eta        ~%s for %s more\n' "$(hms "$eta")" "$remain"
+			local recents first_ts last_ts fe le n recent_per
+			recents=$(grep '^\[' "$LOG" | tail -15 | awk '{print $2}')
+			n=$(printf '%s\n' "$recents" | grep -c .)
+			if [[ "$n" -ge 2 ]]; then
+				first_ts=$(printf '%s\n' "$recents" | head -1)
+				last_ts=$(printf '%s\n' "$recents" | tail -1)
+				fe=$(date -d "$first_ts" +%s 2>/dev/null)
+				le=$(date -d "$last_ts" +%s 2>/dev/null)
+				if [[ -n "$fe" && -n "$le" && "$le" -gt "$fe" ]]; then
+					recent_per=$(( (le - fe) / (n - 1) ))
+					printf '  recent     %ds/dir (last %s dirs)\n' "$recent_per" "$n"
+					[[ -n "$running" && "$remain" -gt 0 ]] && printf '  eta        ~%s for %s more\n' "$(hms $((remain * recent_per)))" "$remain"
+				fi
+			fi
 		fi
 	fi
 	[[ -n "$lastline" ]] && printf '  %slatest     %s%s\n' "$DIM" "$lastline" "$X"

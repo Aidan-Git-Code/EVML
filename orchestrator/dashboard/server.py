@@ -13,6 +13,8 @@ Then open http://127.0.0.1:8090/ in a browser.
 from __future__ import annotations
 
 import argparse
+import base64
+import hmac
 import json
 import os
 import re
@@ -21,6 +23,11 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+
+# Optional HTTP Basic auth. Off unless DASH_AUTH="user:pass" is set in the
+# environment (an env var, not a CLI flag, so it does not leak via `ps`).
+# Basic auth is plaintext-over-the-wire, so only enable it behind TLS (Caddy).
+_AUTH: "tuple[str, str] | None" = None
 REPO_ROOT = HERE.parent.parent
 
 # Set by main().
@@ -211,7 +218,30 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _authed(self) -> bool:
+        if _AUTH is None:
+            return True
+        header = self.headers.get("Authorization", "")
+        if not header.startswith("Basic "):
+            return False
+        try:
+            user, _, pw = base64.b64decode(header[6:]).decode("utf-8").partition(":")
+        except (ValueError, UnicodeDecodeError):
+            return False
+        # constant-time compares so a wrong username can't be timed apart
+        return (hmac.compare_digest(user, _AUTH[0])
+                & hmac.compare_digest(pw, _AUTH[1]))
+
+    def _challenge(self):
+        self.send_response(401)
+        self.send_header("WWW-Authenticate", 'Basic realm="EVML"')
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+
     def do_GET(self):
+        if not self._authed():
+            self._challenge()
+            return
         if self.path.startswith("/api/stats"):
             body = json.dumps(_CACHE.get()).encode()
             self._send(200, body, "application/json")
@@ -227,7 +257,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    global OUT_ROOT, LLM_GUIDED
+    global OUT_ROOT, LLM_GUIDED, _AUTH
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8090)
     ap.add_argument("--host", default="127.0.0.1")
@@ -236,6 +266,20 @@ def main():
 
     OUT_ROOT = Path(args.out_root).resolve()
     LLM_GUIDED = OUT_ROOT / "llm_guided"
+
+    auth_env = os.environ.get("DASH_AUTH", "")
+    if auth_env:
+        if ":" not in auth_env:
+            raise SystemExit('DASH_AUTH must be "user:password"')
+        u, _, p = auth_env.partition(":")
+        _AUTH = (u, p)
+
+    exposed = args.host not in ("127.0.0.1", "localhost", "::1")
+    if exposed and _AUTH is None:
+        print("WARNING: bound to a non-loopback address with no DASH_AUTH set; "
+              "anyone who can reach this port can read the stats.")
+    if _AUTH is not None:
+        print("basic auth: ON (Basic auth is plaintext; serve only behind TLS)")
 
     srv = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"dashboard on http://{args.host}:{args.port}/  (out-root: {OUT_ROOT})")

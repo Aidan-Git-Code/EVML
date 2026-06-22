@@ -1,4 +1,4 @@
-# AIingFuzzyVM
+# EVML
 
 LLM-guided differential fuzzer for Ethereum Virtual Machine implementations. The orchestrator wraps two existing tools (vendored as git submodules) with an AI strategy generator that biases test-case generation toward consensus-sensitive corners of EVM semantics.
 
@@ -37,6 +37,7 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 │   ├── start_llm_loop.sh      LLM-guided loop driver (scheduling + llama autostart)
 │   ├── startup_instruct.sh    prints how to start everything + live status
 │   ├── stop_fuzzing.sh        stops the loop, leaves a post-hoc diff running
+│   ├── posthoc_status.sh      progress report for the background post-hoc sweep
 │   └── crasher_watcher.sh     preserves go-fuzz crashers
 └── out/
     ├── baseline/              stock random run output (gitignored)
@@ -183,7 +184,9 @@ The supervisor's SIGTERM trap forwards to its children.
 
 `scripts/startup_instruct.sh` prints how to start each piece plus the live status of llama, the loop, the dashboard, and the GPU. It reads state only and starts nothing.
 
-`scripts/stop_fuzzing.sh` stops the fuzzing loop (supervisor, `run_batch`, FuzzyVM workers, llama) but leaves a running post-hoc differential sweep alone. It targets the loop's process subtree by pid rather than by pattern, because the loop and a post-hoc sweep both run `runtest --besubatch` and pattern-matching would kill both. Pass `--keep-llama` to leave the LLM server up.
+`scripts/stop_fuzzing.sh` stops the fuzzing loop (supervisor, `run_batch`, FuzzyVM workers, llama) but leaves a running post-hoc differential sweep alone. It targets the loop's process subtree by pid rather than by pattern, because the loop and a post-hoc sweep both run `runtest --besubatch` and pattern-matching would kill both. Pass `--keep-llama` to leave the LLM server up. On exit it prints the post-hoc sweep's progress.
+
+`scripts/posthoc_status.sh` reports that progress on demand (dirs done, percent, divergences so far, elapsed, ETA) by parsing `out/posthoc_diff.log`. Add `--watch` to refresh until the sweep finishes.
 
 The loop driver (`start_llm_loop.sh`) has a few conveniences beyond the reproduction commands above:
 
@@ -199,6 +202,25 @@ python3 orchestrator/dashboard/server.py    # then open http://127.0.0.1:8090/
 ```
 
 Read-only viewer. The `/api/stats` endpoint scans `out/llm_guided/` diff reports plus session state and returns totals (tests, divergences, batches, plans, crashers), a divergence rate, loop/llama status, the current objective, and recent batches/divergences. The clients shown reflect the most recently written diff report.
+
+It binds `127.0.0.1` by default. To reach it from another machine (e.g. over a tailnet), bind a routable interface: `--host 0.0.0.0`. For a public exposure, turn on HTTP Basic auth by setting `DASH_AUTH` in the environment, and put it behind TLS (Basic auth is plaintext otherwise):
+
+```bash
+DASH_AUTH="odessa:your-password" python3 orchestrator/dashboard/server.py --host 0.0.0.0
+```
+
+Behind Caddy, you can let the reverse proxy terminate TLS and (optionally) do the auth instead, which keeps the credential hashed at rest:
+
+```
+fuzz.example.com {
+    basic_auth {
+        odessa $2a$14$...   # caddy hash-password --plaintext 'your-password'
+    }
+    reverse_proxy 100.70.141.108:8090
+}
+```
+
+Use one layer or both. `DASH_AUTH` protects the app even if it is ever reached directly; Caddy `basic_auth` keeps the password as a bcrypt hash and handles TLS.
 
 ## Design docs
 
