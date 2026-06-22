@@ -327,12 +327,20 @@ class Handler(BaseHTTPRequestHandler):
             body = json.dumps(_CACHE.get()).encode()
             self._send(200, body, "application/json")
             return
-        if self.path in ("/", "/index.html"):
+        # Theme variants share /api/stats; each is a static page. Allowlisted so
+        # the path can't escape the dashboard dir.
+        page = {
+            "/": "index.html",
+            "/index.html": "index.html",
+            "/blueprint": "index_blueprint.html",
+            "/blueprint.html": "index_blueprint.html",
+        }.get(self.path)
+        if page:
             try:
-                body = (HERE / "index.html").read_bytes()
+                body = (HERE / page).read_bytes()
                 self._send(200, body, "text/html; charset=utf-8")
             except OSError:
-                self._send(500, b"index.html missing", "text/plain")
+                self._send(500, f"{page} missing".encode(), "text/plain")
             return
         self._send(404, b"not found", "text/plain")
 

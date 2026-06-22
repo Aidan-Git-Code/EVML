@@ -3,35 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<title>EVML fuzzing dashboard</title>
+<meta name="color-scheme" content="dark">
+<title>EVML fuzzing dashboard / blueprint</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper:   #cdbf9c;
-    --card:    #e0d5ba;
-    --ink:     #14120c;
-    --ink-2:   #46412f;
-    --faint:   #7c7459;
-    --line:    #b6a988;
-    --dot:     rgba(20,18,12,.10);
-    --red:     #d63a2c;
-    --green:   #1f9b54;
-    --amber:   #cf8a1e;
-    --blue:    #2f5ccc;
-    --sh:      3px 3px 0 var(--ink);
-    --sh-sm:   2px 2px 0 var(--ink);
+    --blue:    #11375f;
+    --blue-2:  #16406d;
+    --ink:     #e8f1fb;      /* pale "white ink" linework */
+    --ink-2:   #a9c4e2;
+    --faint:   #6b8cb3;
+    --line:    #5c82ad;      /* drawn line color */
+    --line-2:  rgba(214,230,247,.13);
+    --line-3:  rgba(214,230,247,.06);
+    --green:   #57d6a3;
+    --amber:   #f2b94e;
+    --red:     #ff7d68;
+    --mark:    #ffd24a;      /* annotation / highlight, like a yellow marker */
     --display: "Dela Gothic One", "M PLUS Rounded 1c", system-ui, sans-serif;
     --body:    "M PLUS Rounded 1c", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background-color: var(--paper);
-    background-image: radial-gradient(var(--dot) 1.1px, transparent 1.1px);
-    background-size: 22px 22px;
+    background-color: var(--blue);
+    background-image:
+      linear-gradient(var(--line-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-2) 1px, transparent 1px),
+      linear-gradient(var(--line-3) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-3) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
     color: var(--ink);
     font-family: var(--body);
     font-size: 14px;
@@ -40,155 +43,157 @@
     -webkit-font-smoothing: antialiased;
   }
   .num { font-variant-numeric: tabular-nums; }
+  a { color: var(--mark); text-decoration: none; border-bottom: 1px dashed var(--faint); }
 
   /* ---- masthead ---- */
   header {
     max-width: 1180px; margin: 0 auto;
-    padding: 26px 22px 18px;
+    padding: 28px 22px 16px;
     display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
   }
   .brand h1 {
     font-family: var(--display);
-    font-size: clamp(38px, 7vw, 58px);
-    line-height: .92; margin: 0; letter-spacing: -1px;
-    color: var(--ink);
+    font-size: clamp(40px, 7vw, 62px);
+    line-height: .9; margin: 0; color: var(--ink);
   }
-  .brand h1 .tld { color: var(--red); }
   .brand .sub {
-    margin-top: 8px; font-size: 13px; font-weight: 700;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
+    margin-top: 12px; font-size: 12px; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--ink-2);
   }
-  .stamp {
-    flex: none; text-align: right; font-size: 12px; font-weight: 700;
-    color: var(--ink-2); white-space: nowrap;
+  .stamp { flex: none; text-align: right; }
+  .stamp .rev { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+  .stamp #updated {
+    display: inline-block; padding: 5px 11px; font-size: 12px; font-weight: 700;
+    color: var(--ink); border: 1.5px solid var(--line);
   }
-  .stamp #updated { display: inline-block; padding: 4px 10px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); box-shadow: var(--sh-sm); }
 
   main { max-width: 1180px; margin: 0 auto; padding: 0 22px 8px; }
 
+  /* every framed surface is a drafting box: thin pale rule, sharp corners */
+  .frame { background: rgba(255,255,255,.035); border: 1.5px solid var(--line); }
+
   /* ---- switch bank ---- */
   .bank {
-    display: flex; align-items: stretch; gap: 0;
-    border: 2px solid var(--ink); border-radius: 12px; box-shadow: var(--sh);
-    background: var(--card); margin-bottom: 24px; overflow: hidden;
+    display: flex; align-items: stretch; margin-bottom: 26px; overflow: hidden;
   }
   .bank .tab {
     writing-mode: vertical-rl; transform: rotate(180deg);
-    font-family: var(--display); font-size: 12px; letter-spacing: .12em;
-    background: var(--ink); color: var(--paper);
-    display: flex; align-items: center; justify-content: center; padding: 0 6px;
+    font-family: var(--display); font-size: 13px; letter-spacing: .1em;
+    background: var(--blue-2); color: var(--mark); border-right: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; padding: 0 7px;
   }
   .switches { display: flex; flex: 1; flex-wrap: wrap; }
   .switch {
     flex: 1; min-width: 120px;
-    display: flex; flex-direction: column; align-items: center; gap: 9px;
-    padding: 16px 10px; border-right: 2px dotted var(--line);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 18px 10px; border-right: 1px dashed var(--line);
   }
   .switch:last-child { border-right: none; }
   .sw {
     position: relative; width: 38px; height: 62px;
-    border: 2px solid var(--ink); border-radius: 9px;
-    background: var(--paper);
-    box-shadow: inset 0 0 0 3px var(--card);
+    border: 1.5px solid var(--line); border-radius: 3px;
+    background: rgba(0,0,0,.18);
   }
   .sw .knob {
     position: absolute; left: 4px; right: 4px; height: 25px;
-    border: 2px solid var(--ink); border-radius: 6px;
+    border: 1.5px solid var(--line); border-radius: 2px;
     background: var(--faint);
-    transition: top .2s cubic-bezier(.5,1.7,.5,1), background .2s;
+    transition: top .2s cubic-bezier(.5,1.7,.5,1), background .2s, box-shadow .2s;
   }
-  .sw.up   .knob { top: 4px;  background: var(--green); }
-  .sw.down .knob { top: 27px; background: var(--ink-2); }
+  .sw.up   .knob { top: 4px;  background: var(--green); box-shadow: 0 0 10px rgba(87,214,163,.6); }
+  .sw.down .knob { top: 27px; background: #2c4a6e; }
   .sw::after {
-    content: ""; position: absolute; left: 50%; width: 12px; height: 2px;
-    background: var(--line); transform: translateX(-50%);
-    top: 50%; margin-top: -1px;
+    content: ""; position: absolute; left: 50%; top: 50%; width: 13px; height: 1px;
+    background: var(--line); transform: translate(-50%,-50%);
   }
-  .sw-name { font-family: var(--display); font-size: 14px; color: var(--ink); }
-  .sw-state { font-size: 12px; font-weight: 700; }
+  .sw-name { font-family: var(--display); font-size: 13px; color: var(--ink); }
+  .sw-state { font-size: 12px; font-weight: 700; letter-spacing: .03em; }
   .sw-state.on  { color: var(--green); }
   .sw-state.off { color: var(--red); }
 
-  /* ---- stat cards ---- */
-  .cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 24px; }
-  .card {
-    background: var(--card); border: 2px solid var(--ink); border-radius: 11px;
-    box-shadow: var(--sh); padding: 13px 15px;
-  }
-  .card .label { font-size: 12px; font-weight: 800; color: var(--ink-2); }
-  .card .value { font-family: var(--display); font-size: 30px; line-height: 1; margin-top: 9px; color: var(--ink); }
-  .card .value small { font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--faint); }
-  .card.flag { background: var(--red); border-color: var(--ink); }
-  .card.flag .label, .card.flag .value { color: #fff; }
+  /* ---- stat frames ---- */
+  .cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 26px; }
+  .card { background: rgba(255,255,255,.035); border: 1.5px solid var(--line); padding: 13px 15px; }
+  .card .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+  .card .value { font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1; margin-top: 10px; color: var(--ink); }
+  .card .value small { font-family: var(--body); font-weight: 700; font-size: 13px; color: var(--faint); }
+  .card.flag { border-color: var(--red); background: rgba(255,125,104,.12); }
+  .card.flag .label { color: var(--red); }
+  .card.flag .value { color: var(--red); }
 
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 860px) { .cards { grid-template-columns: repeat(2,1fr); } .grid2 { grid-template-columns: 1fr; } }
 
   /* ---- panels ---- */
-  section.panel {
-    background: var(--card); border: 2px solid var(--ink); border-radius: 11px;
-    box-shadow: var(--sh); margin-bottom: 24px; overflow: hidden;
-  }
+  section.panel { background: rgba(255,255,255,.035); border: 1.5px solid var(--line); margin-bottom: 24px; overflow: hidden; }
   .panel h2 {
-    font-family: var(--display); font-size: 15px; font-weight: 400;
-    color: var(--paper); background: var(--ink);
-    margin: 0; padding: 9px 16px;
+    font-family: var(--display); font-size: 14px; font-weight: 400;
+    color: var(--mark); margin: 0; padding: 9px 16px;
+    border-bottom: 1.5px solid var(--line); background: rgba(0,0,0,.18);
+    letter-spacing: .04em;
   }
+  .panel h2::before { content: "▚ "; color: var(--faint); }
   .panel .body { padding: 16px; }
 
   .kv { display: grid; grid-template-columns: 140px 1fr; gap: 9px 14px; }
-  .kv dt { color: var(--ink-2); font-weight: 800; }
+  .kv dt { color: var(--ink-2); font-weight: 700; letter-spacing: .04em; }
   .kv dd { margin: 0; }
 
   table { width: 100%; border-collapse: collapse; }
   th, td { text-align: left; padding: 9px 16px; }
-  th { color: var(--ink-2); font-weight: 800; font-size: 12px; border-bottom: 2px solid var(--ink); background: var(--card); }
-  td { border-bottom: 1px solid var(--line); }
+  th { color: var(--ink-2); font-weight: 700; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; border-bottom: 1.5px solid var(--line); background: var(--blue); }
+  td { border-bottom: 1px solid var(--line-3); }
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: var(--paper); }
+  tbody tr:hover { background: rgba(255,255,255,.045); }
   td.r, th.r { text-align: right; }
   .tag {
     display: inline-block; padding: 1px 9px; margin-right: 4px;
-    border: 1.5px solid var(--ink); border-radius: 999px;
-    font-size: 12px; font-weight: 700; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--line); border-radius: 2px;
+    font-size: 12px; font-weight: 700; color: var(--ink-2);
   }
   .obj { max-width: 420px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .zero { color: var(--faint); }
   .hit { color: var(--red); font-weight: 800; }
-  .rc-bad { color: var(--amber); font-weight: 800; }
-  .mono { font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace; font-size: 12.5px; }
+  .rc-bad { color: var(--amber); font-weight: 700; }
+  .mono { font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace; font-size: 12.5px; color: var(--ink-2); }
 
   .scroll { max-height: 460px; overflow-y: auto; }
   .scroll thead th { position: sticky; top: 0; }
   .scroll::-webkit-scrollbar { width: 12px; }
-  .scroll::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 999px; border: 3px solid var(--card); }
+  .scroll::-webkit-scrollbar-thumb { background: var(--line); border: 3px solid var(--blue); }
   .scroll::-webkit-scrollbar-track { background: transparent; }
 
   .empty { color: var(--ink-2); padding: 16px; font-weight: 600; }
 
-  .bar { height: 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); overflow: hidden; }
-  .bar > i { display: block; height: 100%; background: var(--blue); transition: width .4s ease; }
+  .bar { height: 14px; border: 1.5px solid var(--line); background: rgba(0,0,0,.2); overflow: hidden; }
+  .bar > i { display: block; height: 100%; background: var(--mark); transition: width .4s ease; }
   .bar.done > i { background: var(--green); }
   .bar.stopped > i { background: var(--amber); }
 
-  footer {
-    max-width: 1180px; margin: 0 auto; padding: 10px 22px 30px;
-    color: var(--ink-2); font-size: 12px; font-weight: 600;
-  }
-  footer .mono { color: var(--ink); }
+  /* ---- title block footer ---- */
+  footer { max-width: 1180px; margin: 0 auto; padding: 6px 22px 34px; }
+  .titleblock { display: flex; border: 1.5px solid var(--line); font-size: 11px; }
+  .titleblock .cell { padding: 8px 14px; border-right: 1px solid var(--line); }
+  .titleblock .cell:last-child { border-right: none; margin-left: auto; }
+  .titleblock .k { color: var(--faint); letter-spacing: .12em; text-transform: uppercase; font-size: 10px; }
+  .titleblock .v { color: var(--ink); font-weight: 700; margin-top: 2px; }
+  .titleblock .v.mono { color: var(--ink); }
 </style>
 </head>
 <body>
 <header>
   <div class="brand">
-    <h1>EVML<span class="tld">.</span></h1>
+    <h1>EVML</h1>
     <div class="sub">llm-guided evm differential fuzzer</div>
   </div>
-  <div class="stamp"><span id="updated">updating</span></div>
+  <div class="stamp">
+    <div class="rev">sheet · live</div>
+    <span id="updated">updating</span>
+  </div>
 </header>
 
 <main>
-  <div class="bank">
+  <div class="bank frame">
     <div class="tab">STATUS</div>
     <div class="switches">
       <div class="switch">
@@ -236,8 +241,12 @@
 </main>
 
 <footer>
-  polls <span class="mono">/api/stats</span> every 5s. reads <span class="mono">out/llm_guided/</span> reports and session state.
-  &nbsp;·&nbsp; theme: kraft / <a href="/blueprint" style="color:var(--blue)">blueprint</a>
+  <div class="titleblock">
+    <div class="cell"><div class="k">project</div><div class="v">EVML differential fuzzer</div></div>
+    <div class="cell"><div class="k">source</div><div class="v mono">out/llm_guided/</div></div>
+    <div class="cell"><div class="k">refresh</div><div class="v">/api/stats · 5s</div></div>
+    <div class="cell"><div class="k">theme</div><div class="v"><a href="/">kraft</a> / blueprint</div></div>
+  </div>
 </footer>
 
 <script>
@@ -259,8 +268,6 @@ function rel(s) {
   return Math.floor(s/86400) + "d";
 }
 
-// Flip the physical switch: knob up = on, down = off. The state line below
-// carries the words.
 function setStatus(id, on, text) {
   const sw = document.getElementById(id + "-sw");
   if (sw) sw.className = "sw " + (on ? "up" : "down");
