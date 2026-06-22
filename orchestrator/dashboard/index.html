@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIingFuzzyVM — fuzzing dashboard</title>
+<style>
+  :root {
+    --bg: #0b0e14;
+    --surface: #11151d;
+    --surface-2: #161b25;
+    --border: #232b38;
+    --text: #e4e7ee;
+    --muted: #8a93a6;
+    --faint: #5c6678;
+    --accent: #3d7eff;
+    --ok: #35c08b;
+    --warn: #e0a23a;
+    --bad: #e5614c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  header .title { display: flex; align-items: baseline; gap: 12px; }
+  header h1 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: .2px; }
+  header .sub { color: var(--faint); font-size: 12px; }
+  header .meta { display: flex; align-items: center; gap: 18px; color: var(--muted); font-size: 12px; }
+
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .dot.on { background: var(--ok); box-shadow: 0 0 0 3px rgba(53,192,139,.15); }
+  .dot.off { background: var(--bad); }
+
+  main { padding: 24px; max-width: 1180px; margin: 0 auto; }
+
+  .cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 22px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px;
+  }
+  .card .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .6px; }
+  .card .value { font-size: 26px; font-weight: 600; margin-top: 6px; }
+  .card .value small { font-size: 13px; font-weight: 500; color: var(--faint); }
+  .card.flag { border-color: rgba(229,97,76,.5); }
+  .card.flag .value { color: var(--bad); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 900px) { .cards { grid-template-columns: repeat(2,1fr); } .grid2 { grid-template-columns: 1fr; } }
+
+  section.panel {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 22px; overflow: hidden;
+  }
+  .panel h2 {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px;
+    color: var(--muted); margin: 0; padding: 12px 16px; border-bottom: 1px solid var(--border);
+  }
+  .panel .body { padding: 16px; }
+
+  .kv { display: grid; grid-template-columns: 150px 1fr; gap: 8px 16px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid var(--border); }
+  th { color: var(--faint); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+  td.r, th.r { text-align: right; }
+  .tag { display: inline-block; padding: 1px 7px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-size: 11px; margin-right: 4px; }
+  .obj { max-width: 420px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .zero { color: var(--faint); }
+  .hit { color: var(--bad); font-weight: 600; }
+  .rc-bad { color: var(--warn); }
+
+  footer { color: var(--faint); font-size: 12px; padding: 8px 24px 28px; max-width: 1180px; margin: 0 auto; }
+  .empty { color: var(--faint); padding: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1>AIingFuzzyVM</h1>
+    <span class="sub">LLM-guided EVM differential fuzzer</span>
+  </div>
+  <div class="meta">
+    <span class="pill"><span id="loop-dot" class="dot"></span><span id="loop-text">loop —</span></span>
+    <span class="pill"><span id="llama-dot" class="dot"></span><span id="llama-text">llama —</span></span>
+    <span id="updated">updated —</span>
+  </div>
+</header>
+
+<main>
+  <div class="cards" id="cards"></div>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>Current run</h2>
+      <div class="body">
+        <dl class="kv" id="runkv"></dl>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Divergences</h2>
+      <div class="body" id="divbox"></div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Recent batches</h2>
+    <div id="batches"></div>
+  </section>
+</main>
+
+<footer>
+  Auto-refresh every 5s · reads <span class="mono">out/llm_guided/</span> diff reports + session state
+</footer>
+
+<script>
+const fmt = n => (n ?? 0).toLocaleString("en-US");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function ago(iso) {
+  if (!iso) return "—";
+  const t = new Date(iso).getTime();
+  if (isNaN(t)) return iso;
+  const s = Math.floor((Date.now() - t) / 1000);
+  if (s < 0) return "in " + rel(-s);
+  return rel(s) + " ago";
+}
+function rel(s) {
+  if (s < 60) return s + "s";
+  if (s < 3600) return Math.floor(s/60) + "m";
+  if (s < 86400) return Math.floor(s/3600) + "h " + Math.floor((s%3600)/60) + "m";
+  return Math.floor(s/86400) + "d";
+}
+
+function setStatus(id, on, text) {
+  const dot = document.getElementById(id + "-dot");
+  dot.className = "dot " + (on ? "on" : "off");
+  document.getElementById(id + "-text").textContent = text;
+}
+
+function card(label, value, sub, flag) {
+  return `<div class="card${flag ? " flag" : ""}">
+    <div class="label">${label}</div>
+    <div class="value num">${value}${sub ? ` <small>${sub}</small>` : ""}</div>
+  </div>`;
+}
+
+function render(d) {
+  document.getElementById("updated").textContent = "updated " + ago(d.generated_at);
+
+  setStatus("loop", d.loop.running,
+    d.loop.running ? `loop running${d.loop.current_batch ? " · batch " + d.loop.current_batch : ""}` : "loop stopped");
+  setStatus("llama", d.llama.running, d.llama.running ? "llama up" : "llama down");
+
+  const t = d.totals, r = d.rates;
+  document.getElementById("cards").innerHTML =
+    card("State tests", fmt(t.tests)) +
+    card("Divergences", fmt(t.divergences), null, t.divergences > 0) +
+    card("Batches", fmt(t.batches)) +
+    card("Plans", fmt(t.plans)) +
+    card("Crashers", fmt(t.crashers)) +
+    card("Div / 1M tests", (r.divergences_per_million_tests ?? 0).toFixed(2));
+
+  const L = d.loop;
+  document.getElementById("runkv").innerHTML = `
+    <dt>Objective</dt><dd>${esc(L.current_objective) || "—"}</dd>
+    <dt>Clients</dt><dd>${(d.clients||[]).map(v=>`<span class="tag">${esc(v)}</span>`).join("") || "—"}</dd>
+    <dt>Current batch</dt><dd class="num">${L.current_batch ?? "—"}</dd>
+    <dt>Started</dt><dd>${L.started ? esc(L.started) + ` <span class="zero">(${ago(L.started)})</span>` : "—"}</dd>
+    <dt>Scheduled stop</dt><dd>${L.stop_at ? esc(L.stop_at) + ` <span class="zero">(${ago(L.stop_at)})</span>` : "no cap"}</dd>
+    <dt>Avg tests/batch</dt><dd class="num">${fmt(r.tests_per_batch)}</dd>`;
+
+  const dv = d.recent_divergences || [];
+  const divbox = document.getElementById("divbox");
+  if (!dv.length) {
+    divbox.innerHTML = `<div class="empty">No divergences recorded. All clients agree across ${fmt(t.tests)} state tests.</div>`;
+  } else {
+    divbox.innerHTML = `<table><thead><tr><th>Test</th><th>VM</th><th>Ref</th><th>Batch</th><th class="r">When</th></tr></thead><tbody>` +
+      dv.map(x => `<tr>
+        <td class="mono">${esc(x.file)}</td>
+        <td class="hit">${esc(x.vm)}</td>
+        <td>${esc(x.ref_vm)}</td>
+        <td class="mono">${esc(x.plan_id)}</td>
+        <td class="r">${ago(new Date(x.mtime*1000).toISOString())}</td>
+      </tr>`).join("") + `</tbody></table>`;
+  }
+
+  const rows = d.recent_batches || [];
+  const batches = document.getElementById("batches");
+  if (!rows.length) {
+    batches.innerHTML = `<div class="empty">No diff reports yet.</div>`;
+  } else {
+    batches.innerHTML = `<table><thead><tr>
+        <th>When</th><th>Objective</th><th class="r">Tests</th><th class="r">Divs</th>
+        <th class="r">Diff (s)</th><th>Clients</th><th class="r">rc</th>
+      </tr></thead><tbody>` +
+      rows.map(b => `<tr>
+        <td>${ago(new Date(b.mtime*1000).toISOString())}</td>
+        <td class="obj" title="${esc(b.objective)}">${esc(b.objective)}</td>
+        <td class="r num">${fmt(b.tests)}</td>
+        <td class="r num ${b.divergences ? "hit" : "zero"}">${b.divergences}</td>
+        <td class="r num">${b.duration_s}</td>
+        <td>${(b.vms||[]).map(v=>`<span class="tag">${esc(v)}</span>`).join("")}</td>
+        <td class="r num ${b.rc ? "rc-bad" : "zero"}">${b.rc}</td>
+      </tr>`).join("") + `</tbody></table>`;
+  }
+}
+
+async function tick() {
+  try {
+    const res = await fetch("/api/stats", { cache: "no-store" });
+    render(await res.json());
+  } catch (e) {
+    document.getElementById("updated").textContent = "fetch failed — retrying";
+  }
+}
+tick();
+setInterval(tick, 5000);
+</script>
+</body>
+</html>

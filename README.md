@@ -2,7 +2,9 @@
 
 LLM-guided differential fuzzer for Ethereum Virtual Machine implementations. The orchestrator wraps two existing tools (vendored as git submodules) with an AI strategy generator that biases test-case generation toward consensus-sensitive corners of EVM semantics.
 
-The pipeline is: objective + RAG context + recent divergences -> local LLM emits a strategy plan (JSON DSL) -> FuzzyVM consumes the plan to bias bytecode generation -> goevmlab runs the resulting GeneralStateTests across geth and revm -> divergences feed back into the next prompt -> plateau detector rotates the objective when several batches stall.
+The pipeline is: objective + RAG context + recent divergences -> local LLM emits a strategy plan (JSON DSL) -> FuzzyVM consumes the plan to bias bytecode generation -> goevmlab runs the resulting GeneralStateTests across geth, revm, and besu -> divergences feed back into the next prompt -> plateau detector rotates the objective when several batches stall.
+
+Note on scope: the published experiment (see `paper.tex` / `final_report.md`) used two clients, geth and revm. besu was added afterward as a third differential client, so the current harness runs a 3-way panel. The report's null result is stated against the geth+revm pair it was measured on.
 
 This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 
@@ -27,11 +29,14 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 │   ├── rotate.py              plateau detector + LLM objective rotator
 │   ├── run_batch.py           one batch: objective -> LLM -> validate -> fuzz -> diff
 │   ├── rag/build_index.py     embeds corpus into orchestrator/rag/index/
+│   ├── dashboard/             stats web server + frontend (server.py, index.html)
 │   └── plans/                 hand-written smoke plans
 ├── scripts/
 │   ├── start_baseline.sh      supervised stock-random baseline runner
 │   ├── start_llama_server.sh  idempotent llama-server launcher
-│   ├── start_llm_loop.sh      Day-5 LLM-guided loop driver (overnight)
+│   ├── start_llm_loop.sh      LLM-guided loop driver (scheduling + llama autostart)
+│   ├── startup_instruct.sh    prints how to start everything + live status
+│   ├── stop_fuzzing.sh        stops the loop, leaves a post-hoc diff running
 │   └── crasher_watcher.sh     preserves go-fuzz crashers
 └── out/
     ├── baseline/              stock random run output (gitignored)
@@ -41,7 +46,7 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 
 ## Reproducing the experiment
 
-The full setup needs a CUDA GPU (we used an RTX 4080, 16 GB VRAM), Linux (we ran WSL2), ~30 GB free disk, geth's `evm`, revm's `revme`, Python 3.11+, Go 1.22+, and Rust 1.91+.
+The full setup needs a CUDA GPU (we used an RTX 4080, 16 GB VRAM), Linux (we ran WSL2), ~30 GB free disk, geth's `evm`, revm's `revme`, Python 3.11+, Go 1.22+, and Rust 1.91+. The optional third client, besu's `evmtool`, additionally needs a JRE (besu 26.6.1 requires JDK 25).
 
 ### 1. Clone with submodules
 
@@ -68,6 +73,29 @@ GOBIN=~/go/bin go install github.com/ethereum/go-ethereum/cmd/evm@v1.15.11
 # revm's revme binary (needs Rust 1.91+ from rustup, not Debian's 1.75)
 cargo install revme
 ```
+
+Optional third client, besu's `evmtool`. besu 26.6.1 ships Java 25 class files, so it needs a JDK 25 even though the rest of the project runs on whatever Java you have. A small wrapper pins besu to JDK 25 without touching the system default:
+
+```bash
+# JDK 25 (Debian/Ubuntu)
+sudo apt-get install -y openjdk-25-jre-headless
+
+# besu distribution (contains bin/evmtool)
+cd ~/tools && VER=26.6.1
+curl -sL -O https://github.com/besu-eth/besu/releases/download/$VER/besu-$VER.tar.gz
+curl -sL -O https://github.com/besu-eth/besu/releases/download/$VER/besu-$VER.tar.gz.sha256
+sha256sum -c besu-$VER.tar.gz.sha256 && tar xzf besu-$VER.tar.gz
+
+# wrapper: run evmtool under JDK 25 only
+cat > ~/tools/besu-$VER/bin/evmtool-jdk25 <<'EOF'
+#!/usr/bin/env bash
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
+exec "$(dirname "$0")/evmtool" "$@"
+EOF
+chmod +x ~/tools/besu-$VER/bin/evmtool-jdk25
+```
+
+`orchestrator/differential.py` auto-detects the wrapper at `~/tools/besu-26.6.1/bin/evmtool-jdk25` (override with the `BESU_BIN` env var) and adds besu to the panel via goevmlab's `--besubatch` flag. If besu is absent, the harness runs geth + revm only, unchanged.
 
 ### 4. Build llama.cpp with CUDA and download the model
 
@@ -133,16 +161,15 @@ LLM-guided run (matches our 13h30m run):
   --no-diff
 ```
 
-`--no-diff` runs generation only, matching the baseline's behavior so the comparison stays fair. Run differential post-hoc as a single sweep:
+`--no-diff` runs generation only, matching the baseline's behavior so the comparison stays fair. Run differential post-hoc through the orchestrator wrapper, one report per plan dir (it adds besu automatically when the wrapper is present):
 
 ```bash
-goevmlab/runtest \
-  --geth ~/go/bin/evm --revme ~/.cargo/bin/revme \
-  --parallel 8 --outdir out/posthoc_diff \
-  'out/llm_guided/*/out/*/FuzzyVM-*.json'
+for d in out/llm_guided/plan_*/out; do
+  python3 orchestrator/differential.py "$d" --threads 12
+done
 ```
 
-Same command for the baseline, swapping the glob.
+The published comparison used geth + revm only; running the sweep with besu present gives the 3-way panel and rewrites each `diff_report.json` with besu's vote. besu cold-starts a JVM per invocation, so the sweep is much slower than the geth+revm pair; budget accordingly (CPU is free once fuzzing stops).
 
 ### 9. Stop a running session
 
@@ -151,6 +178,27 @@ kill $(cat out/llm_loop.pid)        # or out/baseline.pid
 ```
 
 The supervisor's SIGTERM trap forwards to its children.
+
+## Operating the fuzzer
+
+`scripts/startup_instruct.sh` prints how to start each piece plus the live status of llama, the loop, the dashboard, and the GPU. It reads state only and starts nothing.
+
+`scripts/stop_fuzzing.sh` stops the fuzzing loop (supervisor, `run_batch`, FuzzyVM workers, llama) but leaves a running post-hoc differential sweep alone. It targets the loop's process subtree by pid rather than by pattern, because the loop and a post-hoc sweep both run `runtest --besubatch` and pattern-matching would kill both. Pass `--keep-llama` to leave the LLM server up.
+
+The loop driver (`start_llm_loop.sh`) has a few conveniences beyond the reproduction commands above:
+
+- It ensures llama-server is healthy before each batch, starting it via `start_llama_server.sh` if down (local URLs only). Disable with `--no-llm-autostart`.
+- Scheduling: `--duration 6h` (relative), `--stop-at "2026-06-22 14:00"` (absolute end), `--start-at "2026-06-22 02:00"` (wait until an absolute time before batch 1). `--start-at` and `--stop-at` combine to fuzz inside a window; both accept anything `date -d` parses.
+- With diffing on (the default), besu joins automatically, so a normal run already uses the 3-client panel.
+- The objective auto-rotates after `--rotate-if-plateau K` zero-divergence batches (default 3). On a corpus that is already all-zero-divergence it rotates on batch 1, so pass `--rotate-if-plateau 0` to pin a fixed objective.
+
+### Dashboard
+
+```bash
+python3 orchestrator/dashboard/server.py    # then open http://127.0.0.1:8090/
+```
+
+Read-only viewer. The `/api/stats` endpoint scans `out/llm_guided/` diff reports plus session state and returns totals (tests, divergences, batches, plans, crashers), a divergence rate, loop/llama status, the current objective, and recent batches/divergences. The clients shown reflect the most recently written diff report.
 
 ## Design docs
 

@@ -29,6 +29,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 RUNTEST_BIN = Path(os.environ.get("RUNTEST_BIN", REPO_ROOT / "goevmlab" / "runtest"))
 GETH_EVM_BIN = Path(os.environ.get("GETH_EVM_BIN", Path.home() / "go" / "bin" / "evm"))
 REVME_BIN = Path(os.environ.get("REVME_BIN", Path.home() / ".cargo" / "bin" / "revme"))
+# besu evmtool is optional. Present -> runtest gets a third client and divergences
+# carry a 3-way vote. Absent -> stock geth+revme path is unchanged. The default
+# points at the JDK-25 wrapper because besu 26.6.1 ships class file v69 and the
+# system default Java is 21.
+BESU_BIN = Path(os.environ.get("BESU_BIN", Path.home() / "tools" / "besu-26.6.1" / "bin" / "evmtool-jdk25"))
 
 # ANSI-strip + log parsing. goevmlab uses ethereum/go-ethereum's terminal
 # handler which always emits SGR sequences even with no TTY attached.
@@ -133,6 +138,13 @@ def run_diff(batch_out_dir: Path, threads: int = 4, glob: str = "*/FuzzyVM-*.jso
         "--parallel", str(threads),
         "--outdir", str(diff_out),
     ]
+    if BESU_BIN.exists():
+        # besubatch keeps one evmtool JVM alive and streams tests into it. The
+        # per-test --besu adapter cold-starts a JVM each call (~2s/test), which
+        # is unusable for a full-corpus sweep. besu still ~10x slower per test
+        # than geth/revme even batched, so it gates throughput; size --threads
+        # accordingly on the post-hoc pass.
+        cmd += ["--besubatch", str(BESU_BIN)]
     if skiptrace:
         cmd.append("--skiptrace")
     cmd.append(pattern)
@@ -144,6 +156,9 @@ def run_diff(batch_out_dir: Path, threads: int = 4, glob: str = "*/FuzzyVM-*.jso
     log = (proc.stderr or "") + (proc.stdout or "")
     divs, tests_run, slow = _parse_log(log)
 
+    vms = ["geth", "revme"]
+    if BESU_BIN.exists():
+        vms.append("besu")
     report = DiffReport(
         batch_dir=str(batch_out_dir),
         tests_run=tests_run,
@@ -151,7 +166,7 @@ def run_diff(batch_out_dir: Path, threads: int = 4, glob: str = "*/FuzzyVM-*.jso
         divergences=divs,
         duration_s=round(duration, 2),
         runtest_rc=proc.returncode,
-        vms=["geth", "revme"],
+        vms=vms,
     )
 
     # Persist the raw log and report next to the diff outputs.
