@@ -29,7 +29,7 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 │   ├── rotate.py              plateau detector + LLM objective rotator
 │   ├── run_batch.py           one batch: objective -> LLM -> validate -> fuzz -> diff
 │   ├── rag/build_index.py     embeds corpus into orchestrator/rag/index/
-│   ├── dashboard/             stats web server + frontend (server.py, index.html)
+│   ├── dashboard/             stats server + two theme frontends (kraft, blueprint)
 │   └── plans/                 hand-written smoke plans
 ├── scripts/
 │   ├── start_baseline.sh      supervised stock-random baseline runner
@@ -37,6 +37,7 @@ This is pure VM-level fuzzing. No RPC, no on-chain interaction, no Foundry.
 │   ├── start_llm_loop.sh      LLM-guided loop driver (scheduling + llama autostart)
 │   ├── startup_instruct.sh    prints how to start everything + live status
 │   ├── stop_fuzzing.sh        stops the loop, leaves a post-hoc diff running
+│   ├── posthoc_diff.sh        parallel post-hoc differential sweep (-j jobs, resumable)
 │   ├── posthoc_status.sh      progress report for the background post-hoc sweep
 │   └── crasher_watcher.sh     preserves go-fuzz crashers
 └── out/
@@ -162,15 +163,13 @@ LLM-guided run (matches our 13h30m run):
   --no-diff
 ```
 
-`--no-diff` runs generation only, matching the baseline's behavior so the comparison stays fair. Run differential post-hoc through the orchestrator wrapper, one report per plan dir (it adds besu automatically when the wrapper is present):
+`--no-diff` runs generation only, matching the baseline's behavior so the comparison stays fair. Run differential post-hoc with the parallel sweep driver, which calls `orchestrator/differential.py` per plan dir and writes one `diff_report.json` each (besu is added automatically when the wrapper is present):
 
 ```bash
-for d in out/llm_guided/plan_*/out; do
-  python3 orchestrator/differential.py "$d" --threads 12
-done
+scripts/posthoc_diff.sh out/llm_guided -j 6 --threads 3
 ```
 
-The published comparison used geth + revm only; running the sweep with besu present gives the 3-way panel and rewrites each `diff_report.json` with besu's vote. besu cold-starts a JVM per invocation, so the sweep is much slower than the geth+revm pair; budget accordingly (CPU is free once fuzzing stops).
+The throughput gate is besu: each `runtest` feeds one `--besubatch` evmtool stream at ~90 tests/sec, so a sequential sweep pegs a single besu stream and idles the rest of the box. `-j` fans out that many plan dirs concurrently, each with its own `runtest` + besu JVM, which on a 32-core machine turns an ~34h sweep into ~7h. Size `-j` against RAM (each besu JVM is the memory cost; on a 15 GB box, 6 is the safe ceiling). The sweep is resumable — re-running skips plan dirs already done since the last start — and streams progress to `out/posthoc_diff.log`. Running it with besu present gives the 3-way panel and rewrites each `diff_report.json` with besu's vote; the published comparison used geth + revm only.
 
 ### 9. Stop a running session
 
@@ -201,7 +200,9 @@ The loop driver (`start_llm_loop.sh`) has a few conveniences beyond the reproduc
 python3 orchestrator/dashboard/server.py    # then open http://127.0.0.1:8090/
 ```
 
-Read-only viewer. The `/api/stats` endpoint scans `out/llm_guided/` diff reports plus session state and returns totals (tests, divergences, batches, plans, crashers), a divergence rate, loop/llama status, the current objective, and recent batches/divergences. The clients shown reflect the most recently written diff report.
+Read-only viewer. The `/api/stats` endpoint scans `out/llm_guided/` diff reports plus session state and returns totals (tests, divergences, batches, plans, crashers), a divergence rate, loop/llama status, the current objective, recent batches/divergences, and a post-hoc block (sweep progress parsed from `out/posthoc_diff.log`). The clients shown reflect the most recently written diff report.
+
+Two themes ship, both polling the same `/api/stats`: kraft (default, `/`) and blueprint (`/blueprint`), with a footer link to flip between them. Status is rendered as physical flip-switches (knob up = on), and the post-hoc sweep appears live while it runs. Webfonts load from Google Fonts, so the viewing browser needs internet; offline it falls back to a system sans.
 
 It binds `127.0.0.1` by default. To reach it from another machine (e.g. over a tailnet), bind a routable interface: `--host 0.0.0.0`. For a public exposure, turn on HTTP Basic auth by setting `DASH_AUTH` in the environment, and put it behind TLS (Basic auth is plaintext otherwise):
 
