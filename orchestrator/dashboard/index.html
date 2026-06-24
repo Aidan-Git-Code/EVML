@@ -124,6 +124,32 @@
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 860px) { .cards { grid-template-columns: repeat(2,1fr); } .grid2 { grid-template-columns: 1fr; } }
 
+  /* ---- phones (Android / narrow) ---- */
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 14px 12px; }
+    .stamp { text-align: left; white-space: normal; }
+    main { padding: 0 14px 8px; }
+    footer { padding: 10px 14px 28px; }
+
+    /* keep two stat cards across; shrink the big number so it can't overflow */
+    .cards { gap: 10px; }
+    .card { padding: 11px 12px; }
+    .card .value { font-size: 22px; overflow-wrap: anywhere; }
+
+    /* let all status switches fit one row by shrinking instead of wrapping */
+    .switch { min-width: 0; padding: 14px 6px; gap: 7px; }
+
+    /* stack key/value rows so the fixed label column stops eating the screen */
+    .kv { grid-template-columns: 1fr; gap: 2px 0; }
+    .kv dt { margin-top: 8px; }
+    .kv dt:first-of-type { margin-top: 0; }
+
+    /* wide tables scroll sideways inside their card, not the whole page */
+    .scroll, .panel .body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    th, td { white-space: nowrap; padding: 8px 12px; }
+    .obj { max-width: 180px; }
+  }
+
   /* ---- panels ---- */
   section.panel {
     background: var(--card); border: 2px solid var(--ink); border-radius: 11px;
@@ -133,8 +159,23 @@
     font-family: var(--display); font-size: 15px; font-weight: 400;
     color: var(--paper); background: var(--ink);
     margin: 0; padding: 9px 16px;
+    display: flex; align-items: center; gap: 12px;
   }
   .panel .body { padding: 16px; }
+
+  .ph-actions { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; }
+  .ph-msg { font-family: var(--body); font-size: 12px; font-weight: 700; color: var(--card); }
+  .btn {
+    font-family: var(--body); font-weight: 800; font-size: 12px;
+    color: var(--ink); background: var(--paper);
+    border: 2px solid var(--paper); border-radius: 7px;
+    padding: 4px 12px; cursor: pointer;
+  }
+  .btn:hover { background: var(--card); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn-stop { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn-stop:hover { background: #b8281b; }
 
   .kv { display: grid; grid-template-columns: 140px 1fr; gap: 9px 14px; }
   .kv dt { color: var(--ink-2); font-weight: 800; }
@@ -176,6 +217,11 @@
     color: var(--ink-2); font-size: 12px; font-weight: 600;
   }
   footer .mono { color: var(--ink); }
+
+  /* when the page can't reach /api/stats, dim everything and make the stamp
+     shout — so a frozen page can't masquerade as a live one */
+  body.stale main { opacity: .38; filter: grayscale(.5); pointer-events: none; transition: opacity .25s; }
+  body.stale #updated { background: var(--red); color: #fff; border-color: var(--ink); }
 </style>
 </head>
 <body>
@@ -211,8 +257,14 @@
 
   <div class="cards" id="cards"></div>
 
-  <section class="panel" id="posthoc-panel" style="display:none">
-    <h2>post-hoc differential sweep</h2>
+  <section class="panel" id="posthoc-panel">
+    <h2>post-hoc differential sweep
+      <span class="ph-actions">
+        <span class="ph-msg" id="ph-msg"></span>
+        <button class="btn" id="ph-run" onclick="startPosthoc()">run sweep</button>
+        <button class="btn btn-stop" id="ph-stop" onclick="stopPosthoc()" style="display:none">stop</button>
+      </span>
+    </h2>
     <div class="body" id="posthoc-body"></div>
   </section>
 
@@ -303,13 +355,20 @@ function render(d) {
 
   const ph = d.posthoc;
   const phSwitch = document.getElementById("posthoc-switch");
-  const phPanel = document.getElementById("posthoc-panel");
+  const phRunning = !!(ph && ph.running);
+  const phBtn = document.getElementById("ph-run");
+  if (phBtn) {
+    phBtn.disabled = phRunning;
+    phBtn.textContent = phRunning ? "running…" : "run sweep";
+  }
+  const phStop = document.getElementById("ph-stop");
+  if (phStop) phStop.style.display = phRunning ? "" : "none";
   if (!ph) {
     phSwitch.style.display = "none";
-    phPanel.style.display = "none";
+    document.getElementById("posthoc-body").innerHTML =
+      `<div class="empty">no sweep has run yet. press “run sweep” to diff the corpus across clients.</div>`;
   } else {
     phSwitch.style.display = "";
-    phPanel.style.display = "";
     const pct = ph.total ? Math.floor(ph.done * 100 / ph.total) : 0;
     const state = ph.finished ? "done" : (ph.running ? "running" : "stopped");
     setStatus("posthoc", ph.finished || ph.running,
@@ -363,16 +422,72 @@ function render(d) {
   }
 }
 
+async function startPosthoc() {
+  const btn = document.getElementById("ph-run");
+  const msg = document.getElementById("ph-msg");
+  btn.disabled = true; btn.textContent = "starting…";
+  if (msg) msg.textContent = "";
+  try {
+    const res = await fetch("/api/posthoc/start", { method: "POST" });
+    const j = await res.json().catch(() => ({}));
+    if (res.ok && j.ok)        { if (msg) msg.textContent = "sweep started"; }
+    else if (res.status === 409) { if (msg) msg.textContent = "already running"; }
+    else                       { if (msg) msg.textContent = "error: " + (j.error || res.status); }
+  } catch (e) {
+    if (msg) msg.textContent = "request failed";
+  }
+  // let the next poll settle button + progress state
+  setTimeout(tick, 700);
+}
+
+async function stopPosthoc() {
+  const btn = document.getElementById("ph-stop");
+  const msg = document.getElementById("ph-msg");
+  if (btn) { btn.disabled = true; btn.textContent = "stopping…"; }
+  if (msg) msg.textContent = "";
+  try {
+    const res = await fetch("/api/posthoc/stop", { method: "POST" });
+    const j = await res.json().catch(() => ({}));
+    if (res.ok && j.ok) { if (msg) msg.textContent = "stopped" + (j.killed ? ` (${j.killed} procs)` : " (nothing running)"); }
+    else                { if (msg) msg.textContent = "error: " + (j.error || res.status); }
+  } catch (e) {
+    if (msg) msg.textContent = "request failed";
+  }
+  if (btn) { btn.disabled = false; btn.textContent = "stop"; }
+  setTimeout(tick, 700);
+}
+
+let lastOk = 0;
+
+// A failed/stalled poll must not leave the last render looking live. After ~15s
+// without fresh data, dim the page and turn the stamp into a stale warning.
+function markStale() {
+  const stale = !lastOk || (Date.now() - lastOk > 15000);
+  document.body.classList.toggle("stale", stale);
+  if (stale && lastOk) {
+    document.getElementById("updated").textContent =
+      "stale — no data for " + rel(Math.floor((Date.now() - lastOk) / 1000));
+  }
+}
+
 async function tick() {
   try {
-    const res = await fetch("/api/stats", { cache: "no-store" });
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), 4000);
+    const res = await fetch("/api/stats", { cache: "no-store", signal: ctrl.signal });
+    clearTimeout(to);
+    if (!res.ok) throw new Error("http " + res.status);
     render(await res.json());
+    lastOk = Date.now();
+    document.body.classList.remove("stale");
   } catch (e) {
     document.getElementById("updated").textContent = "fetch failed, retrying";
+    markStale();
   }
 }
 tick();
 setInterval(tick, 5000);
+setInterval(markStale, 3000);
 </script>
 </body>
 </html>

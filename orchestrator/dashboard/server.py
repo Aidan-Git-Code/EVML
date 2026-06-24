@@ -18,6 +18,8 @@ import hmac
 import json
 import os
 import re
+import signal
+import subprocess
 import time
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -44,21 +46,59 @@ _PH_SKIP_RE = re.compile(r"skipped=(\d+)")
 _PH_LINE_RE = re.compile(r"\[(\d+)/(\d+)\]\s+(\S+)\s+(\S+)\s+vms=(\S+)\s+divs=(\d+)\s+(\S+)")
 
 
+def _iter_proc_cmdlines():
+    """Yield (pid, cmdline-bytes) for every process. Skips ones that vanish."""
+    try:
+        entries = list(Path("/proc").iterdir())
+    except OSError:
+        return
+    for entry in entries:
+        if not entry.name.isdigit():
+            continue
+        try:
+            yield int(entry.name), (entry / "cmdline").read_bytes()
+        except OSError:
+            continue
+
+
 def _posthoc_running() -> bool:
     """True if a posthoc_diff.sh process is alive. Scans /proc rather than a
     pidfile so a sweep launched by hand (nohup) is detected without a restart."""
-    try:
-        for entry in Path("/proc").iterdir():
-            if not entry.name.isdigit():
-                continue
+    return any(b"posthoc_diff.sh" in cl for _pid, cl in _iter_proc_cmdlines())
+
+
+# Command-line fragments identifying every part of a post-hoc sweep tree. besu
+# JVMs (besu-26*) are the memory cost, so they are the point of the stop.
+_PH_KILL_MARKERS = (
+    b"posthoc_diff.sh",            # the sweep controller (and the repeating wrapper, which holds it in its loop body)
+    b"xargs -P",                   # the job pool
+    b"bash -c worker",             # pool workers
+    b"orchestrator/differential.py",
+    b"/runtest",                   # goevmlab runtest
+    b"besu-26",                    # the besu evmtool JVM
+    b"evmtool-jdk25",              # the besu wrapper
+)
+
+
+def _kill_posthoc() -> int:
+    """SIGKILL the whole post-hoc sweep tree. Repeats a few passes because the
+    xargs pool respawns workers until its controller is gone. Returns the number
+    of distinct PIDs signalled."""
+    me = os.getpid()
+    killed: "set[int]" = set()
+    for _ in range(4):
+        hits = [pid for pid, cl in _iter_proc_cmdlines()
+                if pid != me and any(m in cl for m in _PH_KILL_MARKERS)]
+        if not hits:
+            break
+        for pid in hits:
             try:
-                if b"posthoc_diff.sh" in (entry / "cmdline").read_bytes():
-                    return True
+                os.kill(pid, signal.SIGKILL)
+                killed.add(pid)
             except OSError:
-                continue
-    except OSError:
-        pass
-    return False
+                pass
+        time.sleep(0.4)
+    return len(killed)
 
 
 def _posthoc() -> dict | None:
@@ -191,11 +231,20 @@ def _scan() -> dict:
             last_vms = vms
 
         objective = None
+        # "when" should mean when the batch was generated, not when its diff
+        # report was last written. A post-hoc sweep rewrites every old report,
+        # which otherwise makes the whole corpus look freshly produced. plan.json
+        # is written once at generation, so its mtime is a stable generated-at.
+        gen_mtime = report.stat().st_mtime  # fallback if plan.json is missing
         plan = d / "plan.json"
         if plan.exists():
             try:
                 objective = json.loads(plan.read_text()).get("objective")
             except (OSError, json.JSONDecodeError):
+                pass
+            try:
+                gen_mtime = plan.stat().st_mtime
+            except OSError:
                 pass
 
         rows.append({
@@ -206,7 +255,7 @@ def _scan() -> dict:
             "duration_s": round(float(rep.get("duration_s", 0) or 0), 1),
             "vms": vms,
             "rc": int(rep.get("runtest_rc", 0) or 0),
-            "mtime": report.stat().st_mtime,
+            "mtime": gen_mtime,
         })
         for dv in divs:
             recent_divs.append({
@@ -343,6 +392,63 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(500, f"{page} missing".encode(), "text/plain")
             return
         self._send(404, b"not found", "text/plain")
+
+    def do_POST(self):
+        if not self._authed():
+            self._challenge()
+            return
+        # Drain any request body so the client connection closes cleanly.
+        try:
+            length = int(self.headers.get("Content-Length", 0) or 0)
+            if length:
+                self.rfile.read(length)
+        except (ValueError, OSError):
+            pass
+        path = self.path.rstrip("/")
+        if path == "/api/posthoc/start":
+            self._start_posthoc()
+            return
+        if path == "/api/posthoc/stop":
+            self._stop_posthoc()
+            return
+        self._send(404, b"not found", "text/plain")
+
+    def _start_posthoc(self):
+        """Launch a detached, resumable post-hoc sweep (--skip-existing diffs
+        only batches that have no report yet). Refuses to start a second one."""
+        def fail(code, err):
+            self._send(code, json.dumps({"ok": False, "error": err}).encode(),
+                       "application/json")
+
+        if _posthoc_running():
+            fail(409, "a sweep is already running")
+            return
+        script = REPO_ROOT / "scripts" / "posthoc_diff.sh"
+        if not script.exists():
+            fail(500, "scripts/posthoc_diff.sh not found")
+            return
+        cmd = ["bash", str(script), str(LLM_GUIDED),
+               "-j", "4", "--threads", "3", "--skip-existing",
+               "--log", str(OUT_ROOT / "posthoc_diff.log")]
+        try:
+            subprocess.Popen(
+                cmd, cwd=str(REPO_ROOT),
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+        except OSError as e:
+            fail(500, str(e))
+            return
+        self._send(200, json.dumps({"ok": True, "started": True}).encode(),
+                   "application/json")
+
+    def _stop_posthoc(self):
+        """Kill the running sweep tree to free RAM (the besu JVMs). Reports how
+        many processes were signalled; 0 means nothing was running."""
+        n = _kill_posthoc()
+        self._send(200, json.dumps({"ok": True, "stopped": True, "killed": n}).encode(),
+                   "application/json")
 
 
 def main():

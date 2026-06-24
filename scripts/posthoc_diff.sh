@@ -32,6 +32,8 @@ ROOT="out/llm_guided"
 JOBS=8
 THREADS=3
 FORCE=0
+SKIP_EXISTING=0        # incremental: diff each immutable batch once; ignore the mtime cutoff
+GRACE=120              # defer batches whose out/ was touched within this many seconds
 LOG="out/posthoc_diff.log"
 
 while [[ $# -gt 0 ]]; do
@@ -39,6 +41,7 @@ while [[ $# -gt 0 ]]; do
 		-j|--jobs) JOBS="$2"; shift 2;;
 		--threads) THREADS="$2"; shift 2;;
 		--force) FORCE=1; shift;;
+		--skip-existing) SKIP_EXISTING=1; shift;;
 		--log) LOG="$2"; shift 2;;
 		-*) echo "unknown flag: $1" >&2; exit 2;;
 		*) ROOT="$1"; shift;;
@@ -67,8 +70,20 @@ fi
 
 TODO=()
 skipped=0
+now=$(date +%s)
 for d in "${CANDIDATES[@]}"; do
 	rep="$(dirname "$d")/diff/diff_report.json"
+	if [[ "$FORCE" -eq 0 && "$SKIP_EXISTING" -eq 1 ]]; then
+		# Incremental mode (repeating-wrapper friendly): a FuzzyVM batch is
+		# write-once, so diff each exactly once and never re-diff. Defer dirs
+		# still being written so a partial batch is not marked done.
+		[[ -f "$rep" ]] && { skipped=$((skipped + 1)); continue; }
+		dm=$(stat -c %Y "$d" 2>/dev/null || echo 0)
+		if [[ $((now - dm)) -lt "$GRACE" ]]; then
+			skipped=$((skipped + 1)); continue
+		fi
+		TODO+=("$d"); continue
+	fi
 	if [[ "$FORCE" -eq 0 && "$CUTOFF" -gt 0 && -f "$rep" ]]; then
 		m=$(stat -c %Y "$rep" 2>/dev/null || echo 0)
 		if [[ "$m" -gt "$CUTOFF" ]]; then
